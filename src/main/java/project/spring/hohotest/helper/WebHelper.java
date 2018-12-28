@@ -44,7 +44,7 @@ public class WebHelper {
 	 * WebHelper 기능을 초기화 한다. Spring이 제공하는 ServletRequestAttributes 객체를 통해서
 	 * request, response객체를 직접 생성할 수 있다.
 	 */
-	public void init(HttpServletResponse response) {
+	public void init() {
 
 		/** JSP 내장객체를 담고 있는 Spring의 객체를 통해서 내장객체 획득하기 */
 		// --> import
@@ -55,7 +55,7 @@ public class WebHelper {
 
 		// request와 response 객체를 추출한다.
 		this.request = requestAttr.getRequest();
-		this.response = response;
+		this.response = requestAttr.getResponse();
 
 		// 세션객체 생성하기
 		this.session = request.getSession();

@@ -22,7 +22,6 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="project.spring.hohotest" />
-	
-	
+	<context:component-scan base-package="project.spring.hohotest.controller.hohostory" />
 	
 </beans:beans>
