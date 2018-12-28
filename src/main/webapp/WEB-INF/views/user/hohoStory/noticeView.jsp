@@ -11,6 +11,8 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
+	
+	<h1>공지 상세보기</h1>
 
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 </body>

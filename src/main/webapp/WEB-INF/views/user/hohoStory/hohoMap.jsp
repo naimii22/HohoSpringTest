@@ -12,6 +12,8 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
+	<h1>오시는 길</h1>
+	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 </body>
 </html>

@@ -17,10 +17,14 @@
 <h1>
 	Hello world!  
 </h1>
-<p> 곽로용 첫번째 수정 </p>
-<p> 나이미 두번째 수정 </p>
-<p> 켸려니 세번째 수정 </p>
-<p> 소여니 네번째 수정</p>
 <P>  The time on the server is ${serverTime}. </P>
+
+<h3>Test</h3>
+<a href="${pageContext.request.contextPath}/user/hohoStory/companyInfo.do">회사정보</a><br>
+<a href="${pageContext.request.contextPath}/user/hohoStory/hohoMap.do">지도</a><br>
+<a href="${pageContext.request.contextPath}/user/hohoStory/staffInfo.do">직원정보</a><br>
+<a href="${pageContext.request.contextPath}/user/hohoStory/notice.do">공지사항</a><br>
+<a href="${pageContext.request.contextPath}/user/hohoStory/noticeView.do">공지 상세보기</a><br>
+
 </body>
 </html>
