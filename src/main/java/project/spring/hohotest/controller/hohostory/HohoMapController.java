@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CompanyInfoController {
+public class HohoMapController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(CompanyInfoController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HohoMapController.class);
 	
-	@RequestMapping("user/hohoStory/companyInfo.do")
+	@RequestMapping("user/hohoStory/hohoMap.do")
 	public ModelAndView doRun(Local local, Model model, HttpServletRequest request, HttpServletResponse response) {
-		logger.debug("companyInfo is running...");
+		logger.debug("hohoMap is running...");
 		
-		return new ModelAndView("user/hohoStory/companyInfo");
+		return new ModelAndView("user/hohoStory/hohoMap");
 	}
 }
