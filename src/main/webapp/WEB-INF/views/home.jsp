@@ -25,6 +25,8 @@
 <a href="${pageContext.request.contextPath}/user/hohoStory/staffInfo.do">직원정보</a><br>
 <a href="${pageContext.request.contextPath}/user/hohoStory/notice.do">공지사항</a><br>
 <a href="${pageContext.request.contextPath}/user/hohoStory/noticeView.do">공지 상세보기</a><br>
+<hr/>
+<a href="${pageContext.request.contextPath}/user/qna/qna.do">Q & A</a><br>
 
 </body>
 </html>

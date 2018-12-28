@@ -59,7 +59,7 @@
 						<h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
 						href="#collapseFour"> Q. 주문 시 배송은 언제 되나요? </a></h4>
 					</div>
-					<div id="collapseFive" class="panel-collapse collapse">
+					<div id="collapseFour" class="panel-collapse collapse">
 						<div class="panel-body">
 							고객님께 신선한 케이크를 전달해 드리기 위해 당일 배송해드립니다.
 						</div>
@@ -71,7 +71,7 @@
 						<h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion"
 						href="#collapseFive"> Q. 회원정보변경은 어떻게 하나요? </a></h4>
 					</div>
-					<div id="collapseThree" class="panel-collapse collapse">
+					<div id="collapseFive" class="panel-collapse collapse">
 						<div class="panel-body">
 							호호's 베이커리 회원이시라면 '로그인 > 마이페이지 > 회원정보'에서 수정이 가능합니다.
 						</div>
