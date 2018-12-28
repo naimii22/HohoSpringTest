@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="LikeMapper">
+
+	<resultMap id="like" type="project.spring.hohotest.model.Like">
+		<result property="id" column="id" />
+		<result property="member_id" column="member_id" />
+		<result property="product_id" column="product_id" />
+	</resultMap>
+
+</mapper>
