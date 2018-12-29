@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ProductLikeListController {
+public class MemberLikeListController {
 
-	private static final Logger logger = LoggerFactory.getLogger(ProductLikeListController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberLikeListController.class);
 	
-	@RequestMapping(value = "/user/like/productLikeList.do")
+	@RequestMapping(value = "/user/like/memberLikeList.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
-		logger.debug("productLikeList is running...");
+		logger.debug("memberLikeList is running...");
 		
-		return new ModelAndView("user/like/productLikeList");
+		return new ModelAndView("user/like/memberLikeList");
 	}
 	
 }

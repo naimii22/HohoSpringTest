@@ -25,8 +25,8 @@
 			<a href="${pageContext.request.contextPath}/user/hohoStory/notice.do">공지사항</a>
 			<a href="${pageContext.request.contextPath}/user/hohoStory/noticeView.do">공지상세</a>
 			<a href="${pageContext.request.contextPath}/user/qna/qna.do">Q & A</a>
-			<a href="${pageContext.request.contextPath}/user/cart/productCartList.do">장바구니</a>
-			<a href="${pageContext.request.contextPath}/user/like/productLikeList.do">찜</a>
+			<a href="${pageContext.request.contextPath}/user/cart/memberCartList.do">장바구니</a>
+			<a href="${pageContext.request.contextPath}/user/like/memberLikeList.do">찜</a>
 			<a href="${pageContext.request.contextPath}/user/order/memberOrderList.do">주문목록</a>
 			<a href="${pageContext.request.contextPath}/user/order/memberOrderView.do">주문상세</a>
 			<a href="${pageContext.request.contextPath}/user/login/login.do">로그인</a>
