@@ -34,5 +34,6 @@
 	<context:component-scan base-package="project.spring.hohotest.controller.order" />
 	<context:component-scan base-package="project.spring.hohotest.controller.login" />
 	<context:component-scan base-package="project.spring.hohotest.controller.memberJoin" />
+	<context:component-scan base-package="project.spring.hohotest.controller.member" />
 	
 </beans:beans>
