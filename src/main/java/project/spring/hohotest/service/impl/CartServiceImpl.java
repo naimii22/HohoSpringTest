@@ -30,15 +30,24 @@ public class CartServiceImpl implements CartService {
 			throw new Exception("장바구니에 담길 상품이 없습니다.");
 		} catch(Exception e) {
 			logger.error(e.getLocalizedMessage());
-			throw new Exception("장바구니에 담기가 실패했습니다.");
+			throw new Exception("장바구니 담기에 실패했습니다.");
 		}
 	}
 
 	@Override
 	public List<Cart> selectCartList(Cart cart) throws Exception {
-		List<Cart> cartList = null;
+		List<Cart> result = null;
 		
-		return null;
+		try {
+			result = sqlSession.selectList("CartMapper.selectCartList", cart);
+		} catch(NullPointerException e) {
+			throw new Exception("카트에 담긴 상품이 없습니다.");
+		} catch(Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("장바구니 목록 조회에 실패했습니다.");
+		}
+		
+		return result;
 	}
 	
 }

@@ -29,22 +29,23 @@
 		    	</thead>
 			    <tbody>
 			    	<c:choose>
-			    		<c:when test="${fn:length(documentList) > 0}">
-			    			<c:forEach var="document" items="${documentList}">
+			    		<c:when test="${fn:length(cartList) > 0}">
+			    			<c:forEach var="cart" items="${cartList}" varStatus="status">
+			    				<c:set var="product" value="${productList.get(status.index)}" />
 			    				<tr>
-						            <td class="text-center">${maxPageNo}</td>
 						            <td>
-						            	<c:url var="readUrl" value="/bbs/document_read.do">
-						            		<c:param name="category" value="${document.category}" />
-						            		<c:param name="document_id" value="${document.id}" />
+						            	<c:url var="readUrl" value="user/product/productView.do">
+						            		<c:param name="product_id" value="${product.id}" />
 						            	</c:url>
-						            	<a href="${readUrl}">${document.subject}</a>
+						            	<a href="${readUrl}"><img src="${product.image}"></a>
 						            </td>
-						            <td class="text-center">${document.writerName}</td>
-						            <td class="text-center">${document.hit}</td>
-						            <td class="text-center">${document.regDate }</td>
+						            <td class="text-center">${product.name}</td>
+						            <td class="text-center">수량</td>
+						            <td class="text-center">${product.price}</td>
+						            <td>
+						            	<a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?member_id=${loginUser.user_id}" class="btn btn-danger">삭제하기</a>
+						            </td>
 					        	</tr>
-					        	<c:set var="maxPageNo" value="${maxPageNo-1}"/>
 			    			</c:forEach>
 			    		</c:when>
 			    		<c:otherwise>
@@ -61,8 +62,8 @@
 		<!-- 결제 버튼 시작 -->
 		<div class="clearfix">
 		    <div class="pull-right">
-		        <a href="${pageContext.request.contextPath}/bbs/document_write.do?category=${category}" class="btn btn-primary">
-		        	<i class="glyphicon glyphicon-pencil"></i> 글쓰기
+		        <a href="${pageContext.request.contextPath}/user/order/memberOrderInsert.do?member_id=${loginUser.user_id}" class="btn btn-primary">
+		        	<i class="glyphicon glyphicon-pencil"></i> 결제하기
 		        </a>
 			</div>
 		</div>

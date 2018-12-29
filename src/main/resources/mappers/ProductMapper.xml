@@ -14,4 +14,10 @@
 		<result property="info" column="info" />
 	</resultMap>
 
+	<!-- 제품 하나에 대한 정보를 가져온다. -->
+	<select id="selectProduct" parameterType="project.spring.hohotest.model.Product" resultMap="product">
+		SELECT	id, name, price, image, type, info
+		FROM	product
+		WHERE	id=#{id}
+	</select>
 </mapper>

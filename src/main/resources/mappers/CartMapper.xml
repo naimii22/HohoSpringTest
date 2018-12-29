@@ -13,6 +13,22 @@
 		<result property="amount" column="amount" />
 	</resultMap>
 	
+	<!-- 장바구니에 넣기 -->
+	<insert id="insertCart" parameterType="project.spring.hohotest.model.Cart"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO cart (
+			member_id, product_id, order_id, amount
+		) VALUES (
+			#{member_id}, #{product_id}, #{order_id}, #{amount}
+		)
+	</insert>
 	
+	<!-- 장바구니 목록을 가져온다. -->
+	<select id="selectCartList" parameterType="project.spring.hohotest.model.Cart"
+		resultMap="cart">
+		SELECT	member_id, product_id, order_id, amount
+		FROM	cart
+		WHERE	member_id=#{member_id} AND order_id=0
+	</select>
 
 </mapper>
