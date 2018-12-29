@@ -30,6 +30,10 @@
 			<a href="${pageContext.request.contextPath}/user/order/memberOrderList.do">주문목록</a>
 			<a href="${pageContext.request.contextPath}/user/order/memberOrderView.do">주문상세</a>
 			<a href="${pageContext.request.contextPath}/user/login/login.do">로그인</a>
+			<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeList.do">관리공지</a>
+			<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeView.do">관리공지상세</a>
+			<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeUpdate.do">관리공지업</a>
+			<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeWrite.do">관리공지삭</a>
         </div>
 
         <!-- 페이지 컨텐츠 -->
@@ -52,7 +56,7 @@
                 repeat: true,                           // 반복재생 설정
                 width: $("#video-bg").width(),          // 동영상의 넓이 (부모요소의 넓이로 지정한다.)
                 wrapperZIndex: 99,                      // z-index 설정값
-                start: 102,                               // 재생 시작 위치 (초) --> 3초후 위치부터 재생시작
+                start: 102,                             // 재생 시작 위치 (초) --> 3초후 위치부터 재생시작
 
                 /** 동작버튼. 여기서 설정한 클래스의 버튼을 찾아 기능이 부여된다 */
                 playButtonClass: 'tubular-play',        // 재생버튼의 클래스

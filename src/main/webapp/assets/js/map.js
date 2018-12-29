@@ -20,7 +20,7 @@ function map() {
 	            '        </div>' + 
 	            '        <div class="body">' + 
 	            '            <div class="img">' +
-	            '                <img src="${img}" width="73" height="70">' +
+	            '                <img src="../../assets/img/no_image.jpg" width="73" height="70">' +
 	            '           </div>' + 
 	            '            <div class="desc">' + 
 	            '                <div class="ellipsis">서울 서초구 서초대로77길 54</div>' + 

@@ -21,9 +21,6 @@ public class HohoMapController {
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		logger.debug("hohoMap is running...");
 		
-		String img = "./assets/img/no_image.jpg";
-		
-		model.addAttribute("img", img);
 		return new ModelAndView("user/hohoStory/hohoMap");
 	}
 	

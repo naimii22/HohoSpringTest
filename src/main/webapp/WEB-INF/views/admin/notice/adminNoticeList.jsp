@@ -5,20 +5,18 @@
 <%@ page session="true" %>
 <!doctype html>
 <html lang='ko'>
-
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
-	<title>notice</title>
-	<!-- Custom styles for this template -->
+	<title>adminNoticeList</title>
 	<link href="${pageContext.request.contextPath}/assets/css/noticeList.css" rel="stylesheet">
 </head>
-
 <body>
-	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
+	<%@ include file="/WEB-INF/inc/topbarAdmin.jsp" %>
 	
 	<div class="container">
 		<div class="row" id="wrap">
 			<h1 id="font-BM">공&nbsp;지&nbsp;사&nbsp;항</h1><br>
+			<input type="button" id="adminNotice" class="btn btn-outline-success" value="공지사항 작성" onclick="location.href='BakeryServlet?command=adminNoticeWriteForm'">
 			<table class="table table-hover">
 				<thead class="none-hover">
 					<tr id="font-Arita">
@@ -41,7 +39,5 @@
 			</table>
 		</div>
 	</div><br><br><br>
-	
-	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 </body>
 </html>

@@ -6,6 +6,10 @@ public class Notice {
 	private String content;
 	private int hit;
 	
+	// 페이지 구현을 위해 추가
+	private int limitStart;
+	private int listCount;
+	
 	public int getId() {
 		return id;
 	}
@@ -29,6 +33,18 @@ public class Notice {
 	}
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	public int getLimitStart() {
+		return limitStart;
+	}
+	public void setLimitStart(int limitStart) {
+		this.limitStart = limitStart;
+	}
+	public int getListCount() {
+		return listCount;
+	}
+	public void setListCount(int listCount) {
+		this.listCount = listCount;
 	}
 	
 	@Override

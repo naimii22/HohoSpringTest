@@ -12,7 +12,25 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
-	<h1>공지 상세보기</h1>
+	<div class="container">
+		<div class="row" id="wrap">
+			<br>
+			<font>공지사항 보기</font><br><br><br>
+			<table class="table" id="adminNoticeView">
+				<tr>
+					<th id="title">제목</th>
+					<td>${notice.title}</td>
+					<th id="rc">조회수</th>
+					<td id="rc">${notice.readCount}</td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td colspan="3"><pre>${notice.content}</pre></td>
+				</tr>
+			</table><br>
+			<input type="button" class="btn btn-outline-success" value="목록" onclick="location.href='BakeryServlet?command=adminNoticeList'">
+		</div>
+	</div>
 
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 </body>
