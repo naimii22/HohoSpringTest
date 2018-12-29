@@ -7,13 +7,13 @@
 <html lang='ko'>
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
-	<title>title</title>
+	<title>memberOrderView</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
 	<div>
-		
+		<h1>주문 상세보기</h1>
 	</div>
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>

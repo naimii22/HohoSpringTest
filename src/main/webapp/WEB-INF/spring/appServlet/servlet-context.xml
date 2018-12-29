@@ -27,4 +27,7 @@
 	<context:component-scan base-package="project.spring.hohotest" />
 	<context:component-scan base-package="project.spring.hohotest.controller.hohostory" />
 	<context:component-scan base-package="project.spring.hohotest.controller.qna" />
+	<context:component-scan base-package="project.spring.hohotest.controller.cart" />
+	<context:component-scan base-package="project.spring.hohotest.controller.like" />
+	<context:component-scan base-package="project.spring.hohotest.controller.order" />
 </beans:beans>

@@ -1,4 +1,4 @@
-package project.spring.hohotest.controller.qna;
+package project.spring.hohotest.controller.like;
 
 import java.util.Locale;
 
@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class QnaController {
+public class ProductLikeListController {
+
+	private static final Logger logger = LoggerFactory.getLogger(ProductLikeListController.class);
 	
-	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
-	
-	@RequestMapping(value = "/user/qna/qna.do")
+	@RequestMapping(value = "/user/like/productLikeList.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
-		logger.debug("qna is running...");
+		logger.debug("productLikeList is running...");
 		
-		return new ModelAndView("user/qna/qna");
+		return new ModelAndView("user/like/productLikeList");
 	}
 	
 }
