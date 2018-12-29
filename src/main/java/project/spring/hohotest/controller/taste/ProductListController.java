@@ -19,7 +19,7 @@ import project.spring.hohotest.controller.login.loginController;
 import project.spring.hohotest.helper.WebHelper;
 
 @Controller
-public class productListController {
+public class ProductListController {
 
 	private static final Logger logger = LoggerFactory.getLogger(loginController.class);
 	@Autowired

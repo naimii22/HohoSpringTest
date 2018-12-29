@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import project.spring.hohotest.controller.login.loginController;
 
 @Controller
-public class tasteController {
+public class TasteController {
 	private static final Logger logger = LoggerFactory.getLogger(loginController.class);
 	
 	@RequestMapping("user/taste/taste.do")
