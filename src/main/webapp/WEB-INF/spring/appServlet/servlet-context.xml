@@ -25,10 +25,14 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="project.spring.hohotest" />
+	<context:component-scan base-package="project.spring.hohotest.service" />
+	<context:component-scan base-package="project.spring.hohotest.service.impl" />
 	<context:component-scan base-package="project.spring.hohotest.controller.hohostory" />
 	<context:component-scan base-package="project.spring.hohotest.controller.qna" />
 	<context:component-scan base-package="project.spring.hohotest.controller.cart" />
 	<context:component-scan base-package="project.spring.hohotest.controller.like" />
 	<context:component-scan base-package="project.spring.hohotest.controller.order" />
 	<context:component-scan base-package="project.spring.hohotest.controller.login" />
+	<context:component-scan base-package="project.spring.hohotest.controller.memberJoin" />
+	
 </beans:beans>

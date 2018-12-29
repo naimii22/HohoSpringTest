@@ -49,7 +49,7 @@
 	                           </form>
 	                           <div class="modal-header panel-footer">
 	                               <div id="modal-font">HOHO's Bakery에 처음이세요? 지금 가입하세요 » &nbsp;&nbsp;&nbsp;&nbsp; 
-	                               <a href="memberJoin.jsp" class="btn btn-default btn-xs">회원가입</a></div>
+	                               <a href="${pageContext.request.contextPath}/user/signUp/memberJoin.do" class="btn btn-default btn-xs">회원가입</a></div>
 	                           </div>
 	                       </div>
 	                   </div>
