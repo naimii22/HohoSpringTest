@@ -24,7 +24,7 @@
 			<ul class="nav navbar-nav">
 				<li><a href="#">Home</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/hohoStory/companyInfo.do">HOHO Story</a></li>
-				<li><a href="#">Taste</a></li>
+				<li><a href="${pageContext.request.contextPath}/user/taste/taste.do">Taste</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/qna/qna.do">Q&A</a></li>
 			</ul>
 			<!-- //사이트 메뉴 -->
