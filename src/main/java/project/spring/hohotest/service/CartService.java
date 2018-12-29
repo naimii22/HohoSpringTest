@@ -7,7 +7,7 @@ import project.spring.hohotest.model.Cart;
 /** 장바구니 관련 기능을 제공하기 위한 Service 계층 */
 public interface CartService {
 	/**
-	 * 상품을 장바구니에 넣는다.
+	 * 상품을 장바구니에 담는다.
 	 * @param cart - 장바구니 데이터
 	 * @throws Exception
 	 */

@@ -12,5 +12,7 @@
 		<result property="order_id" column="order_id" />
 		<result property="amount" column="amount" />
 	</resultMap>
+	
+	
 
 </mapper>
