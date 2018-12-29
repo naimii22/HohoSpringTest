@@ -8,6 +8,8 @@
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
 	<title>companyInfo</title>
+	<!-- css -->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/companyInfo.css">
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
