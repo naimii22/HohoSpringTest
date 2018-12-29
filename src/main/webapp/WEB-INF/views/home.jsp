@@ -29,5 +29,6 @@
 	<a href="${pageContext.request.contextPath}/user/like/productLikeList.do">찜리스트</a><br>
 	<a href="${pageContext.request.contextPath}/user/order/memberOrderList.do">주문 목록</a><br>
 	<a href="${pageContext.request.contextPath}/user/order/memberOrderView.do">주문 상세보기</a><br>
+	<a href="${pageContext.request.contextPath}/user/login/login.do">로그인</a><br>
 </body>
 </html>

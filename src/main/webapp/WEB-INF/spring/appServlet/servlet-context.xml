@@ -30,4 +30,5 @@
 	<context:component-scan base-package="project.spring.hohotest.controller.cart" />
 	<context:component-scan base-package="project.spring.hohotest.controller.like" />
 	<context:component-scan base-package="project.spring.hohotest.controller.order" />
+	<context:component-scan base-package="project.spring.hohotest.controller.login" />
 </beans:beans>
