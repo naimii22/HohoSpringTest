@@ -8,36 +8,58 @@
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
 	<title>adminNoticeList</title>
-	<link href="${pageContext.request.contextPath}/assets/css/noticeList.css" rel="stylesheet">
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/topbarAdmin.jsp" %>
-	
-	<div class="container">
-		<div class="row" id="wrap">
-			<h1 id="font-BM">공&nbsp;지&nbsp;사&nbsp;항</h1><br>
-			<input type="button" id="adminNotice" class="btn btn-outline-success" value="공지사항 작성" onclick="location.href='BakeryServlet?command=adminNoticeWriteForm'">
-			<table class="table table-hover">
-				<thead class="none-hover">
-					<tr id="font-Arita">
-						<th class="width-200">번호</th>
-						<th class="align-left-55">제목</th>
-						<th class="width-200">조회수</th>
-					</tr>
-				</thead>
-				<c:forEach var="notice" items="${noticeList}">
-					<tbody>
-						<tr id="font-Arita">
-							<td>${notice.id}</td>
-							<td class="align-left">
-								<a href="${pageContext.request.contextPath}/user/hohoStory/noticeView.do">${notice.title}</a>
-							</td>
-							<td>${notice.hit}</td>
-						</tr>
-					</tbody>
-				</c:forEach>
-			</table>
-		</div>
-	</div><br><br><br>
+<div class="container">
+
+	<h1 class="page-header">공지사항 관리 - <small>글 목록</small></h1>
+		
+	<!-- 글 목록 시작 -->
+	<div class="table-responsive">
+		<table class="table table-hover">
+		    <thead>
+		    	<tr>
+		    		<td>
+		    			<input type="button" class="btn btn-outline-success" value="공지사항 작성" 
+		    				onclick="location.href='${pageContext.request.contextPath}/admin/notice/adminNoticeWrite.do'">
+		    		</td>
+		    	</tr>
+		        <tr>
+		            <th class="text-center" style="width: 100px">번호</th>
+		            <th class="text-center">제목</th>
+		            <th class="text-center" style="width: 100px">조회수</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		    	<c:choose>
+		    		<c:when test="${fn:length(noticeList) > 0}">
+		    			<c:forEach var="notice" items="${noticeList}">
+		    				<tr>
+					            <td class="text-center">${maxPageNo}</td>
+					            <td>
+					            	<c:url var="viewURL" value="/user/hohoStory/noticeView.do">
+					            		<c:param name="id" value="${notice.id}" />
+					            	</c:url>
+					            	<a href="${readUrl}">${notice.title}</a>
+					            </td>
+					            <td class="text-center">${notice.hit}</td>
+				        	</tr>
+				        	<c:set var="maxPageNo" value="${maxPageNo-1}"/>
+		    			</c:forEach>
+		    		</c:when>
+		    		<c:otherwise>
+		    			<tr>
+				            <td colspan="5" class="text-center" style="line-height: 100px;">
+				               	조회된 글이 없습니다.
+				            </td>
+				        </tr>
+		    		</c:otherwise>
+		    	</c:choose>
+		    </tbody>
+		</table>
+	</div>
+	<!--// 글 목록 끝 -->
+</div>
 </body>
 </html>

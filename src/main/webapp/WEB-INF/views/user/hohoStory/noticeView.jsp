@@ -8,29 +8,69 @@
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
 	<title>noticeView</title>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/noticeView.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
 	<div class="container">
-		<div class="row" id="wrap">
-			<br>
-			<font>공지사항 보기</font><br><br><br>
-			<table class="table" id="font-arita">
+		<h1 class="page-header">공지사항 상세보기</h1>
+			
+		<!-- 제목, 조회수 -->
+		<div class="alert alert-info">
+			<h3 style="margin: 0">
+			    ${notice.title} &nbsp; <small> / 조회수 : ${notice.hit}</small>
+			</h3>
+		</div>
+		
+		<!-- 내용 -->
+		<section style="padding: 0 10px 20px 10px">
+			${notice.content}
+		</section>
+			
+		<!-- 다음글/이전글 -->
+		<table class="table table-bordered">
+			<tbody>
 				<tr>
-					<th id="title">제목</th>
-					<td>${notice.title}</td>
-					<th id="rc">조회수</th>
-					<td id="rc">${notice.hit}</td>
+					<th class="success" style="width: 100px">다음글</th>
+					<td>
+						<c:choose>
+							<c:when test="${nextNotice != null}">
+								<c:url var="nextUrl" value="/user/hohoStory/noticeView.do">
+									<c:param name="id" value="${nextNotice.id}" />
+								</c:url>
+								<a href="${nextUrl}">${nextNotice.title}</a>
+							</c:when>
+							<c:otherwise>
+								다음글이 없습니다.
+							</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
 				<tr>
-					<th>내용</th>
-					<td colspan="3"><pre>${notice.content}</pre></td>
+					<th class="success" style="width: 100px">이전글</th>
+					<td>
+						<c:choose>
+							<c:when test="${prevNotice != null}">
+								<c:url var="prevUrl" value="/user/hohoStory/noticeView.do">
+									<c:param name="id" value="${prevNotice.id}" />
+								</c:url>
+								<a href="${prevUrl}">${prevNotice.title}</a>
+							</c:when>
+							<c:otherwise>
+								이전글이 없습니다.
+							</c:otherwise>
+						</c:choose>
+					</td>
 				</tr>
-			</table><br>
-			<input type="button" class="btn btn-outline-success" value="목록" 
-				onclick="location.href='${pageContext.request.contextPath}/user/hohoStory/notice.do'">
+			</tbody>
+		</table>
+			
+		<!-- 버튼 -->
+		<div class="clearfix">
+			<div class="pull-right">
+				<a href="${pageContext.request.contextPath}/user/hohoStory/notice.do" 
+					class="btn btn-info">목록</a>
+			</div>
 		</div>
 	</div>
 

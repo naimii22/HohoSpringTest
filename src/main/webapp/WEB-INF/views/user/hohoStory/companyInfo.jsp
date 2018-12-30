@@ -16,15 +16,16 @@
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
 	<div class="container">
+		<h1 class="page-header">Hoho's Story</h1>
+		
 		<div class="row" id="wrap">
 			<table>
 				<tr>
-					<td><img id="companyImg" src="images/team.jpg"></td>
-					<td><img id="companyImg" src="images/team2.jpg"></td>
+					<td><img id="companyImg" src="나중에 이미지 넣기/images/team.jpg"></td>
+					<td><img id="companyImg" src="나중에 이미지 넣기/images/team2.jpg"></td>
 				</tr>
 			</table>
 					
-			<h1>호호's 베이커리</h1>
 			<table style="margin-top:20px; margin-bottom:50px;">
 				<tr>
 					<td><textarea rows="15" cols="15" readonly>    오븐에서 방금 꺼낸 빵이 가장 맛있다는 것을 알기에, 호호베이커리는 지금도 더욱 따뜻하고 촉촉한 갓 구운 빵을 제공하기 위해 끊임없이 노력합니다.
@@ -34,6 +35,7 @@
 				</tr>
 			</table>
 		</div>
+		
 	</div>
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
