@@ -1,6 +1,7 @@
 package project.spring.hohotest.controller.taste;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import project.spring.hohotest.controller.login.loginController;
 import project.spring.hohotest.helper.WebHelper;
+import project.spring.hohotest.model.Product;
 
 @Controller
 public class ProductListController {
@@ -26,7 +28,8 @@ public class ProductListController {
 	SqlSession sqlSession;
 	@Autowired
 	WebHelper web;
-	
+	//@Autowired
+	//ProductService productService;
 
 	@RequestMapping("user/taste/productList.do")
 	public void doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
@@ -38,17 +41,18 @@ public class ProductListController {
 		logger.debug("type : " + type);
 		
 		//sqlsession = type에 해당하는 productList들을 다 가져옴.
+		Product product = new Product();
+		product.setType(type);
 		
-		// 줄바꿈이나 HTML특수문자에 대한 처리
-		/*for (int i=0; i<item.size(); i++) {
-			BbsComment temp = item.get(i);
-			temp.setWriterName(web.convertHtmlTag(temp.getWriterName()));
-			temp.setEmail(web.convertHtmlTag(temp.getEmail()));
-			temp.setContent(web.convertHtmlTag(temp.getContent()));
-		}*/
+		List<Product> productList;
+		try {
+			//productList = productService.selectProductListByType(product);
+		} catch (Exception e) {
+			web.printJsonRt(e.getLocalizedMessage());
+		}
 		
 		Map<String, Object> data = new HashMap<String, Object>();
-		//data.put("rt", "ok");
+		data.put("rt", "ok");
 		//data.put("productList", productList);
 		
 		/*ObjectMapper mapper = new ObjectMapper();

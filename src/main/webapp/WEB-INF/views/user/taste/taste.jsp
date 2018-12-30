@@ -90,6 +90,60 @@
 		</div>
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
+	<script id="tmpl_no_image" type="text/x-handlebars-template">
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<a href="${pageContext.request.contextPath}/user/taste/productView.do"><img alt="{{name}}" src="${pageContext.request.contextPath}/assets/img/no_image.jpg" /></a>
+					<div class="caption">
+						<h3>{{name}}</h3>
+						<p>{{price}}원</p>
+						<p>
+							<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i> 찜하기</a>
+							<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-shopping-cart"></i> 장바구니담기</a>
+						</p>
+					</div>
+			</div>
+		</div>
+	</script>
+	<script id="tmpl_image" type="text/x-handlebars-template">
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<a href="${pageContext.request.contextPath}/user/taste/productView.do"><img alt="{{name}}" src="${pageContext.request.contextPath}/assets/img/{{image}}" /></a>
+					<div class="caption">
+						<h3>{{name}}</h3>
+						<p>{{price}}원</p>
+						<p>
+							<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-heart"></i> 찜하기</a>
+							<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-shopping-cart"></i> 장바구니담기</a>
+						</p>
+					</div>
+			</div>
+		</div>
+	</script>
+	<script id="tmpl_drink" type="text/x-handlebars-template">
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<img alt="{{name}}" src="${pageContext.request.contextPath}/assets/img/{{image}}" />
+					<div class="caption">
+						<h3>{{name}}</h3>
+						<p>{{price}}원</p>
+						<p>{{info}}</p>
+					</div>
+			</div>
+		</div>
+	</script>
+		<script id="tmpl_drink_no_imgae" type="text/x-handlebars-template">
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<img alt="{{name}}" src="${pageContext.request.contextPath}/assets/img/no_image.jpg" />
+					<div class="caption">
+						<h3>{{name}}</h3>
+						<p>{{price}}원</p>
+						<p>{{info}}</p>
+					</div>
+			</div>
+		</div>
+	</script>
 	<script src='${pageContext.request.contextPath}/assets/plugins/animate/jquery.animatecss.min.js'></script>
 	<script>
 		$(function() {
@@ -98,7 +152,7 @@
 			//getProductList(1);
 		});
 		
-		/* function getProductList(type) {
+		function getProductList(type) {
 			$.ajax({
 				url: "${pageContext.request.contextPath}/user/taste/productList.do",
 				data: {
@@ -106,12 +160,47 @@
 				},
 				dataType: "json",
 				cache: false,
-				success: function(json) {
-					//json받아서 html동적요소 만들어 박기.
-				}
+				success: function(json) {	
+					var eq = 0;
+					var selector = "'container > .row:eq(" + eq + ")'";
+					var i = 0;
+					
+					for(var product in json.productList) {
+						if (i%4 == 0) {
+							eq += 1;
+							$('<div class="row">');
+							selector = "'.container > .row:eq(" + eq + ")'";
+						}//if - 한 row에 4개의 상품만 넣은 후 row추가를 하기 위함
+						
+						var html;
+						
+						if (product.image = "") { //image가 없을 경우
+							var tmpl_no_image = Handlebars.compile($('#templ_no_image').html());
+							html = tmpl_no_image(product);
+							
+						} else if (product.type == '3') { //type이 음료일 경우
+							var tmpl_drink = Handlebars.compile($('#templ_drink').html());
+							html = tmpl_drink(product);
+							
+						} else if (product.type == '3' && product.image == "") { //음료이면서 이미지가 없을 경우
+							var tmpl_drink_no_image = Handlebars.compile($('#templ_drink_no_image').html());
+							html = tmpl_drink_no_imgae(product);
+						
+						} else {
+							var tmpl_image = Handlebars.compile($('#templ_image').html());
+							html = tmpl_image(product);
+							
+						}
+						
+						$(selector).append(html);
+						
+						i += 1;
+					}//for
+					
+				}//success
 				
 			});
-		}; */
+		};
 	</script>
 
 </body>
