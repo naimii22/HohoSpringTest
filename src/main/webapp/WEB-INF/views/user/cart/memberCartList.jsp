@@ -34,16 +34,20 @@
 			    				<c:set var="product" value="${productList.get(status.index)}" />
 			    				<tr>
 						            <td>
+						            	<%-- productView.do 작성 후에 수정
 						            	<c:url var="readUrl" value="user/product/productView.do">
 						            		<c:param name="product_id" value="${product.id}" />
 						            	</c:url>
-						            	<a href="${readUrl}"><img src="${product.image}"></a>
+						            	<a href="${readUrl}"><img src="${product.image}"></a> --%>
+						            	${product.image}
 						            </td>
 						            <td class="text-center">${product.name}</td>
 						            <td class="text-center">수량</td>
 						            <td class="text-center">${product.price}</td>
 						            <td>
-						            	<a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?member_id=${loginUser.user_id}" class="btn btn-danger">삭제하기</a>
+						            	<%-- memberCartDelete.do 작성 후에 수정
+						            	<a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?member_id=${loginUser.user_id}" class="btn btn-danger">삭제하기</a> --%>
+						            	<a href="#" class="btn btn-danger">삭제하기</a>
 						            </td>
 					        	</tr>
 			    			</c:forEach>
@@ -62,9 +66,11 @@
 		<!-- 결제 버튼 시작 -->
 		<div class="clearfix">
 		    <div class="pull-right">
+		        <%-- memberOrderInsert.do 작성 후 수정
 		        <a href="${pageContext.request.contextPath}/user/order/memberOrderInsert.do?member_id=${loginUser.user_id}" class="btn btn-primary">
 		        	<span class="glyphicon glyphicon-credit-card"></span> 결제하기
-		        </a>
+		        </a> --%>
+		        <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-credit-card"></span> 결제하기</a>
 			</div>
 		</div>
 		<!--// 결제 버튼 시작 끝 -->

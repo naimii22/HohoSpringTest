@@ -47,6 +47,8 @@ public class CartServiceImpl implements CartService {
 			throw new Exception("장바구니 목록 조회에 실패했습니다.");
 		}
 		
+		System.out.println("<<<카트리스트 가져옴>>>");
+		
 		return result;
 	}
 	
