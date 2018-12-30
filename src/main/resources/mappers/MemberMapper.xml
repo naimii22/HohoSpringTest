@@ -17,6 +17,7 @@
 		<result property="postcode" column="postcode" />
 		<result property="addr1" column="addr1" />
 		<result property="addr2" column="addr2" />
+		<result property="is_admin" column="is_admin" />
 	</resultMap>
 
 	<!-- 아이디 중복검사를 수행한다 -->
