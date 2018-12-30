@@ -12,6 +12,7 @@ public class Member {
 	private String postcode;
 	private String addr1;
 	private String addr2;
+	private String newUserPw;
 	
 	public int getId() {
 		return id;
@@ -79,12 +80,18 @@ public class Member {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
-	
+	public String getNewUserPw() {
+		return newUserPw;
+	}
+	public void setNewUserPw(String newUserPw) {
+		this.newUserPw = newUserPw;
+	}
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", name=" + name + ", user_id=" + user_id + ", user_pw=" + user_pw + ", email="
 				+ email + ", gender=" + gender + ", birthdate=" + birthdate + ", tel=" + tel + ", postcode=" + postcode
-				+ ", addr1=" + addr1 + ", addr2=" + addr2 + "]";
-	}	
+				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", newUserPw=" + newUserPw + "]";
+	}
+	
 	
 }
