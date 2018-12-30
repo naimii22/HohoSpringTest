@@ -13,7 +13,7 @@ public class Member {
 	private String addr1;
 	private String addr2;
 	private String is_admin;
-	private String newUserPw;
+	private String newUserPw;	// 비밀번호 변경을 위해 추가
 	
 	public int getId() {
 		return id;

@@ -9,24 +9,24 @@
 		<result property="id" column="id" />
 		<result property="member_id" column="member_id" />
 		<result property="product_id" column="product_id" />
-		<result property="order_id" column="order_id" />
 		<result property="amount" column="amount" />
+		<result property="order_id" column="order_id" />
 	</resultMap>
 	
 	<!-- 장바구니에 넣기 -->
 	<insert id="insertCart" parameterType="project.spring.hohotest.model.Cart"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO cart (
-			member_id, product_id, order_id, amount
+			member_id, product_id, amount
 		) VALUES (
-			#{member_id}, #{product_id}, #{order_id}, #{amount}
+			#{member_id}, #{product_id}, #{amount}
 		)
 	</insert>
 	
 	<!-- 장바구니 목록을 가져온다. -->
 	<select id="selectCartList" parameterType="project.spring.hohotest.model.Cart"
 		resultMap="cart">
-		SELECT	member_id, product_id, order_id, amount
+		SELECT	product_id, amount
 		FROM	cart
 		WHERE	member_id=#{member_id} AND order_id=0
 	</select>

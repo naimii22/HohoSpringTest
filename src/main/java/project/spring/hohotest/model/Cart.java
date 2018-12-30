@@ -4,8 +4,8 @@ public class Cart {
 	private int id;
 	private int member_id;
 	private int product_id;
-	private int order_id;
 	private int amount;
+	private int order_id;
 	
 	public int getId() {
 		return id;
@@ -25,23 +25,22 @@ public class Cart {
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
-	public int getOrder_id() {
-		return order_id;
-	}
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
-	}
 	public int getAmount() {
 		return amount;
 	}
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	public int getOrder_id() {
+		return order_id;
+	}
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
 	
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", member_id=" + member_id + ", product_id=" + product_id + ", order_id=" + order_id
-				+ ", amount=" + amount + "]";
+		return "Cart [id=" + id + ", member_id=" + member_id + ", product_id=" + product_id + ", amount=" + amount
+				+ ", order_id=" + order_id + "]";
 	}
-	
 }

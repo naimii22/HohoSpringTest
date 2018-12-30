@@ -7,6 +7,7 @@
 
 	<resultMap id="order" type="project.spring.hohotest.model.Order">
 		<result property="id" column="id" />
+		<result property="member_id" column="member_id" />
 		<result property="reg_date" column="reg_date" />
 		<result property="total" column="total" />
 		<result property="status" column="status" />

@@ -63,7 +63,7 @@
 		<div class="clearfix">
 		    <div class="pull-right">
 		        <a href="${pageContext.request.contextPath}/user/order/memberOrderInsert.do?member_id=${loginUser.user_id}" class="btn btn-primary">
-		        	<i class="glyphicon glyphicon-pencil"></i> 결제하기
+		        	<span class="glyphicon glyphicon-credit-card"></span> 결제하기
 		        </a>
 			</div>
 		</div>
