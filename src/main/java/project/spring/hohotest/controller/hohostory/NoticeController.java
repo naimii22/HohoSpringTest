@@ -1,6 +1,5 @@
 package project.spring.hohotest.controller.hohostory;
 
-import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,38 +7,32 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.spring.hohotest.helper.PageHelper;
-import project.spring.hohotest.helper.WebHelper;
-import project.spring.hohotest.model.Notice;
-import project.spring.hohotest.service.NoticeService;
-
 @Controller
 public class NoticeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
-	@Autowired
+/*	@Autowired
 	WebHelper web;
 	@Autowired
 	Notice notice;
-	@Autowired
+	@Resource(name="noticeService")
 	NoticeService noticeService;
 	@Autowired
-	PageHelper pageHelper;
+	PageHelper pageHelper;*/
 
 	@RequestMapping("user/hohoStory/notice.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		logger.debug("notice is running...");
-		web.init();
+/*		web.init();
 
 		// 현재 페이지 수 --> 기본값은 1페이지로 설정함
 		int page = web.getInt("page", 1);
-		/** 게시글 목록 조회 */
+		*//** 게시글 목록 조회 *//*
 		int totalCount = 0;
 		List<Notice> noticeList = null;
 		
@@ -61,7 +54,7 @@ public class NoticeController {
 			return web.redirect(null, e.getLocalizedMessage());
 		}
 
-		/** 조회 결과를 View에 전달 */
+		*//** 조회 결과를 View에 전달 *//*
 		model.addAttribute("noticeList", noticeList);
 		// 페이지 번호 계산 결과를 View에 전달
 		model.addAttribute("pageHelper", pageHelper);
@@ -74,6 +67,6 @@ public class NoticeController {
 		model.addAttribute("maxPageNo", maxPageNo);
 
 		// noticeList, pageHelper, maxPageNo addAttribute함
-		return new ModelAndView("user/hohoStory/notice");
+*/		return new ModelAndView("user/hohoStory/notice");
 	}
 }

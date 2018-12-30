@@ -15,7 +15,7 @@
 	<!-- 게시글 정보 저장하기 -->
 	<insert id="insertNotice" parameterType="project.spring.hohotest.model.Notice"
 		useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO bbs_document (
+		INSERT INTO notice (
 			title, content, hit
 		) VALUES (
 			#{title}, #{content}, 0

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import project.spring.hohotest.model.Notice;
 import project.spring.hohotest.service.NoticeService;
 
-@Service
+@Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
 	
 	/** 처리 결과를 기록할 Log4J 객체 생성 */

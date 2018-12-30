@@ -49,7 +49,8 @@ public class Notice {
 	
 	@Override
 	public String toString() {
-		return "Notice [id=" + id + ", title=" + title + ", content=" + content + ", hit=" + hit + "]";
-	}	
+		return "Notice [id=" + id + ", title=" + title + ", content=" + content + ", hit=" + hit + ", limitStart="
+				+ limitStart + ", listCount=" + listCount + "]";
+	}
 	
 }
