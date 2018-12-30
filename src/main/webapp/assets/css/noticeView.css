@@ -8,9 +8,7 @@ font {
 }
 
 div.row {
-	border:1px solid grey;
 	padding: 30px;
-	background-color:#F2F2F2;  
 	border-radius:25px;
 	display:inline-block;
 	word-wrap:break-word; 
@@ -40,6 +38,6 @@ td {
 	font-size: 1em;
 }
 
-#adminNoticeView{
+#font-arita{
 	font-family: 'Arita-dotum-Medium';
 }

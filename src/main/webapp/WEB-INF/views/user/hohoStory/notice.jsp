@@ -9,8 +9,6 @@
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
 	<title>notice</title>
-	<!-- Custom styles for this template -->
-	<link href="${pageContext.request.contextPath}/assets/css/noticeList.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,7 +34,7 @@
 		    				<tr>
 					            <td class="text-center">${maxPageNo}</td>
 					            <td>
-					            	<c:url var="readUrl" value="/bbs/document_read.do">
+					            	<c:url var="viewURL" value="/user/hohoStory/noticeView.do">
 					            		<c:param name="id" value="${notice.id}" />
 					            	</c:url>
 					            	<a href="${readUrl}">${notice.title}</a>
