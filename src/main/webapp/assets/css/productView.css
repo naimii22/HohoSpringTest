@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* 제품상세  시작*/
+.product-view {
+	height: 400px;
+	margin-bottom: 10px;
+}
+.product-image {
+	background-color: pink;
+	height: 100%;
+	width: 55%;
+	text-align: center;
+}
+.product-info {
+	height: 100%;
+	width: 45%;
+	padding: 40px;
+}
+.image-size {
+	width: 63%;
+	height: 95%;
+	margin-top: 10px;
+}
+/* 제품상세 끝 */
+
+/* 후기 시작 */
+.row {
+	padding: 5px 0;
+}
+.row > div {
+	text-align: center;
+}
+.height {
+	height: 70px;
+}
+.height-center {
+	/* 높이 가운데정렬... */
+}
+.display-inline {
+	display: inline;
+}
+/* 후기 끝 */
+
+/* 공통 */
+.underline {
+	border-bottom: solid black 1px;
+}

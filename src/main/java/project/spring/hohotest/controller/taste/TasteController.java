@@ -12,7 +12,7 @@ import project.spring.hohotest.controller.login.loginController;
 public class TasteController {
 	private static final Logger logger = LoggerFactory.getLogger(loginController.class);
 	
-	@RequestMapping("user/taste/taste.do")
+	@RequestMapping(value = "user/taste/taste.do")
 	public ModelAndView doRun() {
 		logger.debug("ProductList is running...");
 

@@ -13,8 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import project.spring.hohotest.controller.login.loginController;
 import project.spring.hohotest.helper.WebHelper;
@@ -31,20 +33,21 @@ public class ProductListController {
 	//@Autowired
 	//ProductService productService;
 
-	@RequestMapping("user/taste/productList.do")
-	public void doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "user/taste/productList.do")
+	public void doRun(Locale locale, 
+			HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value="type", defaultValue="1") int type) {
 		response.setContentType("application/json");
 		
 		web.init();
 		
-		int type = web.getInt("data", 1); //1케이크,2빵,3음료
 		logger.debug("type : " + type);
 		
 		//sqlsession = type에 해당하는 productList들을 다 가져옴.
 		Product product = new Product();
 		product.setType(type);
 		
-		List<Product> productList;
+		List<Product> productList = null;
 		try {
 			//productList = productService.selectProductListByType(product);
 		} catch (Exception e) {
@@ -55,12 +58,12 @@ public class ProductListController {
 		data.put("rt", "ok");
 		//data.put("productList", productList);
 		
-		/*ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.writeValue(response.getWriter(), data);
 		} catch (Exception e) {
 			web.printJsonRt(e.getLocalizedMessage());	
-		}*/
+		}
 		
 	}
 }
