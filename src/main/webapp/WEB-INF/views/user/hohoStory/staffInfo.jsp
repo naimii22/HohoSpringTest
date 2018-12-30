@@ -15,9 +15,10 @@
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
 	<div class="container">
+		<h1 class="page-header">직원정보</h1>
+		
 		<div class="row" id="wrap">
 			<fieldset>
-				<h1 class="font">직원정보</h1>
 				<table class="type07" id="tableSty">
 					<thead>
 						<tr>

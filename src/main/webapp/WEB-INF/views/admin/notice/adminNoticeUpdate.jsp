@@ -12,8 +12,43 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbarAdmin.jsp" %>
 	
-	<div>
+	<div class="container">
+		<h1 class="page-header">공지사항 수정</h1>
+	
+		<form class="form-horizontal" method="post"
+			action="${pageContext.request.contextPath}/admin/notice/adminNoticUpdate_ok.do">
 		
+			<!-- 수정 대상에 대한 상태유지 -->
+			<input type="hidden" name="id" value="${notice.id}">
+			
+			<!-- 제목 -->
+			<div class="form-group">
+				<label for="title" class="col-sm-2 control-label">제목</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="title" name="title" value="${notice.title}" />
+				</div>
+			</div>
+			
+			<!-- 내용 -->
+			<div class="form-group">
+				<label for="content" class="col-sm-2 control-label">내용</label>
+				<div class="col-sm-10">
+					<textarea id="content" name="content" class="ckeditor">${notice.content}</textarea>
+				</div>
+			</div>
+			
+			<!-- 버튼들 -->
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">저장하기</button>
+					<button type="button" class="btn btn-primary" 
+						onclick="location.href='${pageContext.request.contextPath}/admin/notice/adminNoticeList.do'">목록</button>
+					<button type="button" class="btn btn-danger" onclick="history.back();">다시작성</button>
+				</div>
+			</div>
+			
+		</form>
 	</div>
+	
 </body>
 </html>

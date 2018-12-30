@@ -23,4 +23,7 @@ public class AdminNoticeListController {
 		
 		return new ModelAndView("admin/notice/adminNoticeList");
 	}
+	
+	// /admin/notice/adminNoticeWrite_ok.do
+	// /admin/notice/adminNoticUpdate_ok.do
 }

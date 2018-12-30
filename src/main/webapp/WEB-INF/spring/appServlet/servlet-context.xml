@@ -24,10 +24,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- @Controller나 @Service가 정의된 클래스의 패키지. -->
 	<context:component-scan base-package="project.spring.hohotest" />
-	<context:component-scan base-package="project.spring.hohotest.service" />
-	<context:component-scan base-package="project.spring.hohotest.service.impl" />
-	<context:component-scan base-package="project.spring.hohotest.controller.admin.*" />
 	<context:component-scan base-package="project.spring.hohotest.controller.*" />
+	<context:component-scan base-package="project.spring.hohotest.controller.admin" />
+	<context:component-scan base-package="project.spring.hohotest.controller.admin.*" />
+	<context:component-scan base-package="project.spring.hohotest.service.impl" />
 	
 </beans:beans>

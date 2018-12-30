@@ -3,19 +3,14 @@ package project.spring.hohotest.service.impl;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.spring.hohotest.model.Notice;
 import project.spring.hohotest.service.NoticeService;
 
-@Service("noticeService")
+@Service
 public class NoticeServiceImpl implements NoticeService {
-	
-	/** 처리 결과를 기록할 Log4J 객체 생성 */
-	private static Logger logger = LoggerFactory.getLogger(NoticeServiceImpl.class);
 
 	/** MyBatis */
 	@Autowired
@@ -34,7 +29,6 @@ public class NoticeServiceImpl implements NoticeService {
 			throw new Exception("저장된 게시물이 없습니다.");
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("게시물 등록에 실패했습니다.");
 		}
 	}
@@ -54,7 +48,6 @@ public class NoticeServiceImpl implements NoticeService {
 			throw new Exception("조회된 게시물이 없습니다.");
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("게시물 조회에 실패했습니다.");
 		}
 
@@ -70,7 +63,6 @@ public class NoticeServiceImpl implements NoticeService {
 			result = sqlSession.selectOne("NoticeMapper.selectPrevNotice", notice);
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("이전글 조회에 실패했습니다.");
 		}
 
@@ -86,7 +78,6 @@ public class NoticeServiceImpl implements NoticeService {
 			result = sqlSession.selectOne("NoticeMapper.selectNextNotice", notice);
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("다음글 조회에 실패했습니다.");
 		}
 
@@ -106,7 +97,6 @@ public class NoticeServiceImpl implements NoticeService {
 			throw new Exception("존재하지 않는 게시물에 대한 요청입니다.");
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("조회수 갱신에 실패했습니다.");
 		}
 	}
@@ -126,7 +116,6 @@ public class NoticeServiceImpl implements NoticeService {
 			throw new Exception("조회된 글 목록이 없습니다.");
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("글 목록 조회에 실패했습니다.");
 		}
 
@@ -142,7 +131,6 @@ public class NoticeServiceImpl implements NoticeService {
 			result = sqlSession.selectOne("NoticeMapper.selectNoticeCount", notice);
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("게시물 수 조회에 실패했습니다.");
 		}
 
@@ -162,7 +150,6 @@ public class NoticeServiceImpl implements NoticeService {
 			throw new Exception("존재하지 않는 게시물에 대한 요청입니다.");
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("게시물 삭제에 실패했습니다.");
 		}
 	}
@@ -180,7 +167,6 @@ public class NoticeServiceImpl implements NoticeService {
 			throw new Exception("존재하지 않는 게시물에 대한 요청입니다.");
 			
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage());
 			throw new Exception("게시물 수정에 실패했습니다.");
 		}
 	}

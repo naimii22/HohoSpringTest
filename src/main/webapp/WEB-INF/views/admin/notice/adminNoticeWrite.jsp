@@ -25,6 +25,7 @@
 					<input type="text" class="form-control" id="title" name="title" />
 				</div>
 			</div>
+			
 			<!-- 내용 -->
 			<div class="form-group">
 				<label for="content" class="col-sm-2 control-label">내용</label>
@@ -32,6 +33,7 @@
 					<textarea id="content" name="content" class="ckeditor"></textarea>
 				</div>
 			</div>
+			
 			<!-- 버튼들 -->
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
@@ -43,5 +45,6 @@
 			
 		</form>
 	</div>
+	
 </body>
 </html>
