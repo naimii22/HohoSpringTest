@@ -27,6 +27,7 @@
 	<context:component-scan base-package="project.spring.hohotest" />
 	<context:component-scan base-package="project.spring.hohotest.service" />
 	<context:component-scan base-package="project.spring.hohotest.service.impl" />
+	<context:component-scan base-package="project.spring.hohotest.controller.admin.*" />
 	<context:component-scan base-package="project.spring.hohotest.controller.*" />
 	
 </beans:beans>

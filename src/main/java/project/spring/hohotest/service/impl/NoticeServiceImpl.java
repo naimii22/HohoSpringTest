@@ -46,7 +46,7 @@ public class NoticeServiceImpl implements NoticeService {
 		try {
 			result = sqlSession.selectOne("NoticeMapper.selectNotice", notice);
 			
-			if (result == null) {
+			if ( result == null ) {
 				throw new NullPointerException();
 			}
 			

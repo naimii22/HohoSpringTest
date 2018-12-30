@@ -72,19 +72,6 @@
 		parameterType="project.spring.hohotest.model.Notice"
 		resultType="int">
 		SELECT COUNT(id) FROM notice
-		<where>
-			category=#{category}
-			<if test="title != null or content != null">
-				AND (
-					<if test="title != null">
-						title LIKE concat('%', #{title}, '%')
-					</if>
-					<if test="content != null">
-						OR content LIKE concat('%', #{content}, '%')
-					</if>
-				)
-			</if>
-		</where>
 	</select>
 	
 	<!-- 게시글 삭제 하기 -->

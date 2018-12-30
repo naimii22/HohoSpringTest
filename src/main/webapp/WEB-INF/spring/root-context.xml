@@ -41,7 +41,7 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 	    <property name="url" 
-	     value="jdbc:log4jdbc:mysql://localhost:3306/mysite?characterEncoding=UTF8"/>
+	     value="jdbc:log4jdbc:mysql://localhost:3306/hohotest?characterEncoding=UTF8"/>
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
@@ -63,7 +63,7 @@
 	<!--helper 패키지 객체 주입 -->
 	<bean id="web" class="project.spring.hohotest.helper.WebHelper" scope="singleton" />
 	<bean id="upload" class="project.spring.hohotest.helper.UploadHelper" scope="singleton">
-		<constructor-arg value="자신의 workspace 경로" />
+		<constructor-arg value="c:\web_spring_project\workspace" />
 	</bean>
 	<bean id="mail" class="project.spring.hohotest.helper.MailHelper" scope="singleton">
 		<constructor-arg ref="mailSender" />
