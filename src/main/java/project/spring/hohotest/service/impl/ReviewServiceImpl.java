@@ -240,5 +240,25 @@ public class ReviewServiceImpl implements ReviewService {
 			// sqlSession.commit();
 		}
 	}
+	
+	//리뷰 목록을 얻어오기 위해 ProductViewController에서 쓰임.
+	@Override
+	public List<Review> selectReviewListByProductId(Review review) throws Exception {
+		List<Review> result = null;
+		
+		try {
+			result = sqlSession.selectList("ReviewMapper.selectReviewListByProductId", review);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("조회된 후기가 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("상세 페이지 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
 
 }

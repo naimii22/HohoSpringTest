@@ -115,5 +115,6 @@ public interface ReviewService {
 	 * @throws Exception
 	 */
 	public void updatereviewMemberOut(Review review) throws Exception;
-
+	
+	public List<Review> selectReviewListByProductId(Review review) throws Exception;
 }

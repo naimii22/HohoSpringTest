@@ -1,5 +1,7 @@
 package project.spring.hohotest.service;
 
+import java.util.List;
+
 import project.spring.hohotest.model.Product;
 
 /** 제품 관련 기능을 제공하기 위한 Service 계층 */
@@ -12,4 +14,6 @@ public interface ProductService {
 	 * @throws Exception
 	 */
 	public Product selectProduct(Product product) throws Exception;
+	
+	public List<Product> selectProductListByType(Product product) throws Exception;
 }

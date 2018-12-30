@@ -1,5 +1,7 @@
 package project.spring.hohotest.service.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +42,25 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		return result;
-	}
+	}//selectProduct
+	
+	@Override
+	public List<Product> selectProductListByType(Product product) throws Exception {
+		List<Product> result = null;
+		
+		try {
+			result = sqlSession.selectList("ProductMapper.selectProductListByType", product);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("조회된 제품이 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("제품 목록 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}//selectProductListByType
 
 }

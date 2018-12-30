@@ -17,5 +17,9 @@
 		<result property="reg_date" column="reg_date" />
 		<result property="edit_date" column="edit_date" />
 	</resultMap>
-
+	
+	<select id="selectReviewListByProductId" parameterType="project.spring.hohotest.model.Review"
+		resultMap="review">
+		SELECT	id, image, title, rating, edit_date, hit from review where product_id=#{product_id}
+	</select>
 </mapper>
