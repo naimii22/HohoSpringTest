@@ -1,5 +1,7 @@
 package project.spring.hohotest.service;
 
+import java.util.List;
+
 import project.spring.hohotest.model.Member;
 
 /** 회원 관련 기능을 제공하기 위한 Service 계층 */
@@ -67,4 +69,11 @@ public interface MemberService {
 	 * @throws Exception
 	 */
 	public Member selectMember(Member member) throws Exception;
+	
+	/**
+	 * 회원 정보 전체 조회
+	 * @param member
+	 * @throws Exception
+	 */
+	public List<Member> selectAllMember(Member member) throws Exception;
 }

@@ -25,7 +25,8 @@
 	               <div class="col-sm-6 col-sm-offset-3">
 	                   <div id="LoginModal">
 	                       <div class="modal-content panel panel-info">
-	                           <form action="BakeryServlet" name="memberLogin" id="frmLogin" class="form-horizontal" role="form">
+	                           <form method="post" action="${pageContext.request.contextPath}/member/login_ok.do" 
+	                           name="memberLogin" id="frmLogin" class="form-horizontal" role="form">
 	                               <input type="hidden" name="Mode" value="Login" />
 	                               <div class="modal-body">
 	                                   <div class="input-group" id="divMargin">
@@ -43,7 +44,7 @@
 	                               
 	                               <div id="div-login-button">
 	                               		<input type="hidden" name="command" value="memberLogin">
-										<input type="submit" class="btn btn-info" id="button_login" value="Login" onclick="return loginCheck()">
+										<input type="submit" class="btn btn-info" id="button_login" value="Login">
 	                               </div>
 	                               <div id="message">${message}</div>
 	                           </form>

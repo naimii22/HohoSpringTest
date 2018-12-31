@@ -1,5 +1,7 @@
 package project.spring.hohotest.service.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -191,6 +193,25 @@ public class MemberServiceImpl implements MemberService {
 		
 		try {
 			result = sqlSession.selectOne("MemberMapper.selectMember", member);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch (NullPointerException e) {
+			throw new Exception("조회된 정보가 없습니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("회원정보 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public List<Member> selectAllMember(Member member) throws Exception {
+		List<Member> result = null;
+		
+		try {
+			result = sqlSession.selectList("MemberMapper.selectAllMember", member);
 			if (result == null) {
 				throw new NullPointerException();
 			}
