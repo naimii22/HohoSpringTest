@@ -17,7 +17,7 @@ public class AdminMemberListController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminMemberListController.class);
 	
-	@RequestMapping("admin/notice/adminMemberList.do")
+	@RequestMapping("admin/member/adminMemberList.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		logger.debug("adminMemberList is running...");
 		

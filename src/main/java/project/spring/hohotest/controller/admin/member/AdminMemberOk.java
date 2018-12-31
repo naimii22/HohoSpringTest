@@ -1,4 +1,4 @@
-package project.spring.hohotest.controller.admin;
+package project.spring.hohotest.controller.admin.member;
 
 import java.util.List;
 import java.util.Locale;
@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import project.spring.hohotest.helper.WebHelper;
 import project.spring.hohotest.model.Member;
 import project.spring.hohotest.service.MemberService;
 
+@Controller
 public class AdminMemberOk {
 	/** (1) 사용하고자 하는 Helper + Service 객체 선언 */
 	// --> import org.apache.logging.log4j.Logger;
@@ -33,7 +35,7 @@ public class AdminMemberOk {
 	@Autowired
 	MemberService memberService;
 
-	@RequestMapping(value = "/admin/adminMember_ok.do")
+	@RequestMapping(value = "/admin/member/adminMember_ok.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 
 		/** (2) 사용하고자 하는 Helper+Service 객체 생성 */
