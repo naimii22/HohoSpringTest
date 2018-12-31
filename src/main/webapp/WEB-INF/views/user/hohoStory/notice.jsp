@@ -35,9 +35,9 @@
 					            <td class="text-center">${maxPageNo}</td>
 					            <td>
 					            	<c:url var="viewURL" value="/user/hohostory/noticeView.do">
-					            		<c:param name="id" value="${notice.id}" />
+					            		<c:param name="notice_id" value="${notice.id}" />
 					            	</c:url>
-					            	<a href="${readUrl}">${notice.title}</a>
+					            	<a href="${viewURL}">${notice.title}</a>
 					            </td>
 					            <td class="text-center">${notice.hit}</td>
 				        	</tr>
@@ -55,6 +55,9 @@
 		</table>
 	</div>
 	<!--// 글 목록 끝 -->
+	
+	<!-- 공지사항 목록 페이지 번호 include -->
+	<%@ include file="/WEB-INF/inc/noticePageNumber.jsp" %>
 </div>
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
