@@ -27,7 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
 	SqlSession sqlSession;
 
 	@Override
-	public void insertreview(Review review) throws Exception {
+	public void insertReview(Review review) throws Exception {
 		try {
 			int result = sqlSession.insert("ReviewMapper.insertreview", review);
 			if (result == 0) {
@@ -46,11 +46,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Review selectreview(Review review) throws Exception {
+	public Review selectReviewById(Review review) throws Exception {
 		Review result = null;
 
 		try {
-			result = sqlSession.selectOne("ReviewMapper.selectreview", review);
+			result = sqlSession.selectOne("ReviewMapper.selectReviewById", review);
 			if (result == null) {
 				throw new NullPointerException();
 			}
@@ -65,7 +65,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Review selectPrevreview(Review review) throws Exception {
+	public Review selectPrevReview(Review review) throws Exception {
 		Review result = null;
 
 		try {
@@ -80,7 +80,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Review selectNextreview(Review review) throws Exception {
+	public Review selectNextReview(Review review) throws Exception {
 		Review result = null;
 
 		try {
@@ -95,9 +95,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void updatereviewHit(Review review) throws Exception {
+	public void updateReviewHit(Review review) throws Exception {
 		try {
-			int result = sqlSession.update("ReviewMapper.updatereviewHit", review);
+			int result = sqlSession.update("ReviewMapper.updateReviewHit", review);
 			if (result == 0) {
 				throw new NullPointerException();
 			}
@@ -114,7 +114,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> selectreviewList(Review review) throws Exception {
+	public List<Review> selectReviewList(Review review) throws Exception {
 
 		List<Review> result = null;
 
@@ -134,7 +134,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int selectreviewCount(Review review) throws Exception {
+	public int selectReviewCount(Review review) throws Exception {
 		int result = 0;
 
 		try {
@@ -150,7 +150,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int selectreviewCountByMemberId(Review review) throws Exception {
+	public int selectReviewCountByMemberId(Review review) throws Exception {
 		int result = 0;
 
 		try {
@@ -168,7 +168,7 @@ public class ReviewServiceImpl implements ReviewService {
 	
 
 	@Override
-	public int selectreviewCountByPw(Review review) throws Exception {
+	public int selectReviewCountByPw(Review review) throws Exception {
 		int result = 0;
 
 		try {
@@ -189,7 +189,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public void deletereview(Review review) throws Exception {
+	public void deleteReview(Review review) throws Exception {
 		try {
 			int result = sqlSession.delete("ReviewMapper.deletereview", review);
 			if (result == 0) {
@@ -208,7 +208,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void updatereview(Review review) throws Exception {
+	public void updateReview(Review review) throws Exception {
 		try {
 			int result = sqlSession.update("ReviewMapper.updatereview", review);
 			if (result == 0) {
@@ -227,7 +227,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public void updatereviewMemberOut(Review review) throws Exception {
+	public void updateReviewMemberOut(Review review) throws Exception {
 		try {
 			// 게시글을 작성한 적이 없는 회원도 있을 수 있기 때문에,
 			// NullPointerException을 발생시키지 않는다.

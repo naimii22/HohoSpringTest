@@ -20,6 +20,7 @@ import project.spring.hohotest.controller.login.loginController;
 import project.spring.hohotest.helper.WebHelper;
 import project.spring.hohotest.model.Comment;
 import project.spring.hohotest.model.Review;
+import project.spring.hohotest.service.ReviewService;
 
 @Controller
 public class ReviewViewController {
@@ -28,19 +29,21 @@ public class ReviewViewController {
 	SqlSession sqlSession;
 	@Autowired
 	WebHelper web;
-	//reviewService
+	@Autowired
+	ReviewService reviewService;
 	
 	@RequestMapping(value="user/review/reviewView.do")
 	public ModelAndView doRun(Locale locale, Model model,
 			@RequestParam(value="id", defaultValue="0") int review_id,
+			@RequestParam(value="user_id", defaultValue="") String user_id,
 			HttpServletRequest request, HttpServletResponse response) {
 		
 		web.init();
 		
-		logger.debug("review_id = " + review_id);
-		/*if(review_id == 0) {
+		System.out.println("review_id=" + review_id + "& user_id=" + user_id);
+		if(review_id == 0) {
 			web.redirect(null, "해당 제품을 찾아볼 수 없습니다.");
-		}*/
+		}
 		
 		Review review = new Review();
 		Comment comment = new Comment();
@@ -49,7 +52,14 @@ public class ReviewViewController {
 		
 		List<Comment> commentList = null;
 		try {
-			//review = reviewService.selectReviewById(review);
+			//hit업데이트 시키기
+			review = reviewService.selectReviewById(review);
+			
+			int hit = review.getHit() + 1;
+			
+			review.setHit(hit);
+			reviewService.updateReviewHit(review);
+			review = reviewService.selectReviewById(review);//hit업데이트 후 다시 넣기
 			//commentList = commentService.selectCommentListByReviewId(comment);
 		} catch (Exception e) {
 			return web.redirect(null, e.getLocalizedMessage());
@@ -57,6 +67,7 @@ public class ReviewViewController {
 		
 		request.setAttribute("review", review);
 		request.setAttribute("commentList", commentList);
+		request.setAttribute("user_id", user_id);
 		
 		return new ModelAndView("user/review/reviewView");
 	}

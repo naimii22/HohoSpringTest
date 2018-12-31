@@ -20,7 +20,7 @@
     	<div class="review">
 	    	<div class="row">
 	    		<div class="col-sm-2 col-md-2"> 제 목 </div>
-	    		<div class="col-sm-2 col-md-2">제목여기다가 뽑아오기</div>
+	    		<div class="col-sm-2 col-md-2">${review.title }</div>
 	    		<div class="col-sm-4 col-md-4 pull-right">
 	    			<a href="#" class="btn btn-primary">수 정</a>
 	    			<a href="#" class="btn btn-primary">삭 제</a>
@@ -28,11 +28,11 @@
 	    	</div>
 	    	<div class="row">
 	    		<div class="col-sm-2 col-md-2">작 성 자</div>
-	    		<div class="col-sm-2 col-md-2 text-left">바 켸 련</div>
+	    		<div class="col-sm-2 col-md-2 text-left">${user_id }</div>
 	    		<div class="col-sm-2 col-md-2">작 성 날 짜</div>
-	    		<div class="col-sm-3 col-md-3 text-left">2012-02-05</div>
+	    		<div class="col-sm-3 col-md-3 text-left">${review.reg_date }</div>
 	    		<div class="col-sm-2 col-md-2 text-right">조 회 수</div>
-	    		<div class="col-sm-1 col-md-1 text-left">1</div>
+	    		<div class="col-sm-1 col-md-1 text-left">${review.hit }</div>
 	    	</div>
 	    	<div class="image">
 	    		<img src="">
@@ -41,7 +41,7 @@
 	    		<div class="col-sm-2 col-md-2">내 용</div>
 	    	</div>
 	    	<div class="row">
-	    		<p>내용은 여기다가 보여주기</p>
+	    		<p>${review.content }</p>
 	    	</div>
 	    </div>
 	    <!-- 리뷰 끝 -->

@@ -79,7 +79,7 @@ public class OutOk {
 		/** (6) Service를 통한 탈퇴 시도 */
 		try {
 			// 참조관계 해제
-			reviewService.updatereviewMemberOut(review);
+			reviewService.updateReviewMemberOut(review);
 			commentService.updateCommentMemberOut(comment);
 			// 비밀번호 검사 --> 비밀번호가 잘못된 경우 예외발생
 			memberService.selectMemberPasswordCount(member);
