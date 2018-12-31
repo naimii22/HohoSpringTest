@@ -13,7 +13,7 @@
 	<%@ include file="/WEB-INF/inc/topbarAdmin.jsp" %>
 	
 	<div>
-		
+		<a href="${pageContext.request.contextPath}/admin/adminPage.do">관리자 메인으로</a>
 	</div>
 </body>
 </html>

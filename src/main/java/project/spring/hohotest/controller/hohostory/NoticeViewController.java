@@ -59,7 +59,7 @@ public class NoticeViewController {
 			nextNotice = noticeService.selectNextNotice(notice);
 			
 		} catch (Exception e) {
-			return web.redirect(null, e.getLocalizedMessage());	
+			return web.redirect(null, e.getLocalizedMessage());
 		}
 
 		model.addAttribute("readNotice", readNotice);

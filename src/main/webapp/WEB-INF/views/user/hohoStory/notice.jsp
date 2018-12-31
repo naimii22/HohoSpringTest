@@ -15,7 +15,7 @@
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
 	<div class="container">
-		<h1 class="page-header">공지사항 - <small>글 목록</small></h1>
+		<h1 class="page-header">공지사항</h1>
 			
 		<!-- 글 목록 시작 -->
 		<div class="table-responsive">

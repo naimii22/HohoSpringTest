@@ -13,7 +13,7 @@
 	<%@ include file="/WEB-INF/inc/topbarAdmin.jsp" %>
 	
 	<div class="container">
-		<h1 class="page-header">공지사항 관리 - <small>글 목록</small></h1>
+		<h1 class="page-header">공지사항 관리</h1>
 			
 		<!-- 글 목록 시작 -->
 		<div class="table-responsive">
@@ -38,10 +38,10 @@
 			    				<tr>
 						            <td class="text-center">${maxPageNo}</td>
 						            <td>
-						            	<c:url var="viewURL" value="/user/hohoStory/noticeView.do">
+						            	<c:url var="viewURL" value="/admin/notice/adminNoticeView.do">
 						            		<c:param name="notice_id" value="${notice.id}" />
 						            	</c:url>
-						            	<a href="${readUrl}">${notice.title}</a>
+						            	<a href="${viewURL}">${notice.title}</a>
 						            </td>
 						            <td class="text-center">${notice.hit}</td>
 					        	</tr>

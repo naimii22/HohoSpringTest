@@ -14,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminNoticeWriteController {
 
-	@RequestMapping(value = "/admin/notice/AdminNoticeWrite.do")
+	@RequestMapping(value = "/admin/notice/adminNoticeWrite.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 
-		return new ModelAndView("admin/notice/AdminNoticeWrite");
+		return new ModelAndView("admin/notice/adminNoticeWrite");
 	}
 }

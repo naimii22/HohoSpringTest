@@ -18,13 +18,13 @@
 		<!-- 제목, 조회수 -->
 		<div class="alert alert-info">
 			<h3 style="margin: 0">
-			    ${notice.title} &nbsp; <small> / 조회수 : ${notice.hit}</small>
+			    ${readNotice.title} &nbsp; <small> / 조회수 : ${readNotice.hit}</small>
 			</h3>
 		</div>
 		
 		<!-- 내용 -->
 		<section style="padding: 0 10px 20px 10px">
-			${notice.content}
+			${readNotice.content}
 		</section>
 			
 		<!-- 다음글/이전글 -->
@@ -36,7 +36,7 @@
 						<c:choose>
 							<c:when test="${nextNotice != null}">
 								<c:url var="nextUrl" value="/admin/notice/adminNoticeView.do">
-									<c:param name="id" value="${nextNotice.id}" />
+									<c:param name="notice_id" value="${nextNotice.id}" />
 								</c:url>
 								<a href="${nextUrl}">${nextNotice.title}</a>
 							</c:when>
@@ -52,7 +52,7 @@
 						<c:choose>
 							<c:when test="${prevNotice != null}">
 								<c:url var="prevUrl" value="/admin/notice/adminNoticeView.do">
-									<c:param name="id" value="${prevNotice.id}" />
+									<c:param name="notice_id" value="${prevNotice.id}" />
 								</c:url>
 								<a href="${prevUrl}">${prevNotice.title}</a>
 							</c:when>
@@ -72,7 +72,7 @@
 					class="btn btn-info">수정</a>
 				<a href="${pageContext.request.contextPath} 삭제 모달 넣기" 
 					class="btn btn-info">삭제</a>
-				<a href="${pageContext.request.contextPath}/user/hohoStory/notice.do" 
+				<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeList.do" 
 					class="btn btn-info">목록</a>
 			</div>
 		</div>
