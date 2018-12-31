@@ -41,15 +41,31 @@ public class CartServiceImpl implements CartService {
 		try {
 			result = sqlSession.selectList("CartMapper.selectCartList", cart);
 		} catch(NullPointerException e) {
-			throw new Exception("카트에 담긴 상품이 없습니다.");
+			throw new Exception("장바구니에 담긴 상품이 없습니다.");
 		} catch(Exception e) {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("장바구니 목록 조회에 실패했습니다.");
 		}
 		
-		System.out.println("<<<카트리스트 가져옴>>>");
-		
 		return result;
 	}
+
+	@Override
+	public void deleteCart(Cart cart) throws Exception {
+		try {
+			int result = sqlSession.delete("CartMapper.deleteCart", cart);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch(NullPointerException e) {
+			throw new Exception("존재하지 않는 장바구니에 대한 요청입니다.");
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("장바구니 삭제에 실패했습니다.");
+		}
+		
+		System.out.println("<<<카트 삭제함>>>");
+	}
+	
 	
 }

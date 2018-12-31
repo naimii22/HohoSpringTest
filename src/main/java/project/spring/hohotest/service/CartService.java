@@ -20,4 +20,11 @@ public interface CartService {
 	 * @throws Exception
 	 */
 	public List<Cart> selectCartList(Cart cart) throws Exception;
+	
+	/**
+	 * 특정 제품을 장바구니에서 삭제한다.
+	 * @param cart - 삭제할 제품 정보가 저장된 Beans
+	 * @throws Exception
+	 */
+	public void deleteCart(Cart cart) throws Exception;
 }

@@ -31,8 +31,8 @@ public class MemberCartListController {
 	@RequestMapping(value = "/user/cart/memberCartList.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		web.init();
+//		System.out.println("<<<카트리스트 컨트롤러로 들어옴>>>");
 		
-		System.out.println("<<<카트리스트 컨트롤러로 들어옴>>>");
 		Cart cart = new Cart();
 		cart.setMember_id(2); // 임시 회원번호, 나중에는 세션 이용
 		
@@ -47,8 +47,8 @@ public class MemberCartListController {
 		Product product = new Product();
 		if(cartList != null) {
 			for(Cart c : cartList) {
-				System.out.println("<<<가져온 카트>>>");
-				System.out.println("cart [id: " + c.getId() + ", member_id: " + c.getMember_id() + ", product_id: " + c.getProduct_id() + ", order_id: " + c.getOrder_id() + "]");
+//				System.out.println("<<<가져온 카트>>>");
+//				System.out.println("cart [id: " + c.getId() + ", member_id: " + c.getMember_id() + ", product_id: " + c.getProduct_id() + ", order_id: " + c.getOrder_id() + "]");
 				product.setId(c.getProduct_id());
 				
 				try {
@@ -57,11 +57,11 @@ public class MemberCartListController {
 					return web.redirect(null, e.getLocalizedMessage());
 				}
 				
-				System.out.println("<<<가져온 프로덕트 정보>>>");
-				System.out.println("product [id: " + product.getId() + ", name: " + product.getName() + "]");
+//				System.out.println("<<<가져온 프로덕트 정보>>>");
+//				System.out.println("product [id: " + product.getId() + ", name: " + product.getName() + "]");
 				
 				productList.add(product);
-				System.out.println("<<<프로덕트 하나를 프로덕트 리스트에 담음>>>");
+//				System.out.println("<<<프로덕트 하나를 프로덕트 리스트에 담음>>>");
 			}
 		}
 		
