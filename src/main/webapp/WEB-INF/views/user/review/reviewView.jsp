@@ -24,7 +24,9 @@
 	    		<div class="col-sm-4 col-md-4 pull-right">
 	    			<a href="${pageContext.request.contextPath}/user/review/reviewUpdate.do?
 							id=${review.id}&user_id=${user_id}" class="btn btn-primary">수 정</a>
-	    			<a href="#" class="btn btn-primary">삭 제</a>
+	    			<a href="${pageContext.request.contextPath}/user/review/reviewDelete.do?
+							id=${review.id}&user_id=${user_id}" class="btn btn-primary"
+							data-toggle="modal" data-target="#review_delete_modal">삭 제</a>
 	    		</div>
 	    	</div>
 	    	<div class="row">
@@ -49,7 +51,30 @@
 	    
 	    <!-- 댓글 시작 -->
 	    <!-- 댓글 끝 -->
+	    
+	<div id="review_delete_modal" tabindex="-1" class="modal fade">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+
+    		</div>
+  		</div>
+    </div>
     </div>
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
+	<script>
+		$(document).on('submit', '#review_delete_form', function(e) {
+			e.preventDefault();
+			
+			$(this).ajaxSubmit(function(json) {
+				if (json.rt != "OK") {
+					alert(json.rt);
+					return false;
+				}
+				alert("삭제되었습니다.");
+				
+				$("#review_delete_modal").modal('hide');
+			});
+		});
+	</script>
 </body>
 </html>

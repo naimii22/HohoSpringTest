@@ -16,12 +16,14 @@
 	<h1 class="page-header">후기 수정</h1>
 
 	<form class="form-horizontal" enctype="multipart/form-data" id="review_update_form" method="post" 
-								action="${pageContext.request.contextPath}/user/review/reviewUdateOk.do">
+								action="${pageContext.request.contextPath}/user/review/reviewUpdateOk.do">
+		<input type="hidden" name="review_id" value="${review.id }">
+		<input type="hidden" name="user_id" value="${user_id}">
 		<!-- 제목 -->
 		<div class="form-group">
 			<label for="subject" class="col-md-1 control-label">글 제목</label>
 			<div class="col-md-11">
-				<input type="text" class="form-control" id="title" placeholder="제목을 입력하세요." value="${review.title}" >
+				<input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력하세요." value="${review.title}" >
 			</div>
 		</div>
 		

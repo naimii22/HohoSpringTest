@@ -13,11 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.controller.login.loginController;
+import project.spring.hohotest.helper.RegexHelper;
 import project.spring.hohotest.helper.UploadHelper;
 import project.spring.hohotest.helper.WebHelper;
+import project.spring.hohotest.model.Review;
 import project.spring.hohotest.service.ReviewService;
 
 @Controller
@@ -30,11 +33,13 @@ public class ReviewUpdateOkController {
 	@Autowired
 	UploadHelper upload;
 	@Autowired
+	RegexHelper regex;
+	@Autowired
 	ReviewService reviewService;
 	
-/*	@RequestMapping(value="/user/review/reviewUpdateOk.do")
+	@RequestMapping(value="/user/review/reviewUpdateOk.do", method=RequestMethod.POST)
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
-		
+		//**********파일 아직안했음!!
 		web.init();
 		
 		try {
@@ -45,5 +50,49 @@ public class ReviewUpdateOkController {
 		
 		Map<String, String> paramMap = upload.getParamMap();
 		
-	}*/
+		int reviewId = 0;
+		try {
+			reviewId = Integer.parseInt(paramMap.get("review_id"));
+			System.out.println("review_id=" + reviewId);
+		} catch (NumberFormatException e) {
+			return web.redirect(null, "글 번호가 올바르지 않습니다.");
+		}
+		
+		String title = paramMap.get("title");
+		String content = paramMap.get("content");
+		String image = paramMap.get("image");
+		String userId = paramMap.get("user_id");
+		
+		logger.debug("title=" + title);
+		logger.debug("content=" + content);
+		logger.debug("image=" + image);
+		
+		if (!regex.isValue(title)) {
+			return web.redirect(null, "제목을 입력해 주세요.");
+		}
+		
+		if (!regex.isValue(content)) {
+			return web.redirect(null, "내용을 입력해 주세요.");
+		}
+		
+		Review review = new Review();
+		review.setId(reviewId);
+		review.setTitle(title);
+		review.setContent(content);
+		
+		if (!(image == null)) {
+			review.setImage(image);
+		}
+		
+		try {
+			reviewService.updateReview(review);
+			System.out.println("review업데이트 됨!");
+		} catch(Exception e) {
+			return web.redirect(null, e.getLocalizedMessage() + "이건가");
+		}
+		
+		String url = "%s/user/review/reviewView.do?id=%s&user_id=%s";
+		url = String.format(url, web.getRootPath(), reviewId, userId);
+		return web.redirect(url, null);
+	}
 }

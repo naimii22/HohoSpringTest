@@ -27,7 +27,7 @@
 	
 	<select id="selectReviewById" parameterType="project.spring.hohotest.model.Review"
 		resultMap="review">
-		SELECT	id, image, title, rating, edit_date, hit, member_id, content 
+		SELECT	id, image, title, rating, edit_date, hit, member_id, product_id, content 
 		FROM review 
 		WHERE id=#{id}
 	</select>
@@ -38,7 +38,7 @@
 	
 	<update id="updateReview" parameterType="project.spring.hohotest.model.Review">
 		UPDATE review 
-		SET content=#{content}
+		SET content=#{content}, image=#{image}, title=#{title} 
 		WHERE id=${id}
 	</update>
 	
