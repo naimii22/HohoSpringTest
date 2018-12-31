@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="container">
-			<h1>제품</h1>
+			<h1 class="page-header">제품</h1>
 			<hr>
 			<!-- 데스크탑: 한 줄에 4개, 태블릿: 한 줄에 2개 씩 배치되도록 그리드 구성 -->
 			<div class="row">

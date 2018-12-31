@@ -22,7 +22,7 @@
 		</ul>
 	</div>
 	<div class="container">
-			<h1>제품</h1>
+			<h1 class="page-header">제품</h1>
 			<hr>
 			
 			<c:forEach items="${productList}" var="product" varStatus="status">

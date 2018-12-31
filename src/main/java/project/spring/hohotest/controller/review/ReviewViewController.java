@@ -24,7 +24,6 @@ import project.spring.hohotest.service.ReviewService;
 
 @Controller
 public class ReviewViewController {
-	private static final Logger logger = LoggerFactory.getLogger(loginController.class);
 	@Autowired
 	SqlSession sqlSession;
 	@Autowired

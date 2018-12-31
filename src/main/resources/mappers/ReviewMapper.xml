@@ -20,24 +20,30 @@
 	
 	<select id="selectReviewListByProductId" parameterType="project.spring.hohotest.model.Review"
 		resultMap="review">
-		SELECT	id, image, title, rating, edit_date, hit, member_id from review where product_id=#{product_id}
+		SELECT	id, image, title, rating, edit_date, hit, member_id from review 
+		WHERE product_id=#{product_id}
 		ORDER BY id desc
 	</select>
 	
 	<select id="selectReviewById" parameterType="project.spring.hohotest.model.Review"
 		resultMap="review">
-		SELECT	id, image, title, rating, edit_date, hit, member_id, content from review where id=#{id}
+		SELECT	id, image, title, rating, edit_date, hit, member_id, content 
+		FROM review 
+		WHERE id=#{id}
 	</select>
 	
 	<update id="updateReviewHit" parameterType="project.spring.hohotest.model.Review">
-		UPDATE review set hit=#{hit} WHERE id=#{id}
+		UPDATE review SET hit=#{hit} WHERE id=#{id}
 	</update>
 	
 	<update id="updateReview" parameterType="project.spring.hohotest.model.Review">
-		
+		UPDATE review 
+		SET content=#{content}
+		WHERE id=${id}
 	</update>
 	
 	<delete id="deleteReview" parameterType="project.spring.hohotest.model.Review">
-		DELETE from review where id=${id}
+		DELETE FROM review
+		WHERE id=${id}
 	</delete>
 </mapper>

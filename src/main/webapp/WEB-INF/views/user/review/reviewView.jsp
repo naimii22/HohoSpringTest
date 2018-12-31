@@ -14,7 +14,7 @@
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
 	<div class="container">
-    	<h1>후기 상세</h1>
+    	<h1 class="page-header">후기 상세</h1>
     	<hr>
     	<!-- 리뷰 시작 -->
     	<div class="review">
@@ -22,7 +22,8 @@
 	    		<div class="col-sm-2 col-md-2"> 제 목 </div>
 	    		<div class="col-sm-2 col-md-2">${review.title }</div>
 	    		<div class="col-sm-4 col-md-4 pull-right">
-	    			<a href="#" class="btn btn-primary">수 정</a>
+	    			<a href="${pageContext.request.contextPath}/user/review/reviewUpdate.do?
+							id=${review.id}&user_id=${user_id}" class="btn btn-primary">수 정</a>
 	    			<a href="#" class="btn btn-primary">삭 제</a>
 	    		</div>
 	    	</div>
@@ -49,7 +50,6 @@
 	    <!-- 댓글 시작 -->
 	    <!-- 댓글 끝 -->
     </div>
-	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 </body>
 </html>

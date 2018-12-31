@@ -15,7 +15,7 @@
 	
 	<div class="container">
 			<!-- 제품정보 상세 시작 -->
-			<h1>제품 상세</h1>
+			<h1 class="page-header">제품 상세</h1>
 			<hr>
 			<div class="product-view clearfix">
 				<div class="product-image pull-left">
