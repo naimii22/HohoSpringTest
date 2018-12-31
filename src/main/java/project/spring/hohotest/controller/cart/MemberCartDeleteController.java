@@ -26,28 +26,27 @@ public class MemberCartDeleteController {
 	CartService cartService;
 	
 	@RequestMapping(value = "/user/cart/memberCartDelete.do")
-	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
+	public void doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		web.init();
 		System.out.println("<<<카트딜리트로 들어옴>>>");
 		
 		int cartId = web.getInt("cartId");
 		if (cartId == 0) {
-			return web.redirect(null, "장바구니번호가 없습니다.");
+			web.printJsonRt("카트번호가 없습니다.");
 		}
 		System.out.println("갸져온 카트 아이디: " + web.getInt("id"));
 		
 		Cart cart = new Cart();
 		cart.setId(web.getInt("id"));
 		
-		/*try {
+		try {
 			cartService.deleteCart(cart);
 		} catch (Exception e) {
 			web.printJsonRt(e.getLocalizedMessage());
-		}*/
+		}
 		
 		System.out.println("<<<카트 딜리트함>>>");
 		
-		request.setAttribute("cartId", cartId);
-		return new ModelAndView("/user/cart/cartDelete");
+//		return new ModelAndView("/user/cart/memberCartDelete");
 	}
 }
