@@ -14,51 +14,51 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 	
-<div class="container">
-	<h1 class="page-header">공지사항 - <small>글 목록</small></h1>
+	<div class="container">
+		<h1 class="page-header">공지사항 - <small>글 목록</small></h1>
+			
+		<!-- 글 목록 시작 -->
+		<div class="table-responsive">
+			<table class="table table-hover">
+			    <thead>
+			        <tr>
+			            <th class="text-center" style="width: 100px">번호</th>
+			            <th class="text-center">제목</th>
+			            <th class="text-center" style="width: 100px">조회수</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			    	<c:choose>
+			    		<c:when test="${fn:length(noticeList) > 0}">
+			    			<c:forEach var="notice" items="${noticeList}">
+			    				<tr>
+						            <td class="text-center">${maxPageNo}</td>
+						            <td>
+						            	<c:url var="viewURL" value="/user/hohostory/noticeView.do">
+						            		<c:param name="notice_id" value="${notice.id}" />
+						            	</c:url>
+						            	<a href="${viewURL}">${notice.title}</a>
+						            </td>
+						            <td class="text-center">${notice.hit}</td>
+					        	</tr>
+					        	<c:set var="maxPageNo" value="${maxPageNo-1}"/>
+			    			</c:forEach>
+			    		</c:when>
+			    		<c:otherwise>
+			    			<tr>
+					            <td colspan="5" class="text-center" style="line-height: 100px;">
+					                조회된 글이 없습니다.</td>
+					        </tr>
+			    		</c:otherwise>
+			    	</c:choose>
+			    </tbody>
+			</table>
+		</div>
+		<!--// 글 목록 끝 -->
 		
-	<!-- 글 목록 시작 -->
-	<div class="table-responsive">
-		<table class="table table-hover">
-		    <thead>
-		        <tr>
-		            <th class="text-center" style="width: 100px">번호</th>
-		            <th class="text-center">제목</th>
-		            <th class="text-center" style="width: 100px">조회수</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		    	<c:choose>
-		    		<c:when test="${fn:length(noticeList) > 0}">
-		    			<c:forEach var="notice" items="${noticeList}">
-		    				<tr>
-					            <td class="text-center">${maxPageNo}</td>
-					            <td>
-					            	<c:url var="viewURL" value="/user/hohostory/noticeView.do">
-					            		<c:param name="notice_id" value="${notice.id}" />
-					            	</c:url>
-					            	<a href="${viewURL}">${notice.title}</a>
-					            </td>
-					            <td class="text-center">${notice.hit}</td>
-				        	</tr>
-				        	<c:set var="maxPageNo" value="${maxPageNo-1}"/>
-		    			</c:forEach>
-		    		</c:when>
-		    		<c:otherwise>
-		    			<tr>
-				            <td colspan="5" class="text-center" style="line-height: 100px;">
-				                조회된 글이 없습니다.</td>
-				        </tr>
-		    		</c:otherwise>
-		    	</c:choose>
-		    </tbody>
-		</table>
+		<!-- 공지사항 목록 페이지 번호 include -->
+		<%@ include file="/WEB-INF/inc/noticePageNumber.jsp" %>
 	</div>
-	<!--// 글 목록 끝 -->
-	
-	<!-- 공지사항 목록 페이지 번호 include -->
-	<%@ include file="/WEB-INF/inc/noticePageNumber.jsp" %>
-</div>
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 </body>

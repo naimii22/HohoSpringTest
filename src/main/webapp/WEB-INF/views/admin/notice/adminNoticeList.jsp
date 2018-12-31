@@ -39,7 +39,7 @@
 						            <td class="text-center">${maxPageNo}</td>
 						            <td>
 						            	<c:url var="viewURL" value="/user/hohoStory/noticeView.do">
-						            		<c:param name="id" value="${notice.id}" />
+						            		<c:param name="notice_id" value="${notice.id}" />
 						            	</c:url>
 						            	<a href="${readUrl}">${notice.title}</a>
 						            </td>
@@ -60,6 +60,10 @@
 			</table>
 		</div>
 		<!--// 글 목록 끝 -->
+		
+		<!-- 공지사항 목록 페이지 번호 include -->
+		<%@ include file="/WEB-INF/inc/noticePageNumber.jsp" %>
 	</div>
+	
 </body>
 </html>

@@ -19,7 +19,6 @@ import project.spring.hohotest.service.NoticeService;
 
 @Controller
 public class NoticeViewController {
-	/** (1) 사용하고자 하는 Helper 객체 선언 */
 	@Autowired
 	SqlSession sqlSession;
 	@Autowired
@@ -29,13 +28,14 @@ public class NoticeViewController {
 	@Autowired
 	NoticeService noticeService;
 	
-	@RequestMapping("user/hohoStory/noticeView.do")
+	@RequestMapping(value="/user/hohostory/noticeView.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 
 		web.init();
 
-		/** (5) 글 번호 파라미터 받기 */
+		/** 글 번호 파라미터 받기 */
 		int noticeId = web.getInt("notice_id");
+		model.addAttribute("noticeId", noticeId);
 		if (noticeId == 0) {
 			return web.redirect(null, "글 번호가 지정되지 않았습니다.");
 		}
@@ -44,7 +44,7 @@ public class NoticeViewController {
 		Notice notice = new Notice();
 		notice.setId(noticeId);
 
-		/** (6) 게시물 일련번호를 사용한 데이터 조회 */
+		/** 게시물 일련번호를 사용한 데이터 조회 */
 		// 지금 읽고 있는 게시물이 저장될 객체
 		Notice readNotice = null;
 		// 이전글이 저장될 객체
@@ -52,20 +52,8 @@ public class NoticeViewController {
 		// 다음글이 저장될 객체
 		Notice nextNotice = null;
 
-		/** 조회수 중복 갱신 방지 처리 */
-		// 카테고리와 게시물 일련번호를 조합한 문자열을 생성
-		// ex) document_notice_15
-		String cookieKey = "notice_" + noticeId;
-		// 준비한 문자열에 대응되는 쿠키값 조회
-		String cookieVar = web.getCookie(cookieKey);
-
 		try {
-			// 쿠키값이 없다면 조회수 갱신
-			if (cookieVar == null) {
-				noticeService.updateNotice(notice);
-				// 준비한 문자열에 대한 쿠키를 24시간동안 저장
-				web.setCookie(cookieKey, "Y", 60 * 60 * 24);
-			}
+			noticeService.updateNoticeHit(notice);
 			readNotice = noticeService.selectNotice(notice);
 			prevNotice = noticeService.selectPrevNotice(notice);
 			nextNotice = noticeService.selectNextNotice(notice);
@@ -74,11 +62,10 @@ public class NoticeViewController {
 			return web.redirect(null, e.getLocalizedMessage());	
 		}
 
-		/** (7) 읽은 데이터를 View에게 전달한다. */
 		model.addAttribute("readNotice", readNotice);
 		model.addAttribute("prevNotice", prevNotice);
 		model.addAttribute("nextNotice", nextNotice);
 
-		return new ModelAndView("user/hohoStory/noticeView");
+		return new ModelAndView("user/hohostory/noticeView");
 	}
 }

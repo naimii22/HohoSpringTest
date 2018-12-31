@@ -55,7 +55,7 @@
 	
 	<!-- 조회수 1 증가 -->
 	<update id="updateNoticeHit" parameterType="project.spring.hohotest.model.Notice">
-		UPDATE notice SET hit=hit+1 WHERE AND id=#{id}
+		UPDATE notice SET hit=hit+1 WHERE id=#{id}
 	</update>
 	
 	<!-- 게시물 목록을 조회한다. -->
