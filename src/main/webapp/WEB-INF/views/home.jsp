@@ -19,11 +19,11 @@
         <!-- 컨트롤 버튼 -->
         <div id="controlls">
             <a href="#" class="tubular-play">play</a> <!-- class이름과 하단 플러그인 참고에서 Button: '여기'하고만 같으면 됨. -->
-            <a href="${pageContext.request.contextPath}/user/hohoStory/companyInfo.do">회사</a>
-			<a href="${pageContext.request.contextPath}/user/hohoStory/hohoMap.do">지도</a>
-			<a href="${pageContext.request.contextPath}/user/hohoStory/staffInfo.do">직원</a>
-			<a href="${pageContext.request.contextPath}/user/hohoStory/notice.do">공지사항</a>
-			<a href="${pageContext.request.contextPath}/user/hohoStory/noticeView.do">공지상세</a>
+            <a href="${pageContext.request.contextPath}/user/hohostory/companyInfo.do">회사</a>
+			<a href="${pageContext.request.contextPath}/user/hohostory/hohoMap.do">지도</a>
+			<a href="${pageContext.request.contextPath}/user/hohostory/staffInfo.do">직원</a>
+			<a href="${pageContext.request.contextPath}/user/hohostory/notice.do">공지사항</a>
+			<a href="${pageContext.request.contextPath}/user/hohostory/noticeView.do">공지상세</a>
 			<a href="${pageContext.request.contextPath}/user/qna/qna.do">Q & A</a>
 			<a href="${pageContext.request.contextPath}/user/cart/memberCartList.do">장바구니</a>
 			<a href="${pageContext.request.contextPath}/user/like/memberLikeList.do">찜</a>
