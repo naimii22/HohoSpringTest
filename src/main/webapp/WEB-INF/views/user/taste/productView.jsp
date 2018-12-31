@@ -54,7 +54,7 @@
 			
 			<c:set var="length" value="${fn:length(memberList)}" /><!-- memberList의 마지막위치 숫자 -->
 			<c:forEach items="${reviewList }" var="review" varStatus="status">
-			<c:set var="member" value="${memberList.get(status.count)}" />
+			<c:set var="member" value="${memberList.get(status.index)}" />
 				<div class="row underline">
 					<div class="col-sm-1 col-md-1 height"><div class="height-center">${review.id }</div></div>
 					<!-- reviewList에서 review뽑고, 파라미터로 reviewId넘기기 -->
@@ -62,7 +62,7 @@
 					<div class="col-sm-2 col-md-2 height"><div class="height-center"><a href="${pageContext.request.contextPath}/user/review/reviewView.do">${review.title }</a></div></div>
 					<div class="col-sm-2 col-md-2 height"><div class="height-center">${review.rating }</div></div>
 					<div class="col-sm-2 col-md-2 height"><div class="height-center">${member.name }</div></div>
-					<div class="col-sm-2 col-md-2 height"><div class="height-center">${review.date }</div></div>
+					<div class="col-sm-2 col-md-2 height"><div class="height-center">${review.reg_date }</div></div>
 					<div class="col-sm-1 col-md-1 height"><div class="height-center">${review.hit }</div></div>
 				</div>
 			</c:forEach>

@@ -20,6 +20,7 @@
 	
 	<select id="selectReviewListByProductId" parameterType="project.spring.hohotest.model.Review"
 		resultMap="review">
-		SELECT	id, image, title, rating, edit_date, hit from review where product_id=#{product_id}
+		SELECT	id, image, title, rating, edit_date, hit, member_id from review where product_id=#{product_id}
+		ORDER BY id desc
 	</select>
 </mapper>
