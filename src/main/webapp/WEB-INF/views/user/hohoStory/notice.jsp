@@ -34,7 +34,7 @@
 		    				<tr>
 					            <td class="text-center">${maxPageNo}</td>
 					            <td>
-					            	<c:url var="viewURL" value="/user/hohoStory/noticeView.do">
+					            	<c:url var="viewURL" value="/user/hohostory/noticeView.do">
 					            		<c:param name="id" value="${notice.id}" />
 					            	</c:url>
 					            	<a href="${readUrl}">${notice.title}</a>

@@ -35,7 +35,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${nextNotice != null}">
-								<c:url var="nextUrl" value="/user/hohoStory/noticeView.do">
+								<c:url var="nextUrl" value="/user/hohostory/noticeView.do">
 									<c:param name="id" value="${nextNotice.id}" />
 								</c:url>
 								<a href="${nextUrl}">${nextNotice.title}</a>
@@ -51,7 +51,7 @@
 					<td>
 						<c:choose>
 							<c:when test="${prevNotice != null}">
-								<c:url var="prevUrl" value="/user/hohoStory/noticeView.do">
+								<c:url var="prevUrl" value="/user/hohostory/noticeView.do">
 									<c:param name="id" value="${prevNotice.id}" />
 								</c:url>
 								<a href="${prevUrl}">${prevNotice.title}</a>
@@ -68,7 +68,7 @@
 		<!-- 버튼 -->
 		<div class="clearfix">
 			<div class="pull-right">
-				<a href="${pageContext.request.contextPath}/user/hohoStory/notice.do" 
+				<a href="${pageContext.request.contextPath}/user/hohostory/notice.do" 
 					class="btn btn-info">목록</a>
 			</div>
 		</div>

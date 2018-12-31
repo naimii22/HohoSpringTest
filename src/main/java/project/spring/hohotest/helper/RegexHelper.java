@@ -3,6 +3,25 @@ package project.spring.hohotest.helper;
 import java.util.regex.Pattern;
 
 public class RegexHelper {
+	// ----------- 싱글톤 객체 생성 시작 ----------
+	private static RegexHelper current = null;
+
+	public static RegexHelper getInstance() {
+		if (current == null) {
+			current = new RegexHelper();
+		}
+		return current;
+	}
+
+	public static void freeInstance() {
+		current = null;
+	}
+
+	private RegexHelper() {
+		super();
+	}
+	// ----------- 싱글톤 객체 생성 끝 ----------
+
 	/**
 	 * 주어진 문자열이 공백이거나 null인지를 검사
 	 * 
@@ -153,3 +172,4 @@ public class RegexHelper {
 		return result;
 	}
 }
+

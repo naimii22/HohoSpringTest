@@ -19,7 +19,7 @@ import project.spring.hohotest.service.NoticeService;
 
 @Controller
 public class NoticeController {
-	
+//	
 //	@Autowired
 //	WebHelper web;
 //	@Autowired
@@ -29,7 +29,7 @@ public class NoticeController {
 //	@Autowired
 //	PageHelper pageHelper;
 
-	@RequestMapping(value="/user/hohoStory/notice.do")
+	@RequestMapping(value="/user/hohostory/notice.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 //		web.init();
 //
@@ -58,8 +58,8 @@ public class NoticeController {
 //		model.addAttribute("noticeList", noticeList);
 //		model.addAttribute("pageHelper", pageHelper);
 //		model.addAttribute("maxPageNo", maxPageNo);
-
+//
 		// noticeList, pageHelper, maxPageNo addAttribute함
-		return new ModelAndView("user/hohoStory/notice");
+		return new ModelAndView("user/hohostory/notice");
 	}
 }

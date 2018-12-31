@@ -23,6 +23,7 @@
 			            <th class="text-center">주문자</th>
 			            <th class="text-center">주문날짜</th>
 			            <th class="text-center">결제금액</th>
+			            <th></th>
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -34,6 +35,11 @@
 						            <td class="text-center">${member.name}</td>
 						            <td class="text-center">${order.reg_date}</td>
 						            <td class="text-center">${order.total}</td>
+						            <td class="text-center">
+						            	<input type="button" value="결제완료">
+						            	<input type="button" value="주문취소">
+						            	<input type="button" value="최종완료">
+						            </td>
 					        	</tr>
 					        	<c:set var="maxPageNo" value="${maxPageNo-1}"/>
 			    			</c:forEach>
@@ -50,6 +56,7 @@
 			</table>
 		</div>
 		<!--// 글 목록 끝 -->
+		
 	</div>
 	
 </body>

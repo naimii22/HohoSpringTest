@@ -18,6 +18,21 @@ public class PageHelper {
     private int prevPage = 0;		// 이전 그룹의 마지막 페이지
     private int nextPage = 0;		// 이전 그룹의 첫 페이지
     private int limitStart = 0;		// MySQL의 Limit 시작 위치
+
+	// ----------- 싱글톤 객체 생성 시작 ----------
+	private static PageHelper current = null;
+
+	public static PageHelper getInstance() {
+		if (current == null) {
+			current = new PageHelper();
+		}
+		return current;
+	}
+
+	public static void freeInstance() { current = null; }
+
+	private PageHelper() { super(); }
+	// ----------- 싱글톤 객체 생성 끝 ----------
 	
 	/** 페이지 구현에 필요한 계산식을 처리하는 메서드 */
 	public void pageProcess(int page, int totalCount, int listCount, int groupCount) {
@@ -156,3 +171,4 @@ public class PageHelper {
 				+ ", nextPage=" + nextPage + ", limitStart=" + limitStart + "]";
 	}
 }
+

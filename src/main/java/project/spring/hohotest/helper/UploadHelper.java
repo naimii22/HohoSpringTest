@@ -17,15 +17,15 @@ import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.Thumbnails.Builder;
-import net.coobird.thumbnailator.geometry.Positions;
-
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.Thumbnails.Builder;
+import net.coobird.thumbnailator.geometry.Positions;
 
 public class UploadHelper {
 	
@@ -192,13 +192,13 @@ public class UploadHelper {
 	 * @param orginName - 원본 파일 이름
 	 * @throws IOException
 	 */
-	public void printFileStream(String filePath, String orginName, HttpServletResponse response) throws IOException {
+	public void printFileStream(String filePath, String orginName) throws IOException {
 		/** JSP 내장객체를 담고 있는 Spring의 객체를 통해서 내장객체 획득하기 */
 		// --> import org.springframework.web.context.request.RequestContextHolder;
 		// --> import org.springframework.web.context.request.ServletRequestAttributes;
-		//ServletRequestAttributes requestAttr 
-		//		= (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-		//HttpServletResponse response = requestAttr.getResponse();
+		ServletRequestAttributes requestAttr 
+				= (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		HttpServletResponse response = requestAttr.getResponse();
 		
 		/** 파일의 존재여부를 확인하고 파일의 정보 추출하기 */
 		// --> import java.io.File;
@@ -272,7 +272,7 @@ public class UploadHelper {
 	 * @throws IOException
 	 */
 	public void printFileStream(String filePath, 
-			int width, int height, boolean crop, HttpServletResponse response) throws IOException {
+			int width, int height, boolean crop) throws IOException {
 		
 		// 썸네일을 생성하고 경로를 리턴받는다.
 		String thumbPath = this.createThumbnail(filePath, width, height, crop);
@@ -281,7 +281,7 @@ public class UploadHelper {
 		// --> 	이 메서드를 호출하기 위해서 try~catch가 요구되지만,
 		//	   	현재 메서드 역시 throws를 명시했기 때문에
 		//		예외처리가 현재 메서드를 호출하는 곳으로 이관된다.
-		this.printFileStream(thumbPath, null, response);
+		this.printFileStream(thumbPath, null);
 	}
 	
 	/**
