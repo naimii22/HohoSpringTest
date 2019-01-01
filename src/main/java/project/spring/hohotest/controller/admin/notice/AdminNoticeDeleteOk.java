@@ -1,63 +1,60 @@
 package project.spring.hohotest.controller.admin.notice;
 
-import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import project.spring.hohotest.helper.PageHelper;
 import project.spring.hohotest.helper.WebHelper;
 import project.spring.hohotest.model.Notice;
 import project.spring.hohotest.service.NoticeService;
 
 @Controller
-public class AdminNoticeListController {
+public class AdminNoticeDeleteOk {
 	/** Helper 객체 선언 */
+	@Autowired
+	SqlSession sqlSession;
 	@Autowired
 	WebHelper web;
 	@Autowired
 	NoticeService noticeService;
-	@Autowired
-	PageHelper pageHelper;
-	
-	@RequestMapping(value = "/admin/notice/adminNoticeList.do")
+
+	@RequestMapping(value = "/admin/notice/adminNoticeDelete_ok.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
-		
+	
 		web.init();
 		
-		int page = web.getInt("page", 1);
-		int totalCount = 0;
-		int maxPageNo = 0;
-		List<Notice> noticeList = null;
-		Notice notice = new Notice();
+		System.out.println("<<<adminNoticeDelete_ok.do로 들어옴>>>");
 		
-		try {
-			totalCount = noticeService.selectNoticeCount(notice);
-
-			pageHelper.pageProcess(page, totalCount, 12, 5);
-
-			notice.setLimitStart(pageHelper.getLimitStart());
-			notice.setListCount(pageHelper.getListCount());
+		/** 게시글 번호 받기 */
+		int noticeId = web.getInt("notice_id");
+		System.out.println("아이디: " + web.getInt("notice_id"));
+		if (noticeId == 0) {
+			return web.redirect(null, "글 번호가 없습니다.");
+		}
+		
+		/** 파라미터를 Beans로 묶기 */	
+		Notice notice = new Notice();
+		notice.setId(noticeId);
 			
-			noticeList = noticeService.selectNoticeList(notice);
+		try {			
+			noticeService.deleteNotice(notice);	// 게시글 삭제
 			
 		} catch (Exception e) {
 			return web.redirect(null, e.getLocalizedMessage());
 		}
 		
-		maxPageNo = pageHelper.getTotalCount() - (pageHelper.getPage() - 1)	* pageHelper.getListCount();
-
-		model.addAttribute("noticeList", noticeList);
-		model.addAttribute("pageHelper", pageHelper);
-		model.addAttribute("maxPageNo", maxPageNo);
+		/** 페이지 이동 */
+		String url = "%s/admin/notice/adminNoticeList.do";
+		url = String.format(url, web.getRootPath());
 		
-		return new ModelAndView("admin/notice/adminNoticeList");
+		return web.redirect(url, "삭제되었습니다.");
 	}
 }

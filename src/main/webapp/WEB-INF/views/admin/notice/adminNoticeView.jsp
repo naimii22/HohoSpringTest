@@ -70,12 +70,39 @@
 			<div class="pull-right">
 				<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeUpdate.do?notice_id=${readNotice.id}" 
 					class="btn btn-info">수정</a>
-				<a href="${pageContext.request.contextPath} 삭제 모달 넣기" 
-					class="btn btn-info">삭제</a>
+				<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeDelete.do?notice_id=${readNotice.id}" 
+					class="btn btn-info" data-toggle="modal" data-target="#notice_delete_modal">삭제</a>
 				<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeList.do" 
 					class="btn btn-info">목록</a>
 			</div>
 		</div>
+		
+		<!-- 모달 임시 공간 -->
+		<div id="notice_delete_modal" tabindex="-1" class="modal fade">
+	    	<div class="modal-dialog">
+	    		<div class="modal-content">
+	
+	    		</div>
+	  		</div>
+	    </div>
+	    
 	</div>
+	
+	<!-- 모달 동적 요소 -->
+	<script>
+		$(document).on('submit', '#notice_delete_modal', function(e) {
+			e.preventDefault();
+			
+			$(this).ajaxSubmit(function(json) {
+				if (json.rt != "OK") {
+					alert(json.rt);
+					return false;
+				}
+				alert("삭제되었습니다.");
+				
+				$("#notice_delete_modal").modal('hide');
+			});
+		});
+	</script>
 </body>
 </html>

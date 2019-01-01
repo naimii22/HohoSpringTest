@@ -19,6 +19,7 @@ import project.spring.hohotest.service.NoticeService;
 
 @Controller
 public class AdminNoticeViewController {
+	/** Helper 객체 선언 */
 	@Autowired
 	SqlSession sqlSession;
 	@Autowired
@@ -30,6 +31,7 @@ public class AdminNoticeViewController {
 	
 	@RequestMapping(value = "/admin/notice/adminNoticeView.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
+		
 		web.init();
 
 		/** 글 번호 파라미터 받기 */

@@ -62,7 +62,7 @@
 		<!--// 글 목록 끝 -->
 		
 		<!-- 공지사항 목록 페이지 번호 include -->
-		<%@ include file="/WEB-INF/inc/noticePageNumber.jsp" %>
+		<%@ include file="/WEB-INF/inc/paging/adminNoticePageNumber.jsp" %>
 	</div>
 	
 </body>

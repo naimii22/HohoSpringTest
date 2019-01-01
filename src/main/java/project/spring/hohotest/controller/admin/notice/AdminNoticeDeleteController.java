@@ -1,0 +1,36 @@
+package project.spring.hohotest.controller.admin.notice;
+
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import project.spring.hohotest.helper.WebHelper;
+
+@Controller
+public class AdminNoticeDeleteController {
+	/** Helper 객체 선언 */
+	@Autowired
+	WebHelper web;
+
+	@RequestMapping(value="/admin/notice/adminNoticeDelete.do")
+	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
+		
+		web.init();
+		System.out.println("<<<adminNoticeDelete.do로 들어옴>>>");
+		
+		int noticeId = web.getInt("notice_id");
+		System.out.println("아이디: " + web.getInt("notice_id"));
+		if (noticeId == 0) {
+			return web.redirect(null, "글 번호가 없습니다.");
+		}
+	
+		model.addAttribute("noticeId", noticeId);
+		return new ModelAndView("admin/notice/adminNoticeDelete");
+	}
+}

@@ -12,7 +12,7 @@
 			<c:when test="${pageHelper.prevPage > 0}">
 				<!-- 이전 그룹에 대한 페이지 번호가 존재한다면? -->
 				<!-- 이전 그룹으로 이동하기 위한 URL을 생성해서 "prevUrl"에 저장 -->
-				<c:url var="prevUrl" value="/user/hohostory/notic.do">
+				<c:url var="prevUrl" value="/user/hohostory/notice.do">
 					<c:param name="page" value="${pageHelper.prevPage}"></c:param>
 				</c:url>
 
@@ -30,7 +30,7 @@
 		<c:forEach var="i" begin="${pageHelper.startPage}" end="${pageHelper.endPage}" step="1">
 
 			<!-- 각 페이지 번호로 이동할 수 있는 URL을 생성하여 page_url에 저장 -->
-			<c:url var="pageUrl" value="/user/hohostory/notic.do" >
+			<c:url var="pageUrl" value="/user/hohostory/notice.do" >
 				<c:param name="page" value="${i}"></c:param>
 			</c:url>
 				
@@ -51,7 +51,7 @@
 			<c:when test="${pageHelper.nextPage > 0}">
 				<!-- 다음 그룹에 대한 페이지 번호가 존재한다면? -->
 				<!-- 다음 그룹으로 이동하기 위한 URL을 생성해서 "nextUrl"에 저장 -->
-				<c:url var="nextUrl" value="/bbs/document_list.do">
+				<c:url var="nextUrl" value="/user/notice/notice.do">
 					<c:param name="page" value="${pageHelper.nextPage}"></c:param>
 				</c:url>
 
