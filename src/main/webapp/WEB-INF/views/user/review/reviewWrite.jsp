@@ -13,7 +13,30 @@
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 <div class="container">
 	<form action="${pageContext.request.contextPath}/user/review/reviewWriteOk.do">
-		<textarea class="form-control" rows="3"></textarea>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">제 목</label>
+		    <div class="col-sm-10">
+			      <input class="form-control" type="text" name="tile" id="title" />
+		    </div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">내 용</label>
+		    <div class="col-sm-10">
+		      <textarea class="form-control ckeditor" name="content" id="content" rows="3"></textarea>
+		    </div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">별 점</label>
+		    <div class="col-sm-10">
+		      	<div class="form-control">★★★★★</div>
+		    </div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">사 진</label>
+		    <div class="col-sm-10">
+		     	<input class="form-control" type="file" name="image" id="image"/>
+		    </div>
+		</div>
 	</form>
 </div>
 	

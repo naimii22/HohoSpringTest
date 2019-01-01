@@ -66,31 +66,36 @@ public class ProductViewController {
 			System.out.println("reviewList.get(0)의 id = " + reviewList.get(0).getMember_id());
 			
 		} catch(Exception e) {
-			return web.redirect(null,e.getLocalizedMessage());
-		}
+			
+		} finally {
 		
-		List<Member> memberList = null;
-		if (!(reviewList == null)) {
-		memberList = new ArrayList<Member>();
-			for(Review reviews : reviewList) {
-				Member member = new Member();
-				int member_id = reviews.getMember_id();
+			List<Member> memberList = null;
+			if (!(reviewList == null)) {
+				memberList = new ArrayList<Member>();
+				for(Review reviews : reviewList) {
+					Member member = new Member();
+					int member_id = reviews.getMember_id();
+					
+					member.setId(member_id);
+					
+					try {
+						member = memberService.selectMember(member);
+						logger.debug(member.toString());
+					} catch (Exception e) {
+						return web.redirect(null, e.getLocalizedMessage() + "이거맞지?");
+					}
+					
+					memberList.add(member);
+				}//for
 				
-				member.setId(member_id);
+				request.setAttribute("memberList", memberList);
+				request.setAttribute("reviewList", reviewList);
 				
-				try {
-					member = memberService.selectMember(member);
-					logger.debug(member.toString());
-				} catch (Exception e) {
-					return web.redirect(null, e.getLocalizedMessage());
-				}
-				
-				memberList.add(member);
-			}//for
-		}
+			}//if
+			
+		}//finally
+		
 		request.setAttribute("product", product);
-		request.setAttribute("reviewList", reviewList);
-		request.setAttribute("memberList", memberList);
 		
 		return new ModelAndView("user/taste/productView");
 	}

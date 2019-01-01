@@ -16,22 +16,26 @@
 	
 	<div class="navigation">
 		<ul>
-			<li><a href="#" class="getProductList(1)">Cake</a></li>
-			<li><a href="#" class="getProductList(2)">Bread</a></li>
-			<li><a href="#" class="getProductList(3)">Drink</a></li>
+			<!-- href="${pageContext.request.contextPath}/user/taste/taste.do?ptype=1" -->
+			<li><a onclick="getProductList(1, 1)">Cake</a></li>
+			<li><a onclick="getProductList(2, 1)">Bread</a></li>
+			<li><a onclick="getProductList(3, 1)">Drink</a></li>
 		</ul>
 	</div>
 
 	<div class="container">
 		<h1 class="page-header">제품</h1>
 		<hr>
-		<div class="row">
-		
+		<div class="content">
+<!-- 			<div class="row">
+			
+			</div> -->
 		</div>
 	
 	</div>
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
+	<!-- image있고 음료아는 제품 -->
 	<script id="templ_image" type="text/x-handlebars-template">
 		<div class="col-sm-6 col-md-3">
 			<div class="thumbnail">
@@ -45,6 +49,20 @@
 								<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-shopping-cart"></i> 장바구니담기</a>
 							</p>
 						</div>
+			</div>
+		</div>
+	</script>
+	
+	<!-- 이미지있고 음료 제품 -->
+ 	<script id="templ_drink" type="text/x-handlebars-template">
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<img alt="{{name}}" src="${pageContext.request.contextPath}/assets/img/{{image}}" />
+					<div class="caption">
+						<h3>{{name}}</h3>
+						<p>{{price}}원</p>
+						<p>{{info}}</p>
+					</div>
 			</div>
 		</div>
 	</script>
@@ -65,19 +83,7 @@
 			</div>
 		</div>
 	</script>
-	
- 	<script id="templ_drink" type="text/x-handlebars-template">
-		<div class="col-sm-6 col-md-3">
-			<div class="thumbnail">
-				<img alt="{{name}}" src="${pageContext.request.contextPath}/assets/img/{{image}}" />
-					<div class="caption">
-						<h3>{{name}}</h3>
-						<p>{{price}}원</p>
-						<p>{{info}}</p>
-					</div>
-			</div>
-		</div>
-	</script>
+
 	<script id="templ_drink_no_imgae" type="text/x-handlebars-template">
 		<div class="col-sm-6 col-md-3">
 			<div class="thumbnail">
@@ -96,10 +102,11 @@
 		$(function() {
 			//왜 안먹음???????????????????????
 			//$('.navigation').animateCSS('slideInLeft');
-			getProductList(1);
+			getProductList(1, 0);
 		});
 		
-		function getProductList(type) {
+		//처음 로딩시 이루어지는 ajax 시작
+		function getProductList(type, state) {
 			$.ajax({
 				url: "${pageContext.request.contextPath}/user/taste/productList.do",
 				data: {
@@ -107,15 +114,19 @@
 				},
 				dataType: "json",
 				cache: false,
+				beforeSend: function(){
+					if (state > 0) {
+						$('.content').html('');
+					}
+				},
 				success: function(json) {
+					$('.content').append('<div class="row"></div>');
 					var eq = 0;
-					//var selector = "'.container > .row:eq(" + eq + ")'";
 					
-					for(var i= 0; i< json.productList.length; i++) {
+					for(var i= 0; i<json.productList.length; i++) {
 						if ((i>0) && (i%4 == 0)) {
 							eq += 1;
-							$('.container').append('<div class="row"></div>');
-							//selector = ".container > .row:eq(" + eq + ")";
+							$('.content').append('<div class="row"></div>');
 						}//if - 한 row에 4개의 상품만 넣은 후 row추가를 하기 위함
 						
 						var html;
@@ -136,19 +147,24 @@
 							html = tmpl_drink_no_imgae(product);
 						
 						} else { */
-							
-							var tmpl_image = Handlebars.compile($('#templ_image').html());
-							html = tmpl_image(json.productList[i]);
-							
+							//일반 템플릿
 						//}
-						$('.container > .row:eq(' + eq + ')').append(html);
+							if (type == '3') {
+								var tmpl_drink = Handlebars.compile($('#templ_drink').html());
+								html = tmpl_drink(json.productList[i]);
+							} else {
+								var tmpl_image = Handlebars.compile($('#templ_image').html());
+								html = tmpl_image(json.productList[i]);
+							}
+							
+
+						$('.container > .content > .row:eq(' + eq + ')').append(html);
 					}//for
-					
-					
+
 				}//success
 				
 			});
-		};
+		}; //처음 로딩시 이루어지는 ajax 끝
 	</script>
 </body>
 </html>
