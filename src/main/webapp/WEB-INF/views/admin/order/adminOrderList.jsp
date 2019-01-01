@@ -23,7 +23,7 @@
 			            <th class="text-center">주문자</th>
 			            <th class="text-center">주문날짜</th>
 			            <th class="text-center">결제금액</th>
-			            <th></th>
+			            <th class="text-center">주문상태</th>
 			        </tr>
 			    </thead>
 			    <tbody>
@@ -32,13 +32,15 @@
 			    			<c:forEach var="order" items="${orderList}">
 			    				<tr>
 						            <td class="text-center">${maxPageNo}</td>
-						            <td class="text-center">${member.name}</td>
+						            <td class="text-center">${order.id}</td>
+						            <td></td>
+						            <!-- <td class="text-center">${member.name}</td> -->
 						            <td class="text-center">${order.reg_date}</td>
 						            <td class="text-center">${order.total}</td>
 						            <td class="text-center">
-						            	<input type="button" value="결제완료">
-						            	<input type="button" value="주문취소">
-						            	<input type="button" value="최종완료">
+						            	<a href="#" class="btn btn-info">결제완료</a>
+						            	<a href="#" class="btn btn-info">주문취소</a>
+						            	<a href="#" class="btn btn-info">최종완료</a>
 						            </td>
 					        	</tr>
 					        	<c:set var="maxPageNo" value="${maxPageNo-1}"/>

@@ -45,7 +45,7 @@
 	<select id="selectOrderCount"
 		parameterType="project.spring.hohotest.model.Order"
 		resultType="int">
-		SELECT COUNT(id) FROM order
+		SELECT COUNT(id) FROM `order`
 	</select>
 
 </mapper>
