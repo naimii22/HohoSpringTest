@@ -68,7 +68,7 @@
 		<!-- 버튼 -->
 		<div class="clearfix">
 			<div class="pull-right">
-				<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeUpdate.do" 
+				<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeUpdate.do?notice_id=${readNotice.id}" 
 					class="btn btn-info">수정</a>
 				<a href="${pageContext.request.contextPath} 삭제 모달 넣기" 
 					class="btn btn-info">삭제</a>

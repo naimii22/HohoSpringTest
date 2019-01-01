@@ -26,7 +26,7 @@ public class AdminNoticeListController {
 	@Autowired
 	PageHelper pageHelper;
 	
-	@RequestMapping(value="/admin/notice/adminNoticeList.do")
+	@RequestMapping(value = "/admin/notice/adminNoticeList.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		web.init();
 		
@@ -35,7 +35,6 @@ public class AdminNoticeListController {
 		int maxPageNo = 0;
 		List<Notice> noticeList = null;
 		Notice notice = new Notice();
-		
 		
 		try {
 			totalCount = noticeService.selectNoticeCount(notice);

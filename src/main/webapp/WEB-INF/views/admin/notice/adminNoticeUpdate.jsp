@@ -16,16 +16,16 @@
 		<h1 class="page-header">공지사항 수정</h1>
 	
 		<form class="form-horizontal" method="post"
-			action="${pageContext.request.contextPath}/admin/notice/adminNoticUpdate_ok.do">
+			action="${pageContext.request.contextPath}/admin/notice/adminNoticeUpdate_ok.do">
 		
 			<!-- 수정 대상에 대한 상태유지 -->
-			<input type="hidden" name="id" value="${notice.id}">
+			<input type="hidden" name="notice_id" value="${readNotice.id}" />
 			
 			<!-- 제목 -->
 			<div class="form-group">
 				<label for="title" class="col-sm-2 control-label">제목</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="title" name="title" value="${notice.title}" />
+					<input type="text" class="form-control" id="title" name="title" value="${readNotice.title}" />
 				</div>
 			</div>
 			
@@ -33,7 +33,7 @@
 			<div class="form-group">
 				<label for="content" class="col-sm-2 control-label">내용</label>
 				<div class="col-sm-10">
-					<textarea id="content" name="content" class="ckeditor">${notice.content}</textarea>
+					<textarea id="content" name="content" class="ckeditor">${readNotice.content}</textarea>
 				</div>
 			</div>
 			

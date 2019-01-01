@@ -38,13 +38,16 @@ public class AdminNoticeWrite_ok {
 		/** 파라미터 받기 */
 		String title = web.getString("title");
 		String content = web.getString("content");
+		
+		/** 입력 받은 파라미터에 대한 유효성 검사 */
+		// 제목 및 내용 검사
+		if (!regex.isValue(title)) {
+			return web.redirect(null, "글 제목을 입력하세요.");
+		}
 
-		model.addAttribute("title", title);
-		model.addAttribute("content", content);
-
-		/** 게시판 카테고리 값을 받아서 View에 전달 */
-		// 파일이 첨부된 경우 WebHelper를 사용할 수 없다.
-		// String category = web.getString("category");
+		if (!regex.isValue(content)) {
+			return web.redirect(null, "내용을 입력하세요.");
+		}
 
 		/** 입력 받은 파라미터를 Beans로 묶기 */
 		Notice notice = new Notice();

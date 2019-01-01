@@ -12,47 +12,61 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import project.spring.hohotest.helper.RegexHelper;
 import project.spring.hohotest.helper.WebHelper;
 import project.spring.hohotest.model.Notice;
 import project.spring.hohotest.service.NoticeService;
 
 @Controller
-public class AdminNoticeUpdateController {
+public class AdminNoticeUpdate_ok {
 	@Autowired
 	SqlSession sqlSession;
 	@Autowired
 	WebHelper web;
 	@Autowired
+	RegexHelper regex;
+	@Autowired
+	NoticeService bbsDocumentService;
+	@Autowired
 	NoticeService noticeService;
-
-	@RequestMapping(value="/admin/notice/adminNoticeUpdate.do")
+	
+	@RequestMapping(value="/admin/notice/adminNoticeUpdate_ok.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		web.init();
 
-		/** (5) 글 번호 파라미터 받기 */
+		/** 파라미터 받기 */
 		int noticeId = web.getInt("notice_id");
-		if (noticeId == 0) {
-			return web.redirect(null, "글 번호가 지정되지 않았습니다.");
+		String title = web.getString("title");
+		String content = web.getString("content");
+
+		/** 입력 받은 파라미터에 대한 유효성 검사 */
+		// 제목 및 내용 검사
+		if (!regex.isValue(title)) {
+			return web.redirect(null, "글 제목을 입력하세요.");
 		}
 
-		// 파라미터를 Beans로 묶기
+		if (!regex.isValue(content)) {
+			return web.redirect(null, "내용을 입력하세요.");
+		}
+
+		/** 입력 받은 파라미터를 Beans로 묶기 */
 		Notice notice = new Notice();
+		// UPDATE문의 WHERE절에서 사용해야 하므로 글 번호 추가
 		notice.setId(noticeId);
+		notice.setTitle(title);
+		notice.setContent(content);
 
-		/** (6) 게시물 일련번호를 사용한 데이터 조회 */
-		// 지금 읽고 있는 게시물이 저장될 객체
-		Notice readNotice = null;
-
+		/** 게시물 변경을 위한 Service 기능을 호출 */
 		try {
-			readNotice = noticeService.selectNotice(notice);
+			noticeService.updateNotice(notice);
 			
 		} catch (Exception e) {
 			return web.redirect(null, e.getLocalizedMessage());
 		}
 
-		/** (7) 읽은 데이터를 View에게 전달한다. */
-		model.addAttribute("readNotice", readNotice);
+		String url = "%s/admin/notice/adminNoticeView.do?notice_id=%d";
+		url = String.format(url, web.getRootPath(), noticeId);
 		
-		return new ModelAndView("admin/notice/adminNoticeUpdate");
+		return web.redirect(url, null);
 	}
 }
