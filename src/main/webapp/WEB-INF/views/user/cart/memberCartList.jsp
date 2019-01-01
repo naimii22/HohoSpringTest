@@ -7,6 +7,7 @@
 <html lang='ko'>
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
+	<script src="http://malsup.github.com/jquery.form.js"></script>
 	<title>productCartList</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
 		            	<th class="text-center" style="width: 120px">선택</th>
 		        	</tr>
 		    	</thead>
-		    	<tbody id="cartTable">
+		    	<tbody id="cart_list_body">
 		    		
 		    	</tbody>
 			    <%-- <tbody>
@@ -86,21 +87,22 @@
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 	
 	<!-- 장바구니 목록에 대한 템플릿 참조 시작 -->
-	<script id="tmpl_cart" type="text/x-handlebars-template">
-		<tr>
+	<script id="cart_item_tmpl" type="text/x-handlebars-template">
+		<tr id="product_{{id}}">
 			<td>{{image}}</td>
 			<td class="text-center">{{name}}</td>
 			<td class="text-center">{{amount}}</td>
 			<td class="text-center">{{price}}</td>
 			<td>
-				<a href="#" class="btn btn-danger">삭제하기</a>
+				<a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?product_id={{id}}"
+					data-toggle="modal" data-target="#cart_delete_modal" class="btn btn-danger">삭제하기</a>
 			</td>
 		</tr>
 	</script>
 	<!--// 장바구니 목록에 대한 템플릿 참조 끝 -->
 	
 	<!-- 카트 삭제 모달 -->
-	<div id="cartDeleteModal" class="modal fade">
+	<div id="cart_delete_modal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 			</div>
@@ -110,27 +112,40 @@
 	
 	<script>
 		$(function() {
-			getCartList(2);	// 나중에 세션으로 수정
-		});
-		
-		function getCartList(id) {
-			$.ajax({
-				url: "${pageContext.request.contextPath}/user/cart/memberCartList.do",
-				data: {
-					data: id
-				},
-				dataType: "json",
-				cache: false,
-				success: function(json) {
-					for(var i = 0; i < json.productList.length; i++) {
-						var tmpl_cart = Handlebars.compile($('#tmpl_cart').html());
-						var html = tmpl_cart(json.productList[i]);
-							
-						$('#cartTable').append(html);
+			$.get("${pageContext.request.contextPath}/user/cart/memberCartList.do", {
+				user_id: "2"	// 세션 후 수정
+			}, function(json) {
+				if (json.rt != "OK") {
+					alert(json.rt);
+					return false;
+				}
+				
+				var template = Handlebars.compile($('#cart_item_tmpl').html());
+				for(var i = 0; i < json.productList.length; i++) {
+					var html = template(json.productList[i]);
+					$('#cart_list_body').append(html);
+				}
+			});
+			
+			$(document).bind('submit', "#cart_delete_form", function(e) {
+				e.preventDefault();
+				
+				// AjaxForm 플러그인의 강제 호출
+				$(this).ajaxSubmit(function(json) {
+					if (json.rt != "OK") {
+						alert(json.rt);
+						return false;
 					}
-				}// success
-			});// $.ajax
-		};// getCartList(id)
+					
+					alert("삭제되었습니다.");
+					$("#cart_delete_modal").modal('hide');	// modal 강제로 닫기
+					
+					// JSON 결과에 포함된 일련번호를 사용하여 삭제할 <tr>의 id값을 찾는다.
+					var product_id = json.product_id;
+					$("#product_" + product_id).remove();
+				});
+			});
+		});
 	</script>
 </body>
 </html>

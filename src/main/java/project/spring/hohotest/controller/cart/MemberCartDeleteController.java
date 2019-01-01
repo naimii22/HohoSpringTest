@@ -22,19 +22,14 @@ public class MemberCartDeleteController {
 	@RequestMapping(value = "/user/cart/memberCartDelete.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		web.init();
-		System.out.println("<<<memberCartDelete.do로 들어옴>>>");
 		
-		int id = web.getInt("id");
-		if (id == 0) {
-			web.printJsonRt("카트번호가 없습니다.");
+		int product_id = web.getInt("product_id");
+		if (product_id == 0) {
+			web.printJsonRt("제품번호가 없습니다.");
 		}
-		System.out.println("갸져온 카트 아이디: " + web.getInt("id"));
 		
-		Cart cart = new Cart();
-		cart.setId(id);
-		
-//		model.addAttribute("id", id);
-		request.setAttribute("id", id);
+		System.out.println("<<<memberCartDelete.do>>> 가져온 삭제할 제품 아이디: " + product_id);
+		request.setAttribute("product_id", product_id);
 		
 		return new ModelAndView("/user/cart/memberCartDelete");
 	}

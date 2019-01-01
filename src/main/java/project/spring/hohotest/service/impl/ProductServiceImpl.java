@@ -23,17 +23,11 @@ public class ProductServiceImpl implements ProductService {
 	public Product selectProduct(Product product) throws Exception {
 		Product result = null;
 		
-		System.out.println("<<<받은 제품 정보>>>");
-		System.out.println("product [id: " + product.getId() + "]");
-		
 		try {
 			result = sqlSession.selectOne("ProductMapper.selectProduct", product);
 			if (result == null) {
 				throw new NullPointerException();
 			}
-			
-			System.out.println("<<<리턴할 프로덕트 정보>>>");
-			System.out.println("product [id: " + result.getId() + ", name: " + result.getName() + "]");
 		} catch (NullPointerException e) {
 			throw new Exception("가져올 제품 정보가 없습니다.");
 		} catch (Exception e) {

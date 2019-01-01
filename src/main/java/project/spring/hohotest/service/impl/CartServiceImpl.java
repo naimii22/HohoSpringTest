@@ -67,7 +67,7 @@ public class CartServiceImpl implements CartService {
 			throw new Exception("장바구니 삭제에 실패했습니다.");
 		}
 		
-		System.out.println("<<<카트 서비스에서 sqlSession으로 카트 삭제함>>>");
+		System.out.println("<<<CartServiceImpl>>> 카트 삭제 완료");
 	}
 	
 }

@@ -23,7 +23,7 @@
 	
 	<select id="selectProductListByType" parameterType="project.spring.hohotest.model.Product"
 		resultMap="product">
-		SELECT	id, image, name, price from product where type=#{type}	
+		SELECT	id, image, name, price, info from product where type=#{type}	
 	</select>
 	
 </mapper>
