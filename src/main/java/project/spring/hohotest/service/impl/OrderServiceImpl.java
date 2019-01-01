@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 		Order result = null;
 
 		try {
-			result = sqlSession.selectOne("OrderMapper.selectNotice", order);
+			result = sqlSession.selectOne("OrderMapper.selectOrder", order);
 			
 			if ( result == null ) {
 				throw new NullPointerException();
