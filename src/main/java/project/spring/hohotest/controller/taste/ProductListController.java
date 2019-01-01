@@ -25,50 +25,6 @@ import project.spring.hohotest.service.ProductService;
 
 @Controller
 public class ProductListController {
-/*
-	private static final Logger logger = LoggerFactory.getLogger(loginController.class);
-	@Autowired
-	SqlSession sqlSession;
-	@Autowired
-	WebHelper web;
-	//@Autowired
-	//ProductService productService;
-
-	@RequestMapping(value = "user/taste/productList.do")
-	public void doRun(Locale locale, 
-			HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value="type", defaultValue="1") int type) {
-		response.setContentType("application/json");
-		
-		web.init();
-		
-		logger.debug("type : " + type);
-		
-		//type에 해당하는 productList들을 다 가져옴.
-		Product product = new Product();
-		product.setType(type);
-		
-		List<Product> productList = null;
-		try {
-			//productList = productService.selectProductListByType(product);
-		} catch (Exception e) {
-			web.printJsonRt(e.getLocalizedMessage());
-		}
-		
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("rt", "ok");
-		//data.put("productList", productList);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			mapper.writeValue(response.getWriter(), data);
-		} catch (Exception e) {
-			web.printJsonRt(e.getLocalizedMessage());	
-		}
-		
-	}*/
-	
-	///ajax
 
 	private static final Logger logger = LoggerFactory.getLogger(loginController.class);
 	@Autowired

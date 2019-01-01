@@ -69,23 +69,25 @@ public class ProductViewController {
 			return web.redirect(null,e.getLocalizedMessage());
 		}
 		
-		List<Member> memberList = new ArrayList<Member>();
-		for(Review reviews : reviewList) {
-			Member member = new Member();
-			int member_id = reviews.getMember_id();
-			
-			member.setId(member_id);
-			
-			try {
-				member = memberService.selectMember(member);
-				logger.debug(member.toString());
-			} catch (Exception e) {
-				return web.redirect(null, e.getLocalizedMessage());
-			}
-			
-			memberList.add(member);
-		}//for
-		
+		List<Member> memberList = null;
+		if (!(reviewList == null)) {
+		memberList = new ArrayList<Member>();
+			for(Review reviews : reviewList) {
+				Member member = new Member();
+				int member_id = reviews.getMember_id();
+				
+				member.setId(member_id);
+				
+				try {
+					member = memberService.selectMember(member);
+					logger.debug(member.toString());
+				} catch (Exception e) {
+					return web.redirect(null, e.getLocalizedMessage());
+				}
+				
+				memberList.add(member);
+			}//for
+		}
 		request.setAttribute("product", product);
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("memberList", memberList);
