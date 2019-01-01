@@ -6,7 +6,7 @@ public class Notice {
 	private String content;
 	private int hit;
 	
-	// 페이지 구현을 위해 추가
+	// 페이징 구현을 위해 추가
 	private int limitStart;
 	private int listCount;
 	

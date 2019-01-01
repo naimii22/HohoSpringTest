@@ -7,6 +7,10 @@ public class Order {
 	private int total;
 	private int status;
 	
+	// 페이징 구현을 위해 추가
+	private int limitStart;
+	private int listCount;
+	
 	public int getId() {
 		return id;
 	}
@@ -37,10 +41,22 @@ public class Order {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	public int getLimitStart() {
+		return limitStart;
+	}
+	public void setLimitStart(int limitStart) {
+		this.limitStart = limitStart;
+	}
+	public int getListCount() {
+		return listCount;
+	}
+	public void setListCount(int listCount) {
+		this.listCount = listCount;
+	}
 	
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", member_id=" + member_id + ", reg_date=" + reg_date + ", total=" + total
-				+ ", status=" + status + "]";
+				+ ", status=" + status + ", limitStart=" + limitStart + ", listCount=" + listCount + "]";
 	}
 }

@@ -14,50 +14,51 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.helper.PageHelper;
 import project.spring.hohotest.helper.WebHelper;
-import project.spring.hohotest.model.Notice;
-import project.spring.hohotest.service.NoticeService;
+import project.spring.hohotest.model.Order;
+import project.spring.hohotest.service.OrderService;
 
 @Controller
 public class AdminOrderListController {
-//	/** Helper 객체 선언 */
-//	@Autowired
-//	WebHelper web;
-//	@Autowired
-//	NoticeService noticeService;
-//	@Autowired
-//	PageHelper pageHelper;
+	/** Helper 객체 선언 */
+	@Autowired
+	WebHelper web;
+	@Autowired
+	OrderService orderService;
+	@Autowired
+	PageHelper pageHelper;
 	
 	@RequestMapping(value = "/admin/order/adminOrderList.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		
-//		web.init();
-//		
-//		int page = web.getInt("page", 1);
-//		int totalCount = 0;
-//		int maxPageNo = 0;
-//		List<Notice> noticeList = null;
-//		Notice notice = new Notice();
-//		
-//		try {
-//			totalCount = noticeService.selectNoticeCount(notice);
-//
-//			pageHelper.pageProcess(page, totalCount, 12, 5);
-//
-//			notice.setLimitStart(pageHelper.getLimitStart());
-//			notice.setListCount(pageHelper.getListCount());
-//			
-//			noticeList = noticeService.selectNoticeList(notice);
-//			
-//		} catch (Exception e) {
-//			return web.redirect(null, e.getLocalizedMessage());
-//		}
-//		
-//		maxPageNo = pageHelper.getTotalCount() - (pageHelper.getPage() - 1)	* pageHelper.getListCount();
-//
-//		model.addAttribute("noticeList", noticeList);
-//		model.addAttribute("pageHelper", pageHelper);
-//		model.addAttribute("maxPageNo", maxPageNo);
-//		
+		web.init();
+		
+		int page = web.getInt("page", 1);
+		int totalCount = 0;
+		int maxPageNo = 0;
+		List<Order> orderList = null;
+		Order order = new Order();
+		
+		try {
+			// 페이징 작업
+			totalCount = orderService.selectOrderCount(order);
+			pageHelper.pageProcess(page, totalCount, 12, 5);
+
+			order.setLimitStart(pageHelper.getLimitStart());
+			order.setListCount(pageHelper.getListCount());
+			
+			// 주문 목록 가져오기
+			orderList = orderService.selectOrderList(order);
+			
+		} catch (Exception e) {
+			return web.redirect(null, e.getLocalizedMessage());
+		}
+		
+		maxPageNo = pageHelper.getTotalCount() - (pageHelper.getPage() - 1)	* pageHelper.getListCount();
+
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("pageHelper", pageHelper);
+		model.addAttribute("maxPageNo", maxPageNo);
+		
 		return new ModelAndView("admin/order/adminOrderList");
 	}
 }

@@ -16,7 +16,7 @@ public interface NoticeService {
 	public void updateNoticeHit(Notice notice) throws Exception;			// 조회수 1 증가
 	public List<Notice> selectNoticeList(Notice notice) throws Exception;	// 게시글 목록 조회
 	public int selectNoticeCount(Notice notice) throws Exception;			// 전체 게시글 수 조회
-	public void deleteNotice(Notice notice) throws Exception;				// 게시글 업데이트
-	public void updateNotice(Notice notice) throws Exception;				// 게시글 삭제
+	public void deleteNotice(Notice notice) throws Exception;				// 게시글 삭제
+	public void updateNotice(Notice notice) throws Exception;				// 게시글 업데이트
 
 }

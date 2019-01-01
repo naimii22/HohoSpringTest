@@ -12,5 +12,40 @@
 		<result property="total" column="total" />
 		<result property="status" column="status" />
 	</resultMap>
+	
+	<!-- 주문 정보 저장하기 -->
+	<insert id="insertOrder" parameterType="project.spring.hohotest.model.Order"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO order (
+			member_id, reg_date, total, status
+		) VALUES (
+			#{member_id}, now(), #{total}, 0
+		)
+	</insert>
+	
+	<!-- 주문 하나에 대한 정보를 조회한다. -->
+	<select id="selectOrder" 
+		parameterType="project.spring.hohotest.model.Order" 
+		resultMap="order">
+		SELECT id, member_id, reg_date, total, status
+		FROM   order
+		WHERE  id=#{id}
+	</select>
+	
+	<!-- 주문 목록을 조회한다. -->
+	<select id="selectOrderList" parameterType="project.spring.hohotest.model.Order" 
+		resultMap="order">
+		SELECT id, member_id, reg_date, total, status
+		FROM   order
+		ORDER  BY id DESC
+		LIMIT #{limitStart}, #{listCount}
+	</select>
+	
+	<!-- 전체 주문 수를 조회한다. -->
+	<select id="selectOrderCount"
+		parameterType="project.spring.hohotest.model.Order"
+		resultType="int">
+		SELECT COUNT(id) FROM order
+	</select>
 
 </mapper>
