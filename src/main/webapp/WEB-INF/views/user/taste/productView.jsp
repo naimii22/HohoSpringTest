@@ -40,7 +40,7 @@
 			
 			<!-- 후기리스트 시작 -->
 			<h1 class="display-inline">후기</h1>
-			<div class="pull-right"><a class="btn btn-primary">후기 작성</a></div>
+			<div class="pull-right"><a href="${pageContext.request.contextPath}/user/review/reviewWrite.do" class="btn btn-primary">후기 작성</a></div>
 			<hr>
 			<div class="row underline">
 					<div class="col-sm-1 col-md-1">순번</div>

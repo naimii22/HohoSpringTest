@@ -30,7 +30,7 @@ public class TasteController {
 	@Autowired
 	ProductService productService;
 	
-	@RequestMapping(value = "user/taste/taste.do")
+/*	@RequestMapping(value = "user/taste/taste.do")
 	public ModelAndView doRun(Locale locale, Model model,
 			HttpServletRequest request, HttpServletResponse response) {
 		
@@ -49,6 +49,14 @@ public class TasteController {
 		request.setAttribute("productList", productList);
 
 		return new ModelAndView("user/taste/taste");
-	}
+	}*/
 
+	///ajax.......
+	@RequestMapping(value = "user/taste/taste.do")
+	public ModelAndView doRun(Locale locale, Model model,
+			HttpServletRequest request, HttpServletResponse response) {
+		
+
+		return new ModelAndView("user/taste/tasteAjax");
+	}
 }
