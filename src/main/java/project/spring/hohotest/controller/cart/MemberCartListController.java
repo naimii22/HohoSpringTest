@@ -41,7 +41,7 @@ public class MemberCartListController {
 		
 		response.setContentType("application/json");
 		web.init();
-		System.out.println("<<<카트리스트 컨트롤러로 들어옴>>>");
+		System.out.println("<<<memberCartList.do>>>");
 		
 		Cart cart = new Cart();
 		cart.setMember_id(id); // 임시 회원번호, 나중에는 세션 이용
@@ -69,8 +69,8 @@ public class MemberCartListController {
 			}
 		}
 		
-		// 줄바꿈이나 HTML특수문자에 대한 처리
-		/*for (Product p : productList) {
+		/* 줄바꿈이나 HTML특수문자에 대한 처리
+		for (Product p : productList) {
 			p.setName(web.convertHtmlTag(product.getName()));
 			p.setImage(web.convertHtmlTag(product.getImage()));
 			p.setInfo(web.convertHtmlTag(product.getInfo()));
@@ -79,7 +79,7 @@ public class MemberCartListController {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", "OK");
 		data.put("productList", productList);
-		
+				
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.writeValue(response.getWriter(), data);

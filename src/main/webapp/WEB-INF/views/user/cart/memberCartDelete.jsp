@@ -3,8 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ page session="true" %>
-<form id="cartDeleteForm" method="post" action="${pageContext.request.contextPath}/user/cart/memberCartDeleteOk.do">
-	<input type="hidden" name="id" value="${id}" />
+<form id="cart_delete_form" method="post" action="${pageContext.request.contextPath}/user/cart/memberCartDeleteOk.do">
+	<input type="hidden" name="product_id" value="${product_id}" />
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
 		</button>
