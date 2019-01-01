@@ -16,7 +16,7 @@
 		 <div class="container" id="container">
       <div class="row" id="wrap">
          <form name="frm" name="myform" method="post"
-        action="${pageContext.request.contextPath}/user/memberJoin/memberJoinOk.do">
+        action="${pageContext.request.contextPath}/member/join_ok.do">
             <h1 id="h1-style">회원가입</h1>
             <br>
             <table id="table-font">
@@ -71,12 +71,19 @@
                </tr>
             </table>
             <br><br>
-               <input type="submit" class="btn btn-info" id="button" value="회원가입" data-toggle="modal" data-target="#review_delete_modal">
+               <input type="submit" class="btn btn-info" id="button" value="회원가입" data-toggle="modal" data-target="#login_modal">
                <input type="reset" class="btn btn-info" id="button" value="취&nbsp;&nbsp;소">
            </form>
         </div>
       </div>
 	</div>
+	<div id="login_modal" tabindex="-1" class="modal fade">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+
+    		</div>
+  		</div>
+    </div>
 	
 	<!-- 중복검사 스크립트 -->
 	<script type="text/javascript">

@@ -55,9 +55,6 @@ public class JoinOk {
 			return web.redirect(web.getRootPath() + "/index.do", "이미 로그인 하셨습니다.");
 		}
 
-
-		// UploadHelper에서 텍스트 형식의 파라미터를 분류한 Map을 리턴받아서 값을 추출한다.
-		
 				String userId = web.getString("user_id");
 				String userPw = web.getString("user_pw");
 				String userPwRe = web.getString("user_pw_re");
@@ -187,7 +184,7 @@ public class JoinOk {
 		// 자체적으로 View를 갖지 않고 결과를 확인할 수 있는
 		// 다른 페이지로 강제 이동시켜야 한다. (중복실행 방지)
 		// 그러므로 View의 경로를 리턴하지 않는다.
-		return web.redirect(web.getRootPath() + "home.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
+		return new ModelAndView("user/signUp/memberJoinOk");
 	}
 
 }
