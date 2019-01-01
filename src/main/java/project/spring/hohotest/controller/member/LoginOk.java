@@ -79,13 +79,7 @@ public class LoginOk {
 		web.setSession("loginInfo", loginInfo);
 
 		/** (9) 페이지 이동 */
-		// 이전 페이지 구하기 (javascript로 이동된 경우 조회 안됨)
-		String movePage = request.getHeader("referer");
-		if (movePage == null) {
-			movePage = web.getRootPath() + "/home.do";
-		}
-
-		return web.redirect(movePage, null);
+		return web.redirect(web.getRootPath() + "home.do", "로그인 되었습니다.");
 	}
 
 }

@@ -19,7 +19,7 @@
 			<!-- modal-content -->
 			<div class="modal-content">
 				<form id="memberDeleteForm" method="post" 
-				action="${pageContext.request.contextPath}/admin/member/adminMemberDelet_Ok.do">
+				action="${pageContext.request.contextPath}/admin/member/adminMemberDelet_ok.do">
 					<input type="hidden" name="member_id" value="${member.id}" />
 					<!-- 제목 -->
 					<div class="modal-header">

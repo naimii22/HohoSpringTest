@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,15 +25,18 @@ import project.spring.hohotest.service.MemberService;
 public class JoinOk {
 	
 	/** (1) 사용하고자 하는 Helper + Service 객체 선언 */
-	// --> import org.apache.logging.log4j.Logger;
-	Logger logger;
 	// --> import org.apache.ibatis.session.SqlSession;
+	private static Logger logger = LoggerFactory.getLogger(JoinOk.class);
+	@Autowired
 	SqlSession sqlSession;
 	// --> import project.spring.hohotest.helper.WebHelper;
+	@Autowired
 	WebHelper web;
 	// --> import project.spring.hohotest.helper.RegexHelper;
+	@Autowired
 	RegexHelper regex;
 	// --> import project.spring.hohotest.helper.UploadHelper;
+	@Autowired
 	UploadHelper upload;
 	// --> import study.jsp.mysite.service.MemberService;
 	@Autowired
@@ -51,29 +55,20 @@ public class JoinOk {
 			return web.redirect(web.getRootPath() + "/index.do", "이미 로그인 하셨습니다.");
 		}
 
-		/** (4) 파일이 포함된 POST 파라미터 받기 */
-		// <form>태그 안에 <input type="file">요소가 포함되어 있고,
-		// <form>태그에 enctype="multipart/form-data"가 정의되어 있는 경우
-		// WebHelper의 getString()|getInt() 메서드는 더 이상 사용할 수 없게 된다.
-		try {
-			upload.multipartRequest();
-		} catch (Exception e) {
-			return web.redirect(null, "multipart 데이터가 아닙니다.");
-		}
 
 		// UploadHelper에서 텍스트 형식의 파라미터를 분류한 Map을 리턴받아서 값을 추출한다.
-				Map<String, String> paramMap = upload.getParamMap();
-				String userId = paramMap.get("user_id");
-				String userPw = paramMap.get("user_pw");
-				String userPwRe = paramMap.get("user_pw_re");
-				String name = paramMap.get("name");
-				String email = paramMap.get("email");
-				String tel = paramMap.get("tel");
-				String birthdate = paramMap.get("birthdate");
-				String gender = paramMap.get("gender");
-				String postcode = paramMap.get("postcode");
-				String addr1 = paramMap.get("addr1");
-				String addr2 = paramMap.get("addr2");
+		
+				String userId = web.getString("user_id");
+				String userPw = web.getString("user_pw");
+				String userPwRe = web.getString("user_pw_re");
+				String name = web.getString("name");
+				String email = web.getString("email");
+				String tel = web.getString("tel");
+				String birthdate = web.getString("birthdate");
+				String gender = web.getString("gender");
+				String postcode = web.getString("postcode");
+				String addr1 = web.getString("addr1");
+				String addr2 = web.getString("addr2");
 
 				// 전달받은 파라미터는 값의 정상여부 확인을 위해서 로그로 확인
 				logger.debug("userId=" + userId);
@@ -166,8 +161,6 @@ public class JoinOk {
 		}
 
 
-
-
 		/** (7) 전달받은 파라미터를 Beans 객체에 담는다. */
 		Member member = new Member();
 		member.setUser_id(userId);
@@ -194,7 +187,7 @@ public class JoinOk {
 		// 자체적으로 View를 갖지 않고 결과를 확인할 수 있는
 		// 다른 페이지로 강제 이동시켜야 한다. (중복실행 방지)
 		// 그러므로 View의 경로를 리턴하지 않는다.
-		return web.redirect(web.getRootPath() + "/index.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
+		return web.redirect(web.getRootPath() + "home.do", "회원가입이 완료되었습니다. 로그인 해 주세요.");
 	}
 
 }

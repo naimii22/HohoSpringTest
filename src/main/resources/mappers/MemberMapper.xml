@@ -21,7 +21,7 @@
 	</resultMap>
 
 	<!-- 아이디 중복검사를 수행한다 -->
-    <select id="selectuser_idCount" parameterType="project.spring.hohotest.model.Member" resultType="int">
+    <select id="selectUserIdCount" parameterType="project.spring.hohotest.model.Member" resultType="int">
         SELECT count(id) FROM member WHERE user_id=#{user_id}
     </select>
      

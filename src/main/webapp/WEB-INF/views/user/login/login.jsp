@@ -31,19 +31,18 @@
 	                               <div class="modal-body">
 	                                   <div class="input-group" id="divMargin">
 	                                       <span class="input-group-addon">아 이 디&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i></span><br>
-	                                       <input name="id" id="MemberID" type="text" maxlength="60" class="form-control" placeholder="아이디를  입력하세요">
+	                                       <input name="user_id" id="MemberID" type="text" maxlength="60" class="form-control" placeholder="아이디를  입력하세요">
 	                                   </div>
 	                                   
 	                                   <div class="modal-header panel-heading" id="divColor"></div>
 	                                    
 	                                   <div class="input-group" id="divBottom">
 	                                       <span class="input-group-addon">패스워드&nbsp;&nbsp;<i class="fa fa-unlock"></i></span><br>
-	                                       <input name="pwd" id="Password" type="password" maxlength="20" class="form-control" placeholder="패스워드를 입력하세요">
+	                                       <input name="user_pw" id="Password" type="password" maxlength="20" class="form-control" placeholder="패스워드를 입력하세요">
 	                                   </div>
 	                               </div>
 	                               
 	                               <div id="div-login-button">
-	                               		<input type="hidden" name="command" value="memberLogin">
 										<input type="submit" class="btn btn-info" id="button_login" value="Login">
 	                               </div>
 	                               <div id="message">${message}</div>
