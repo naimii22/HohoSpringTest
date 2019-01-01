@@ -129,7 +129,7 @@
 						if ((i>0) && (i%4 == 0)) {
 							alert("if문 입장");
 							eq += 1;
-							$('<div class="row">');
+							$('.container').append('<div class="row"></div>');
 							//selector = ".container > .row:eq(" + eq + ")";
 						}//if - 한 row에 4개의 상품만 넣은 후 row추가를 하기 위함
 						
