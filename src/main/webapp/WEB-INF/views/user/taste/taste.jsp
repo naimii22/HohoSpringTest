@@ -16,10 +16,9 @@
 	
 	<div class="navigation">
 		<ul>
-			<!-- href="${pageContext.request.contextPath}/user/taste/taste.do?ptype=1" -->
-			<li><a onclick="getProductList(1, 1)">Cake</a></li>
-			<li><a onclick="getProductList(2, 1)">Bread</a></li>
-			<li><a onclick="getProductList(3, 1)">Drink</a></li>
+			<li><a onclick="getProductList(1)">Cake</a></li>
+			<li><a onclick="getProductList(2)">Bread</a></li>
+			<li><a onclick="getProductList(3)">Drink</a></li>
 		</ul>
 	</div>
 
@@ -102,11 +101,11 @@
 		$(function() {
 			//왜 안먹음???????????????????????
 			//$('.navigation').animateCSS('slideInLeft');
-			getProductList(1, 0);
+			getProductList(1);
 		});
 		
 		//처음 로딩시 이루어지는 ajax 시작
-		function getProductList(type, state) {
+		function getProductList(type) {
 			$.ajax({
 				url: "${pageContext.request.contextPath}/user/taste/productList.do",
 				data: {
@@ -115,9 +114,7 @@
 				dataType: "json",
 				cache: false,
 				beforeSend: function(){
-					if (state > 0) {
 						$('.content').html('');
-					}
 				},
 				success: function(json) {
 					$('.content').append('<div class="row"></div>');
