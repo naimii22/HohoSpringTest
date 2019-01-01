@@ -40,8 +40,11 @@ public class CartServiceImpl implements CartService {
 		
 		try {
 			result = sqlSession.selectList("CartMapper.selectCartList", cart);
+			if (result == null) {
+				throw new NullPointerException();
+			}
 		} catch(NullPointerException e) {
-			throw new Exception("장바구니에 담긴 상품이 없습니다.");
+			throw new Exception("조회된 장바구니가 없습니다.");
 		} catch(Exception e) {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("장바구니 목록 조회에 실패했습니다.");

@@ -29,6 +29,7 @@
 		SELECT	id, member_id, product_id, amount, order_id
 		FROM	cart
 		WHERE	member_id=#{member_id} AND order_id=0
+		ORDER BY id ASC
 	</select>
 	
 	<!-- 장바구니에서 특정 제품 삭제 하기 -->

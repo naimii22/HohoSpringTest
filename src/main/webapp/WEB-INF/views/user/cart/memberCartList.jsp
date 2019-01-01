@@ -28,17 +28,18 @@
 		        	</tr>
 		    	</thead>
 			    <tbody>
+			    	<%-- 스크립트로 해야함
 			    	<c:choose>
 			    		<c:when test="${fn:length(cartList) > 0}">
 			    			<c:forEach var="cart" items="${cartList}" varStatus="status">
 			    				<c:set var="product" value="${productList.get(status.index)}" />
-			    				<tr>
+			    				<tr id="cart_{{cart.id}}">
 						            <td>
-						            	<%-- productView.do 작성 후에 수정
+						            	productView.do 작성 후에 수정
 						            	<c:url var="readUrl" value="user/product/productView.do">
 						            		<c:param name="product_id" value="${product.id}" />
 						            	</c:url>
-						            	<a href="${readUrl}"><img src="${product.image}"></a> --%>
+						            	<a href="${readUrl}"><img src="${product.image}"></a>
 						            	${product.image}
 						            </td>
 						            <td class="text-center">${product.name}</td>
@@ -46,9 +47,9 @@
 						            <td class="text-center">${product.price}</td>
 						            <td>
 						            	<!-- 삭제하기 버튼 -->
-						            	<a data-toggle="modal" href="#cartDeleteModal" class="btn btn-danger">삭제하기</a>
-						            	<%-- <a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?cartId=${cart.id}"
-						            		data-toggle="modal" data-target="cartDeleteModal" class="btn btn-danger">삭제하기</a> --%>
+						            	<!-- <a data-toggle="modal" href="#cartDeleteModal" class="btn btn-danger">삭제하기</a> -->
+						            	<a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?id=${cart.id}"
+						            		data-toggle="modal" data-target="#cartDeleteModal" class="btn btn-danger">삭제하기</a>
 						            </td>
 					        	</tr>
 			    			</c:forEach>
@@ -58,7 +59,7 @@
 					            <td colspan="5" class="text-center" style="line-height: 100px;">장바구니에 담긴 상품이 없습니다.</td>
 					        </tr>
 			    		</c:otherwise>
-			    	</c:choose>
+			    	</c:choose> --%>
 			    </tbody>
 			</table>
 		</div>
@@ -79,38 +80,53 @@
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 	
+	<!-- 장바구니 목록에 대한 템플릿 참조 시작 -->
+	<script id="tmpl_comment_item" type="text/x-handlebars-template">
+		<tr id="cart_{{cart.id}}">
+			<td>${product.image}</td>
+			<td class="text-center">${product.name}</td>
+			<td class="text-center">수량</td>
+			<td class="text-center">${product.price}</td>
+			<td>
+				<!-- 삭제하기 버튼 -->
+				<a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?id=${cart.id}"
+					data-toggle="modal" data-target="#cartDeleteModal" class="btn btn-danger">삭제하기</a>
+			</td>
+		</tr>
+	</script>
+	<!--// 장바구니 목록에 대한 템플릿 참조 끝 -->
+	
 	<!-- 카트 삭제 모달 -->
-	<div id="cartDeleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div id="cartDeleteModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form id="cartDeleteForm" method="post" action="${pageContext.request.contextPath}/user/cart/memberCartDelete.do">
-					<input type="hidden" name="cartId" value="${cart.id}" />
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">상품 삭제</h4>
-					</div>
-					<div class="modal-body">
-						<p>해당 제품을 장바구니에서 삭제하겠습니까?</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-						<button type="submit" class="btn btn-danger">삭제</button>
-					</div>
-				</form>
 			</div>
 		</div>
 	</div>
 	<!--// 카트 삭제 모달 끝 -->
 	
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		$(function() {
-			/** 모든 모달창의 캐시 방지 처리 */
-			$('.modal').on('hidden.bs.modal', function (e) {
-				// 모달창 내의 내용을 강제로 지움.
-	    		$(this).removeData('bs.modal');
+			
+			$(document).on('submit', "#cartDeleteForm", function(e) {
+				e.preventDefault();
+
+				$(this).ajaxSubmit(function(json) {
+					if (json.rt != "OK") {
+						alert(json.rt);
+						return false;
+					}
+					
+					alert("삭제되었습니다.");
+					// modal 강제로 닫기
+					$("#cartDeleteModal").modal('hide');
+					
+					// JSON 결과에 포함된 덧글일련번호를 사용하여 삭제할 <li>의 id값을 찾는다.
+					var id = json.id;
+					$("#cart_" + id).remove();
+				});
 			});
 		});
-	</script> -->
+	</script>
 </body>
 </html>

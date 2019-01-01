@@ -14,9 +14,9 @@ public interface CartService {
 	public void insertCart(Cart cart) throws Exception;
 	
 	/**
-	 * 특정 회원에 대한 장바구니 목록을 가져온다.
-	 * @param cart - 회원번호 정보가 저장된 Beans
-	 * @return List - 장바구니 목록
+	 * 특정 회원에 대한 장바구니 목록을 조회한다.
+	 * @param cart - 읽어드릴 장바구니의 회원번호가 저장된 Beans
+	 * @return List - 읽어드릴 장바구니 목록
 	 * @throws Exception
 	 */
 	public List<Cart> selectCartList(Cart cart) throws Exception;
