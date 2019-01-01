@@ -17,12 +17,12 @@ import project.spring.hohotest.controller.qna.QnaController;
 @Controller
 public class MemberCartController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(QnaController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberCartController.class);
 	
 	@RequestMapping(value = "/user/cart/memberCart.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
-		logger.debug("qna is running...");
-		
+		logger.debug("memberCart is running...");
+
 		return new ModelAndView("/user/cart/memberCartList");
 	}
 
