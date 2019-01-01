@@ -19,45 +19,45 @@ import project.spring.hohotest.service.NoticeService;
 
 @Controller
 public class AdminOrderListController {
-	/** Helper 객체 선언 */
-	@Autowired
-	WebHelper web;
-	@Autowired
-	NoticeService noticeService;
-	@Autowired
-	PageHelper pageHelper;
+//	/** Helper 객체 선언 */
+//	@Autowired
+//	WebHelper web;
+//	@Autowired
+//	NoticeService noticeService;
+//	@Autowired
+//	PageHelper pageHelper;
 	
-	@RequestMapping(value = "/admin/notice/adminNoticeList.do")
+	@RequestMapping(value = "/admin/order/adminOrderList.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		
-		web.init();
-		
-		int page = web.getInt("page", 1);
-		int totalCount = 0;
-		int maxPageNo = 0;
-		List<Notice> noticeList = null;
-		Notice notice = new Notice();
-		
-		try {
-			totalCount = noticeService.selectNoticeCount(notice);
-
-			pageHelper.pageProcess(page, totalCount, 12, 5);
-
-			notice.setLimitStart(pageHelper.getLimitStart());
-			notice.setListCount(pageHelper.getListCount());
-			
-			noticeList = noticeService.selectNoticeList(notice);
-			
-		} catch (Exception e) {
-			return web.redirect(null, e.getLocalizedMessage());
-		}
-		
-		maxPageNo = pageHelper.getTotalCount() - (pageHelper.getPage() - 1)	* pageHelper.getListCount();
-
-		model.addAttribute("noticeList", noticeList);
-		model.addAttribute("pageHelper", pageHelper);
-		model.addAttribute("maxPageNo", maxPageNo);
-		
-		return new ModelAndView("admin/notice/adminNoticeList");
+//		web.init();
+//		
+//		int page = web.getInt("page", 1);
+//		int totalCount = 0;
+//		int maxPageNo = 0;
+//		List<Notice> noticeList = null;
+//		Notice notice = new Notice();
+//		
+//		try {
+//			totalCount = noticeService.selectNoticeCount(notice);
+//
+//			pageHelper.pageProcess(page, totalCount, 12, 5);
+//
+//			notice.setLimitStart(pageHelper.getLimitStart());
+//			notice.setListCount(pageHelper.getListCount());
+//			
+//			noticeList = noticeService.selectNoticeList(notice);
+//			
+//		} catch (Exception e) {
+//			return web.redirect(null, e.getLocalizedMessage());
+//		}
+//		
+//		maxPageNo = pageHelper.getTotalCount() - (pageHelper.getPage() - 1)	* pageHelper.getListCount();
+//
+//		model.addAttribute("noticeList", noticeList);
+//		model.addAttribute("pageHelper", pageHelper);
+//		model.addAttribute("maxPageNo", maxPageNo);
+//		
+		return new ModelAndView("admin/order/adminOrderList");
 	}
 }
