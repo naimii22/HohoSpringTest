@@ -61,20 +61,5 @@
     </div>
     </div>
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
-	<script>
-		$(document).on('submit', '#review_delete_form', function(e) {
-			e.preventDefault();
-			
-			$(this).ajaxSubmit(function(json) {
-				if (json.rt != "OK") {
-					alert(json.rt);
-					return false;
-				}
-				alert("삭제되었습니다.");
-				
-				$("#review_delete_modal").modal('hide');
-			});
-		});
-	</script>
 </body>
 </html>

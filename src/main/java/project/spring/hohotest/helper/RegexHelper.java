@@ -21,6 +21,14 @@ public class RegexHelper {
 		super();
 	}
 	// ----------- 싱글톤 객체 생성 끝 ----------
+	public boolean isValue(int count) {
+		boolean result = false;
+		if (count != 0) {
+			result = true;
+		}
+		return result;
+	}
+	
 
 	/**
 	 * 주어진 문자열이 공백이거나 null인지를 검사
