@@ -26,6 +26,6 @@ public class Likes {
 	
 	@Override
 	public String toString() {
-		return "Like [id=" + id + ", member_id=" + member_id + ", product_id=" + product_id + "]";
+		return "Likes [id=" + id + ", member_id=" + member_id + ", product_id=" + product_id + "]";
 	}
 }
