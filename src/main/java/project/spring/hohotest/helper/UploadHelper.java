@@ -35,12 +35,14 @@ public class UploadHelper {
 	public String tempDir = null;
 	
 	public UploadHelper(String homeDir) {
+		System.out.println("homeDir" + homeDir); 
 		this.fileDir = homeDir + "/upload";
 		this.tempDir = fileDir + "/temp";
 	}
 
 	/** File정보를 저장하기 위한 컬렉션 */
 	private List<FileInfo> fileList;
+//<FileInfo>를 Review	
 
 	/** 그 밖의 일반 데이터를 저장하기 위한 컬렉션 */
 	private Map<String, String> paramMap;
@@ -79,6 +81,8 @@ public class UploadHelper {
 		/** 폴더의 존재 여부 체크해서 생성하기 */
 		// import java.io.File
 		File uploadDirFile = new File(fileDir);
+		System.out.println("fileDir=" + fileDir + " tempDir=" + tempDir);
+		
 		if (!uploadDirFile.exists()) {
 			uploadDirFile.mkdirs();
 		}
@@ -101,9 +105,12 @@ public class UploadHelper {
 		upload.setSizeMax(20 * 1024 * 1024);
 		// 실제 업로드를 수행하여 파일 및 파라미터들을 얻기
 		List<FileItem> items = upload.parseRequest(request);
+		//jsp의 정보를 담고있는 request객체를 담아서 ServletFileUpload으로 파싱.
+		//parameter하나 하나를 확인하여 file인지 아닌지 확인(115번줄)
 
 		// items에 저장 데이터가 분류될 컬렉션들 할당하기
 		fileList = new ArrayList<FileInfo>();
+		//request에 저장된 fileItem을 얻어와서 저장할 List(118번 줄)
 		paramMap = new HashMap<String, String>();
 
 		/** 업로드 된 파일의 정보 처리 */
@@ -115,8 +122,14 @@ public class UploadHelper {
 			if (f.isFormField()) {
 				/** 파일 형식의 데이터가 아닌 경우 --> paramMap에 정보 분류 */
 				String key = f.getFieldName();
+				//keky = parmeter명
+				System.out.println("getFieldNaSystemme key=" + key);
+				
 				// value를 UTF-8 형식으로 취득한다.
 				String value = f.getString("UTF-8");
+				//value=파라미터 값(한글이기 때문에 utf-8인코딩을 넣어줘야 함)
+				System.out.println("value=" + value);
+
 
 				// 이미 동일한 키값이 map안에 존재한다면? --> checkbox
 				if (paramMap.containsKey(key)) {
@@ -156,7 +169,8 @@ public class UploadHelper {
 				while (true) {
 					// 업로드 파일이 저장될 폴더 + 파일이름으로 파일객체를 생성한다.
 					uploadFile = new File(uploadDirFile, fileName);
-
+//내가 넣은 파일의 정보를 갖고와서(148~150번줄) File(=uploadFile)
+					
 					// 동일한 이름의 파일이 없다면 반복 중단.
 					if (!uploadFile.exists()) {
 						break;
@@ -180,6 +194,8 @@ public class UploadHelper {
 				info.setFileName(fileName);
 				info.setContentType(contentType);
 				info.setFileSize(fileSize);
+				
+///우리는 각 빈즈의 이미지(reviewImage)에 파일경로(fileDir), 파일네임(fileName) 다 들어감.
 
 				fileList.add(info);
 			} // end if

@@ -34,5 +34,7 @@ public class ReviewWriteController {
 		/*String url = "%s/user/taste/productView.do?id=%d";
 		url = String.format(url, web.getRootPath(), product_id);
 		return web.redirect(url, "로그인 후 이용가능합니다.");*/
+			
+		//return web.redirect(null, "로그인 후 이용가능합니다");
 	}
 }

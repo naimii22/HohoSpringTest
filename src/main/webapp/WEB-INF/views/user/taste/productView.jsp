@@ -20,6 +20,13 @@
 			<div class="product-view clearfix">
 				<div class="product-image pull-left">
 					<img class="image-size" src="${pageContext.request.contextPath}/assets/img/no_image.jpg"/>
+					<%-- 	
+						<c:url var="downloadUrl" value="/download.do">
+							<c:param name="file" value="${product.image}" />
+						</c:url>
+						<img src="${downloadUrl}" class="image-size img-responsive" />
+						
+					 --%>
 				</div>
 				<div class="product-info pull-left">
 					<div class="row name"><h3>${product.name }</h3></div>
@@ -30,8 +37,7 @@
 							<a href="#" class="btn btn-info"><i class="glyphicon glyphicon-shopping-cart"></i> 장바구니담기</a>
 						</div>
 					</div>
-					<p>${product.info } 
-					</p>
+					<p>${product.info }</p>
 					<div class="product-describe"></div>
 				</div>
 			</div>
@@ -58,14 +64,20 @@
 				<div class="row underline">
 					<div class="col-sm-1 col-md-1 height"><div class="height-center">${review.id }</div></div>
 					<!-- reviewList에서 review뽑고, 파라미터로 reviewId넘기기 -->
-					<div class="col-sm-2 col-md-2"><img src="${pageContext.request.contextPath}/assets/img/no_image.jpg" width="70" height="70" alt="이미지"></div>
+					<div class="col-sm-2 col-md-2">
+						<c:url var="downloadUrl" value="/download.do">
+							<c:param name="file" value="${review.image }" />
+						</c:url>
+						<img src="${downloadUrl}" class="img-responsive"  width="70" height="70"/>
+						<%-- <img src="${pageContext.request.contextPath}/assets/img/no_image.jpg" width="70" height="70" alt="이미지"> --%>
+					</div>
 					<div class="col-sm-2 col-md-2 height"><div class="height-center">
 						<a href="${pageContext.request.contextPath}/user/review/reviewView.do?
 							id=${review.id}&user_id=${member.user_id}">${review.title }</a></div>
 					</div>
 					<div class="col-sm-2 col-md-2 height"><div class="height-center">${review.rating }</div></div>
 					<div class="col-sm-2 col-md-2 height"><div class="height-center">${member.user_id }</div></div>
-					<div class="col-sm-2 col-md-2 height"><div class="height-center">${review.reg_date }</div></div>
+					<div class="col-sm-2 col-md-2 height"><div class="height-center">${review.edit_date }</div></div>
 					<div class="col-sm-1 col-md-1 height"><div class="height-center">${review.hit }</div></div>
 				</div>
 			</c:forEach>
