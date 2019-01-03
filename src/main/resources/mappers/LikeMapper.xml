@@ -5,7 +5,7 @@
     
 <mapper namespace="LikeMapper">
 
-	<resultMap id="like" type="project.spring.hohotest.model.Like">
+	<resultMap id="like" type="project.spring.hohotest.model.Likes">
 		<result property="id" column="id" />
 		<result property="member_id" column="member_id" />
 		<result property="product_id" column="product_id" />

@@ -5,7 +5,7 @@
     
 <mapper namespace="OrderMapper">
 
-	<resultMap id="order" type="project.spring.hohotest.model.Order">
+	<resultMap id="order" type="project.spring.hohotest.model.Orders">
 		<result property="id" column="id" />
 		<result property="member_id" column="member_id" />
 		<result property="reg_date" column="reg_date" />
@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<!-- 주문 정보 저장하기 -->
-	<insert id="insertOrder" parameterType="project.spring.hohotest.model.Order"
+	<insert id="insertOrder" parameterType="project.spring.hohotest.model.Orders"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO order (
 			member_id, reg_date, total, status
@@ -24,14 +24,14 @@
 	</insert>
 	
 	<!-- [필요없을지도] 가장 최근에 들어간 주문번호 조회 -->
-	<select id="selectLastInsertId" parameterType="project.spring.hohotest.model.Order" 
+	<select id="selectLastInsertId" parameterType="project.spring.hohotest.model.Orders" 
 		resultMap="order">
 		SELECT LAST_INSERT_ID()
 	</select>
 	
 	<!-- 주문 하나에 대한 정보를 조회한다. -->
 	<select id="selectOrder" 
-		parameterType="project.spring.hohotest.model.Order" 
+		parameterType="project.spring.hohotest.model.Orders" 
 		resultMap="order">
 		SELECT id, member_id, reg_date, total, status
 		FROM   order
@@ -39,7 +39,7 @@
 	</select>
 	
 	<!-- 주문 목록을 조회한다. -->
-	<select id="selectOrderList" parameterType="project.spring.hohotest.model.Order" 
+	<select id="selectOrderList" parameterType="project.spring.hohotest.model.Orders" 
 		resultMap="order">
 		SELECT id, member_id, reg_date, total, status
 		FROM   order
@@ -49,7 +49,7 @@
 	
 	<!-- 전체 주문 수를 조회한다. -->
 	<select id="selectOrderCount"
-		parameterType="project.spring.hohotest.model.Order"
+		parameterType="project.spring.hohotest.model.Orders"
 		resultType="int">
 		SELECT COUNT(id) FROM `order`
 	</select>

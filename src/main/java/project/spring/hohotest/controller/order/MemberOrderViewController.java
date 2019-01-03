@@ -1,5 +1,7 @@
 package project.spring.hohotest.controller.order;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.helper.WebHelper;
+import project.spring.hohotest.model.Cart;
 import project.spring.hohotest.model.Orders;
 import project.spring.hohotest.service.OrderService;
 
@@ -36,7 +39,7 @@ public class MemberOrderViewController {
 		Orders order = new Orders();
 		order.setId(order_id);
 		
-		
+		List<Cart> cartList = new ArrayList<Cart>();
 		
 		try {
 			order = orderService.selectOrder(order);
