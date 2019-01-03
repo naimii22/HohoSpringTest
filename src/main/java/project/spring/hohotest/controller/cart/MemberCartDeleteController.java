@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.helper.WebHelper;
-import project.spring.hohotest.model.Cart;
 
 @Controller
 public class MemberCartDeleteController {
