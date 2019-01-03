@@ -39,7 +39,7 @@
         <!-- 페이지 컨텐츠 -->
         <div class="front-content">
             <!-- <h1>Hoho's bakery</h1> -->
-            <p><a class="logo" href="https://www.naver.com/"><img src="${pageContext.request.contextPath}/assets/img/logo_home.png" /></a></p>
+            <p><a class="logo" href="${pageContext.request.contextPath}/home.do"><img src="${pageContext.request.contextPath}/assets/img/logo_home.png" /></a></p>
         </div>
     </div>
 

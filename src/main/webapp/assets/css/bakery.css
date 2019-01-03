@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+#index {
+	margin: 0;
+	padding: 0;
+	background: url(img.jpg) center center fixed no-repeat;
+}
+
+img.video {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -1;
+}
+
+#logo {
+	padding: 200px;
+	opacity: 0.5;
+	filter: alpha(opacity = 50);
+}
+
+#logo:hover {
+	opacity: 1.0;
+	filter: alpha(opacity = 100);
+}
+
+#header {
+	margin-top: 0;
+}
+
+#img {
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+#home {
+	margin-right: 20px;
+	font-size: 20px;
+}
+
+#sign {
+	margin-right: 50px;
+}
+
+#navbarDropdown {
+	margin-right: 30px;
+	font-size: 20px;
+}
