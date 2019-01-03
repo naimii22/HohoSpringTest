@@ -34,7 +34,7 @@
 	
 	<!-- 장바구니에서 특정 제품 삭제 하기 -->
 	<delete id="deleteCart" parameterType="project.spring.hohotest.model.Cart">
-		DELETE FROM cart WHERE product_id=#{product_id}
+		DELETE FROM cart WHERE id=#{id}
 	</delete>
 
 </mapper>

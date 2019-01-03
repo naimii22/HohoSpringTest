@@ -79,7 +79,8 @@ public class MemberCartListController {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", "OK");
 		data.put("productList", productList);
-				
+		data.put("cartList", cartList);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.writeValue(response.getWriter(), data);

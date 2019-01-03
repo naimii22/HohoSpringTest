@@ -7,7 +7,7 @@
 <html lang='ko'>
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
-	<script src="http://malsup.github.com/jquery.form.js"></script>
+	<!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
 	<title>productCartList</title>
 </head>
 <body>
@@ -21,50 +21,14 @@
 			<table class="table table-hover">
 				<thead>
 		        	<tr>
-		            	<th class="text-center" style="width: 100px">사진</th>
-		            	<th class="text-center">이름</th>
+		            	<th class="text-center" style="width: 150px">사진</th>
+		            	<th class="text-center">제품명</th>
 		            	<th class="text-center" style="width: 120px">수량</th>
-		            	<th class="text-center" style="width: 100px">금액</th>
+		            	<th class="text-center" style="width: 120px">금액</th>
 		            	<th class="text-center" style="width: 120px">선택</th>
 		        	</tr>
 		    	</thead>
-		    	<tbody id="cart_list_body">
-		    		
-		    	</tbody>
-			    <%-- <tbody>
-			    	스크립트로 해야함
-			    	<c:choose>
-			    		<c:when test="${fn:length(cartList) > 0}">
-			    			<c:forEach var="cart" items="${cartList}" varStatus="status">
-			    				<c:set var="product" value="${productList.get(status.index)}" />
-			    				<tr id="cart_{{cart.id}}">
-						            <td>
-						            	productView.do 작성 후에 수정
-						            	<c:url var="readUrl" value="user/product/productView.do">
-						            		<c:param name="product_id" value="${product.id}" />
-						            	</c:url>
-						            	<a href="${readUrl}"><img src="${product.image}"></a>
-						            	${product.image}
-						            </td>
-						            <td class="text-center">${product.name}</td>
-						            <td class="text-center">수량</td>
-						            <td class="text-center">${product.price}</td>
-						            <td>
-						            	<!-- 삭제하기 버튼 -->
-						            	<!-- <a data-toggle="modal" href="#cartDeleteModal" class="btn btn-danger">삭제하기</a> -->
-						            	<a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?id=${cart.id}"
-						            		data-toggle="modal" data-target="#cartDeleteModal" class="btn btn-danger">삭제하기</a>
-						            </td>
-					        	</tr>
-			    			</c:forEach>
-			    		</c:when>
-			    		<c:otherwise>
-			    			<tr>
-					            <td colspan="5" class="text-center" style="line-height: 100px;">장바구니에 담긴 상품이 없습니다.</td>
-					        </tr>
-			    		</c:otherwise>
-			    	</c:choose>
-			    </tbody> --%>
+		    	<tbody id="cart_table_body"></tbody>
 			</table>
 		</div>
 		<!--// 장바구니 목록 끝 -->
@@ -72,34 +36,16 @@
 		<!-- 결제 버튼 시작 -->
 		<div class="clearfix">
 		    <div class="pull-right">
-		        <%-- 나중에 세션으로 바꾸기
-		        <a href="${pageContext.request.contextPath}/user/order/memberOrderInsert.do?member_id=${loginUser.user_id}" class="btn btn-primary">
-		        	<span class="glyphicon glyphicon-credit-card"></span> 결제하기
-		        </a> --%>
+		        <%-- 나중에 세션으로 바꾸기 member_id=${loginUser.user_id} --%>
 		        <a href="${pageContext.request.contextPath}/user/order/memberOrderInsert.do?member_id=2" class="btn btn-primary">
-		        	<span class="glyphicon glyphicon-credit-card"></span>결제하기
+		        	<span class="glyphicon glyphicon-credit-card"></span> 결제하기
 		        </a>
 			</div>
 		</div>
-		<!--// 결제 버튼 시작 끝 -->
+		<!--// 결제 버튼 끝 -->
 	</div>
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
-	
-	<!-- 장바구니 목록에 대한 템플릿 참조 시작 -->
-	<script id="cart_item_tmpl" type="text/x-handlebars-template">
-		<tr id="product_{{id}}">
-			<td>{{image}}</td>
-			<td class="text-center">{{name}}</td>
-			<td class="text-center">{{amount}}</td>
-			<td class="text-center">{{price}}</td>
-			<td>
-				<a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?product_id={{id}}"
-					data-toggle="modal" data-target="#cart_delete_modal" class="btn btn-danger">삭제하기</a>
-			</td>
-		</tr>
-	</script>
-	<!--// 장바구니 목록에 대한 템플릿 참조 끝 -->
 	
 	<!-- 카트 삭제 모달 -->
 	<div id="cart_delete_modal" class="modal fade">
@@ -112,6 +58,7 @@
 	
 	<script>
 		$(function() {
+			/** 페이지가 열리면서 동작하도록 이벤트 정의 없이 Ajax요청 */
 			$.get("${pageContext.request.contextPath}/user/cart/memberCartList.do", {
 				user_id: "2"	// 세션 후 수정
 			}, function(json) {
@@ -120,16 +67,33 @@
 					return false;
 				}
 				
-				var template = Handlebars.compile($('#cart_item_tmpl').html());
 				for(var i = 0; i < json.productList.length; i++) {
-					var html = template(json.productList[i]);
-					$('#cart_list_body').append(html);
+					var image = json.productList[i].image;
+					var name = json.productList[i].name;
+					var amount = json.cartList[i].amount;
+					var price = json.productList[i].price;
+					var id = json.cartList[i].id;
+					
+					$('#cart_table_body').append(
+						'<tr id=cart_' + id + '><td class="text-center">' + image
+						+ '</td><td class="text-center">' + name
+						+ '</td><td class="text-center">' + amount
+						+ '</td><td class="text-center">' + price
+						+ '</td><td class="text-center"><a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?cart_id=' + id
+						+ '" data-toggle="modal" data-target="#cart_delete_modal" class="btn btn-danger">삭제하기</a></td></tr>');
 				}
 			});
 			
-			$(document).bind('submit', "#cart_delete_form", function(e) {
+			/** 모든 모달창의 캐시 방지 처리 */
+			$('.modal').on('hidden.bs.modal', function (e) {
+				// 모달창 내의 내용을 강제로 지움.
+	    		$(this).removeData('bs.modal');
+			});
+			
+			/** 동적으로 로드된 폼 안에서의 submit 이벤트 */
+			$(document).on('submit', "#cart_delete_form", function(e) {
 				e.preventDefault();
-				
+
 				// AjaxForm 플러그인의 강제 호출
 				$(this).ajaxSubmit(function(json) {
 					if (json.rt != "OK") {
@@ -138,11 +102,11 @@
 					}
 					
 					alert("삭제되었습니다.");
-					$("#cart_delete_modal").modal('hide');	// modal 강제로 닫기
+					$("#cart_delete_modal").modal('hide'); // modal 강제로 닫기
 					
-					// JSON 결과에 포함된 일련번호를 사용하여 삭제할 <tr>의 id값을 찾는다.
-					var product_id = json.product_id;
-					$("#product_" + product_id).remove();
+					// JSON 결과에 포함된 덧글일련번호를 사용하여 삭제할 <li>의 id값을 찾는다.
+					var cart_id = json.cart_id;
+					$("#cart_" + cart_id).remove();
 				});
 			});
 		});

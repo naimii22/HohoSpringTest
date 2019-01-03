@@ -23,13 +23,13 @@ public class MemberCartDeleteController {
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		web.init();
 		
-		int product_id = web.getInt("product_id");
-		if (product_id == 0) {
+		int cart_id = web.getInt("cart_id");
+		if (cart_id == 0) {
 			web.printJsonRt("제품번호가 없습니다.");
 		}
 		
-		System.out.println("<<<memberCartDelete.do>>> 가져온 삭제할 제품 아이디: " + product_id);
-		request.setAttribute("product_id", product_id);
+		System.out.println("<<<memberCartDelete.do>>> 삭제할 카트번호: " + cart_id);
+		request.setAttribute("cart_id", cart_id);
 		
 		return new ModelAndView("/user/cart/memberCartDelete");
 	}

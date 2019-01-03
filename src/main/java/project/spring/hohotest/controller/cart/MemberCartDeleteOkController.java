@@ -35,14 +35,14 @@ public class MemberCartDeleteOkController {
 		response.setContentType("application/json");
 		web.init();
 		
-		int product_id = web.getInt("product_id");
-		if (product_id == 0) {
+		int cart_id = web.getInt("cart_id");
+		if (cart_id == 0) {
 			web.printJsonRt("제품번호가 없습니다.");
 		}
-		System.out.println("<<<memberCartDeleteOk.do>>> 가져온 삭제할 제품 아이디: " + product_id);
+		System.out.println("<<<memberCartDeleteOk.do>>> 삭제할 카트 아이디: " + cart_id);
 		
 		Cart cart = new Cart();
-		cart.setProduct_id(product_id);
+		cart.setId(cart_id);
 		
 		try {
 			cartService.deleteCart(cart);
@@ -52,13 +52,13 @@ public class MemberCartDeleteOkController {
 		
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("rt", "OK");
-		data.put("product_id", product_id);
+		data.put("cart_id", cart_id);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.writeValue(response.getWriter(), data);
 		} catch (Exception e) {
-			web.printJsonRt(e.getLocalizedMessage());	
+			web.printJsonRt(e.getLocalizedMessage());
 		}
 	}
 }
