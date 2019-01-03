@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.helper.WebHelper;
 import project.spring.hohotest.model.Cart;
-import project.spring.hohotest.model.Order;
+import project.spring.hohotest.model.Orders;
 import project.spring.hohotest.service.CartService;
 import project.spring.hohotest.service.OrderService;
 
@@ -33,7 +33,7 @@ public class MemberOrderInsertController {
 		int member_id = web.getInt("member_id");
 		int total = web.getInt("total");
 		
-		Order order = new Order();
+		Orders order = new Orders();
 		order.setMember_id(member_id);
 		order.setTotal(total);
 		

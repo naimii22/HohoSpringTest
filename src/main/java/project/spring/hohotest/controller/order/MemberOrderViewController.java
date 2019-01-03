@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.helper.WebHelper;
-import project.spring.hohotest.model.Order;
+import project.spring.hohotest.model.Orders;
 import project.spring.hohotest.service.OrderService;
 
 @Controller
@@ -33,7 +33,7 @@ public class MemberOrderViewController {
 		}
 		System.out.println("<<<memberOrderView.do>>> 보러갈 주문번호: " + order_id);
 
-		Order order = new Order();
+		Orders order = new Orders();
 		order.setId(order_id);
 		
 		

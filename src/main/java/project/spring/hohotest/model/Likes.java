@@ -1,6 +1,6 @@
 package project.spring.hohotest.model;
 
-public class Like {
+public class Likes {
 	private int id;
 	private int member_id;
 	private int product_id;

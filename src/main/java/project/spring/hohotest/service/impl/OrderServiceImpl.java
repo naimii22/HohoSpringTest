@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import project.spring.hohotest.model.Order;
+import project.spring.hohotest.model.Orders;
 import project.spring.hohotest.service.OrderService;
 
 @Service
@@ -17,7 +17,7 @@ public class OrderServiceImpl implements OrderService {
 	SqlSession sqlSession;
 	
 	@Override
-	public void insertOrder(Order order) throws Exception {
+	public void insertOrder(Orders order) throws Exception {
 		try {
 			int result = sqlSession.insert("OrderMapper.insertOrder", order);
 			
@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order selectOrder(Order order) throws Exception {
-		Order result = null;
+	public Orders selectOrder(Orders order) throws Exception {
+		Orders result = null;
 
 		try {
 			result = sqlSession.selectOne("OrderMapper.selectOrder", order);
@@ -55,8 +55,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Order> selectOrderList(Order order) throws Exception {
-		List<Order> result = null;
+	public List<Orders> selectOrderList(Orders order) throws Exception {
+		List<Orders> result = null;
 
 		try {
 			result = sqlSession.selectList("OrderMapper.selectOrderList", order);
@@ -76,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int selectOrderCount(Order order) throws Exception {
+	public int selectOrderCount(Orders order) throws Exception {
 		int result = 0;
 
 		try {

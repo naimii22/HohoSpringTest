@@ -1,6 +1,6 @@
 package project.spring.hohotest.model;
 
-public class Order {
+public class Orders {
 	private int id;
 	private int member_id;
 	private String reg_date;

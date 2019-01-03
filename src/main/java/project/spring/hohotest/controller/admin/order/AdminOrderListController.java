@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.helper.PageHelper;
 import project.spring.hohotest.helper.WebHelper;
-import project.spring.hohotest.model.Order;
+import project.spring.hohotest.model.Orders;
 import project.spring.hohotest.service.OrderService;
 
 @Controller
@@ -35,8 +35,8 @@ public class AdminOrderListController {
 		int page = web.getInt("page", 1);
 		int totalCount = 0;
 		int maxPageNo = 0;
-		List<Order> orderList = null;
-		Order order = new Order();
+		List<Orders> orderList = null;
+		Orders order = new Orders();
 		
 		try {
 			// 페이징 작업
