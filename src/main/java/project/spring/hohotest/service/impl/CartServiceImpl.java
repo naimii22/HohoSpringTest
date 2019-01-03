@@ -66,8 +66,20 @@ public class CartServiceImpl implements CartService {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("장바구니 삭제에 실패했습니다.");
 		}
-		
-		System.out.println("<<<CartServiceImpl>>> 카트 삭제 완료");
+	}
+
+	@Override
+	public void updateCartOrderId(Cart cart) throws Exception {
+		try {
+			int result = sqlSession.update("CartMapper.updateCartOrderId", cart);
+			if (result == 0) {
+				throw new NullPointerException();
+			}
+		} catch(NullPointerException e) {
+			throw new Exception("존재하지 않는 장바구니에 대한 요청입니다.");
+		} catch (Exception e) {
+			throw new Exception("장바구니 주문번호 변경에 실패했습니다.");
+		}
 	}
 	
 }

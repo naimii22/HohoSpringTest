@@ -27,4 +27,11 @@ public interface CartService {
 	 * @throws Exception
 	 */
 	public void deleteCart(Cart cart) throws Exception;
+	
+	/**
+	 * 주문 후 장바구니의 주문번호를 변경한다.
+	 * @param cart - 변경할 장바구니의 회원번호와 주문번호가 저장된 Beans
+	 * @throws Exception
+	 */
+	public void updateCartOrderId(Cart cart) throws Exception;
 }

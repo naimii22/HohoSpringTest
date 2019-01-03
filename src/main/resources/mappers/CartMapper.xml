@@ -36,5 +36,12 @@
 	<delete id="deleteCart" parameterType="project.spring.hohotest.model.Cart">
 		DELETE FROM cart WHERE id=#{id}
 	</delete>
+	
+	<!-- 장바구니의 주문번호 변경 -->
+	<update id="updateCartOrderId" parameterType="project.spring.hohotest.model.Cart">
+		UPDATE	cart
+		SET		order_id=#{order_id}
+		WHERE	member_id=#{member_id} AND order_id=0
+	</update>
 
 </mapper>

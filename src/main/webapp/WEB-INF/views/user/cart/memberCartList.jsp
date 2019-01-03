@@ -28,26 +28,23 @@
 		            	<th class="text-center" style="width: 120px">선택</th>
 		        	</tr>
 		    	</thead>
-		    	<tbody id="cart_table_body"></tbody>
+		    	<tbody id="cart_table_body">
+		    	</tbody>
 			</table>
 		</div>
 		<!--// 장바구니 목록 끝 -->
 		
-		<!-- 결제 버튼 시작 -->
+		<!-- 결제 폼 시작 -->
 		<div class="clearfix">
-		    <div class="pull-right">
-		        <%-- 나중에 세션으로 바꾸기 member_id=${loginUser.user_id} --%>
-		        <a href="${pageContext.request.contextPath}/user/order/memberOrderInsert.do?member_id=2" class="btn btn-primary">
-		        	<span class="glyphicon glyphicon-credit-card"></span> 결제하기
-		        </a>
+		    <div id="pay_form" class="pull-right">
 			</div>
 		</div>
-		<!--// 결제 버튼 끝 -->
+		<!--// 결제 폼 끝 -->
 	</div>
 	
 	<%@ include file="/WEB-INF/inc/footer.jsp" %>
 	
-	<!-- 카트 삭제 모달 -->
+	<!-- 카트 삭제 모달 시작 [사용 안함] -->
 	<div id="cart_delete_modal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -55,6 +52,15 @@
 		</div>
 	</div>
 	<!--// 카트 삭제 모달 끝 -->
+	
+	<!-- 결제 완료 모달 시작 -->
+	<div id="pay_ok_modal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			</div>
+		</div>
+	</div>
+	<!--// 결제 완료 모달 끝  -->
 	
 	<script>
 		$(function() {
@@ -67,12 +73,16 @@
 					return false;
 				}
 				
+				var member_id = json.cartList[0].member_id;
+				var total = 0;
+				
 				for(var i = 0; i < json.productList.length; i++) {
 					var image = json.productList[i].image;
 					var name = json.productList[i].name;
 					var amount = json.cartList[i].amount;
 					var price = json.productList[i].price;
 					var id = json.cartList[i].id;
+					var total = total + price*amount;
 					
 					$('#cart_table_body').append(
 						'<tr id=cart_' + id + '><td class="text-center">' + image
@@ -82,8 +92,13 @@
 						+ '</td><td class="text-center"><a href="${pageContext.request.contextPath}/user/cart/memberCartDelete.do?cart_id=' + id
 						+ '" data-toggle="modal" data-target="#cart_delete_modal" class="btn btn-danger">삭제하기</a></td></tr>');
 				}
+				
+				$('#pay_form').append(
+					'<h5>총 제품금액: ' + total + '원</h5><h5>배송비: 2500원</h5><hr><h5>총 결제금액: ' + (total+2500) + '원</h5>'
+					+ '<a href="${pageContext.request.contextPath}/user/order/memberOrderInsert.do?member_id=' + member_id + '&total=' + (total+2500)
+					+ '" class="btn btn-primary"><span class="glyphicon glyphicon-credit-card"></span> 결제하기</a>');
 			});
-			
+		
 			/** 모든 모달창의 캐시 방지 처리 */
 			$('.modal').on('hidden.bs.modal', function (e) {
 				// 모달창 내의 내용을 강제로 지움.
@@ -101,8 +116,8 @@
 						return false;
 					}
 					
-					alert("삭제되었습니다.");
 					$("#cart_delete_modal").modal('hide'); // modal 강제로 닫기
+					alert("삭제되었습니다.");
 					
 					// JSON 결과에 포함된 덧글일련번호를 사용하여 삭제할 <li>의 id값을 찾는다.
 					var cart_id = json.cart_id;
@@ -110,6 +125,7 @@
 				});
 			});
 		});
+		
 	</script>
 </body>
 </html>

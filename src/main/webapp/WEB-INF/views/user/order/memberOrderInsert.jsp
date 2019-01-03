@@ -3,18 +3,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ page session="true" %>
-<form id="cart_delete_form" method="post" action="${pageContext.request.contextPath}/user/cart/memberCartDeleteOk.do">
-	<input type="hidden" name="cart_id" value="${cart_id}" />
+<form id="pay_ok_form" method="post" action="${pageContext.request.contextPath}/user/order/memberOrderView.do">
+	<input type="hidden" name="order_id" value="${order_id}" />
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
 		</button>
-		<h4 class="modal-title">상품 삭제</h4>
+		<h4 class="modal-title">결제 완료</h4>
 	</div>
 	<div class="modal-body">
-		<p>해당 제품을 장바구니에서 삭제하겠습니까?</p>
+		<p>결제가 완료되었습니다.</p>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-		<button type="submit" class="btn btn-danger">삭제</button>
+		<button type="submit" class="btn btn-danger">주문 확인하러 가기</button>
 	</div>
 </form>
