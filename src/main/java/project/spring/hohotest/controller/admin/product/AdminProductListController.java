@@ -1,4 +1,4 @@
-package project.spring.hohotest.controller.admin.notice;
+package project.spring.hohotest.controller.admin.product;
 
 import java.util.List;
 import java.util.Locale;
@@ -14,20 +14,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.helper.PageHelper;
 import project.spring.hohotest.helper.WebHelper;
-import project.spring.hohotest.model.Notice;
-import project.spring.hohotest.service.NoticeService;
+import project.spring.hohotest.model.Product;
+import project.spring.hohotest.service.ProductService;
 
 @Controller
-public class AdminNoticeListController {
+public class AdminProductListController {
 	/** Helper 객체 선언 */
 	@Autowired
 	WebHelper web;
 	@Autowired
-	NoticeService noticeService;
+	ProductService productService;
 	@Autowired
 	PageHelper pageHelper;
 	
-	@RequestMapping(value = "/admin/notice/adminNoticeList.do")
+	@RequestMapping(value = "/admin/product/adminProductList.do")
 	public ModelAndView doRun(Locale locale, Model model, HttpServletRequest request, HttpServletResponse response) {
 		
 		web.init();
@@ -35,17 +35,17 @@ public class AdminNoticeListController {
 		int page = web.getInt("page", 1);
 		int totalCount = 0;
 		int maxPageNo = 0;
-		List<Notice> noticeList = null;
-		Notice notice = new Notice();
+		List<Product> productList = null;
+		Product product = new Product();
 		
 		try {
-			totalCount = noticeService.selectNoticeCount(notice);
+			totalCount = productService.selectProductCount(product);
 			pageHelper.pageProcess(page, totalCount, 12, 5);
 
-			notice.setLimitStart(pageHelper.getLimitStart());
-			notice.setListCount(pageHelper.getListCount());
+			product.setLimitStart(pageHelper.getLimitStart());
+			product.setListCount(pageHelper.getListCount());
 			
-			noticeList = noticeService.selectNoticeList(notice);
+			productList = productService.selectProductList(product);
 			
 		} catch (Exception e) {
 			return web.redirect(null, e.getLocalizedMessage());
@@ -53,10 +53,10 @@ public class AdminNoticeListController {
 		
 		maxPageNo = pageHelper.getTotalCount() - (pageHelper.getPage() - 1)	* pageHelper.getListCount();
 
-		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("productList", productList);
 		model.addAttribute("pageHelper", pageHelper);
 		model.addAttribute("maxPageNo", maxPageNo);
 		
-		return new ModelAndView("admin/notice/adminNoticeList");
+		return new ModelAndView("admin/product/adminProductList");
 	}
 }

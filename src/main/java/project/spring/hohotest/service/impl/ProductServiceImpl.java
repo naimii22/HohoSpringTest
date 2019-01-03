@@ -18,7 +18,23 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	SqlSession sqlSession;
-
+	
+	@Override
+	public void insertProduct(Product product) throws Exception {
+		try {
+			int result = sqlSession.insert("ProductMapper.insertProduct", product);
+			if ( result == 0 ) {
+				throw new NullPointerException();
+			}
+			
+		} catch (NullPointerException e) {
+			throw new Exception("저장된 제품이 없습니다.");
+			
+		} catch (Exception e) {
+			throw new Exception("제품 추가에 실패했습니다.");
+		}
+	}
+	
 	@Override
 	public Product selectProduct(Product product) throws Exception {
 		Product result = null;
@@ -28,6 +44,7 @@ public class ProductServiceImpl implements ProductService {
 			if (result == null) {
 				throw new NullPointerException();
 			}
+			
 		} catch (NullPointerException e) {
 			throw new Exception("가져올 제품 정보가 없습니다.");
 		} catch (Exception e) {
@@ -36,7 +53,27 @@ public class ProductServiceImpl implements ProductService {
 		}
 
 		return result;
-	}//selectProduct
+	}
+	
+	@Override
+	public List<Product> selectProductList(Product product) throws Exception {
+		List<Product> result = null;
+
+		try {
+			result = sqlSession.selectList("ProductMapper.selectProductList", product);
+			if ( result == null ) {
+				throw new NullPointerException();
+			}
+			
+		} catch (NullPointerException e) {
+			throw new Exception("조회된 제품 목록이 없습니다.");
+			
+		} catch (Exception e) {
+			throw new Exception("제품 목록 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
 	
 	@Override
 	public List<Product> selectProductListByType(Product product) throws Exception {
@@ -47,14 +84,64 @@ public class ProductServiceImpl implements ProductService {
 			if (result == null) {
 				throw new NullPointerException();
 			}
+			
 		} catch (NullPointerException e) {
-			throw new Exception("조회된 제품이 없습니다.");
+			throw new Exception("조회된 제품 목록이 없습니다.");
 		} catch (Exception e) {
 			logger.error(e.getLocalizedMessage());
 			throw new Exception("제품 목록 조회에 실패했습니다.");
 		}
 		
 		return result;
-	}//selectProductListByType
+	}
+
+	@Override
+	public int selectProductCount(Product product) throws Exception {
+		int result = 0;
+
+		try {
+			// 게시물 수가 0건인 경우도 있으므로, 결과값이 0인 경우에 대한 예외를 발생시키지 않는다.
+			result = sqlSession.selectOne("ProductMapper.selectProductCount", product);
+			
+		} catch (Exception e) {
+			throw new Exception("제품 수 조회에 실패했습니다.");
+		}
+
+		return result;
+	}
+
+	@Override
+	public void deleteProduct(Product product) throws Exception {
+		try {
+			int result = sqlSession.delete("ProductMapper.deleteProduct", product);
+			
+			if ( result == 0 ) {
+				throw new NullPointerException();
+			}
+			
+		} catch (NullPointerException e) {
+			throw new Exception("존재하지 않는 제품에 대한 요청입니다.");
+			
+		} catch (Exception e) {
+			throw new Exception("제품 삭제에 실패했습니다.");
+		}
+	}
+
+	@Override
+	public void updateProduct(Product product) throws Exception {
+		try {
+			int result = sqlSession.update("ProductMapper.updateProduct", product);
+			
+			if ( result == 0 ) {
+				throw new NullPointerException();
+			}
+			
+		} catch (NullPointerException e) {
+			throw new Exception("존재하지 않는 제품에 대한 요청입니다.");
+			
+		} catch (Exception e) {
+			throw new Exception("제품 수정에 실패했습니다.");
+		}
+	}
 
 }

@@ -16,6 +16,7 @@
 		<a href="${pageContext.request.contextPath}/admin/member/adminMember_ok.do">회원관리</a><br>
 		<a href="${pageContext.request.contextPath}/admin/order/adminOrderList.do">주문관리</a><br>
 		<a href="${pageContext.request.contextPath}/admin/notice/adminNoticeList.do">공지관리</a><br>
+		<a href="${pageContext.request.contextPath}/admin/product/adminProductList.do">제품관리</a><br>
 	</div>
 </body>
 </html>

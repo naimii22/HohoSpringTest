@@ -20,7 +20,6 @@ public class NoticeServiceImpl implements NoticeService {
 	public void insertNotice(Notice notice) throws Exception {
 		try {
 			int result = sqlSession.insert("NoticeMapper.insertNotice", notice);
-			
 			if ( result == 0 ) {
 				throw new NullPointerException();
 			}
@@ -39,7 +38,6 @@ public class NoticeServiceImpl implements NoticeService {
 
 		try {
 			result = sqlSession.selectOne("NoticeMapper.selectNotice", notice);
-			
 			if ( result == null ) {
 				throw new NullPointerException();
 			}
@@ -107,7 +105,6 @@ public class NoticeServiceImpl implements NoticeService {
 
 		try {
 			result = sqlSession.selectList("NoticeMapper.selectNoticeList", notice);
-			
 			if ( result == null ) {
 				throw new NullPointerException();
 			}

@@ -43,7 +43,7 @@
 					<button type="submit" class="btn btn-primary">저장하기</button>
 					<button type="button" class="btn btn-primary" 
 						onclick="location.href='${pageContext.request.contextPath}/admin/notice/adminNoticeList.do'">목록</button>
-					<button type="button" class="btn btn-danger" onclick="history.back();">다시작성</button>
+					<button type="button" class="btn btn-danger" onclick="history.back();">작성취소</button>
 				</div>
 			</div>
 			
