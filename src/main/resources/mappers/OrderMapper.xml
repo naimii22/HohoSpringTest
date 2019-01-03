@@ -16,7 +16,7 @@
 	<!-- 주문 정보 저장하기 -->
 	<insert id="insertOrder" parameterType="project.spring.hohotest.model.Orders"
 		useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO order (
+		INSERT INTO orders (
 			member_id, reg_date, total, status
 		) VALUES (
 			#{member_id}, now(), #{total}, 0
@@ -34,7 +34,7 @@
 		parameterType="project.spring.hohotest.model.Orders" 
 		resultMap="order">
 		SELECT id, member_id, reg_date, total, status
-		FROM   order
+		FROM   orders
 		WHERE  id=#{id}
 	</select>
 	
@@ -42,7 +42,7 @@
 	<select id="selectOrderList" parameterType="project.spring.hohotest.model.Orders" 
 		resultMap="order">
 		SELECT id, member_id, reg_date, total, status
-		FROM   order
+		FROM   orders
 		ORDER  BY id DESC
 		LIMIT #{limitStart}, #{listCount}
 	</select>
@@ -51,7 +51,7 @@
 	<select id="selectOrderCount"
 		parameterType="project.spring.hohotest.model.Orders"
 		resultType="int">
-		SELECT COUNT(id) FROM `order`
+		SELECT COUNT(id) FROM orders
 	</select>
 
 </mapper>
