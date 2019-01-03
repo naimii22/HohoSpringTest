@@ -29,7 +29,6 @@ public class RegexHelper {
 		return result;
 	}
 	
-
 	/**
 	 * 주어진 문자열이 공백이거나 null인지를 검사
 	 * 

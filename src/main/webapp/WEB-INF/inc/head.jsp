@@ -33,6 +33,3 @@
 
 <!-- ajaxForm -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/plugins/ajax-form/jquery.form.min.js"></script>
-
-<!-- Modal -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
