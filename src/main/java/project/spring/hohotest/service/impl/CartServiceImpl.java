@@ -52,6 +52,25 @@ public class CartServiceImpl implements CartService {
 		
 		return result;
 	}
+	
+	@Override
+	public List<Cart> selectCartListByOrderId(Cart cart) throws Exception {
+		List<Cart> result = null;
+		
+		try {
+			result = sqlSession.selectList("CartMapper.selectCartListByOrderId", cart);
+			if (result == null) {
+				throw new NullPointerException();
+			}
+		} catch(NullPointerException e) {
+			throw new Exception("조회된 장바구니가 없습니다.");
+		} catch(Exception e) {
+			logger.error(e.getLocalizedMessage());
+			throw new Exception("장바구니 목록 조회에 실패했습니다.");
+		}
+		
+		return result;
+	}
 
 	@Override
 	public void deleteCart(Cart cart) throws Exception {
@@ -81,5 +100,5 @@ public class CartServiceImpl implements CartService {
 			throw new Exception("장바구니 주문번호 변경에 실패했습니다.");
 		}
 	}
-	
+
 }

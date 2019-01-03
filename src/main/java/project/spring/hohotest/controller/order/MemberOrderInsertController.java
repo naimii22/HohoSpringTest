@@ -56,8 +56,8 @@ public class MemberOrderInsertController {
 		
 		System.out.println("<<<memberOrderInsert.do>>> 결제된 주문번호: " + order_id);
 		
-		String url = "%s/user/order/memberOrderView.do?order_id=%d";
-		url = String.format(url, web.getRootPath(), order_id);
+		String url = "%s/user/order/memberOrderView.do?member_id=%d&order_id=%d";
+		url = String.format(url, web.getRootPath(), member_id, order_id);
 		return web.redirect(url, null);
 		
 		/*request.setAttribute("order_id", order_id);

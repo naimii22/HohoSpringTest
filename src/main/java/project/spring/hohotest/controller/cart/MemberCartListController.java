@@ -37,14 +37,14 @@ public class MemberCartListController {
 	@ResponseBody
 	@RequestMapping(value = "/user/cart/memberCartList.do")
 	public void doRun(Locale locale, HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value="data", defaultValue="2") int id) {
+			@RequestParam(value="data", defaultValue="2") int member_id) {
 		
 		response.setContentType("application/json");
 		web.init();
 		System.out.println("<<<memberCartList.do>>>");
 		
 		Cart cart = new Cart();
-		cart.setMember_id(id); // 임시 회원번호, 나중에는 세션 이용
+		cart.setMember_id(member_id); // 나중에는 세션 이용
 		
 		List<Cart> cartList = new ArrayList<Cart>();
 		try {

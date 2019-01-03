@@ -24,11 +24,18 @@
 		            	<th class="text-center">제품명</th>
 		            	<th class="text-center" style="width: 120px">수량</th>
 		            	<th class="text-center" style="width: 120px">금액</th>
-		            	<th class="text-center" style="width: 120px">선택</th>
 		        	</tr>
 		    	</thead>
 		    	<tbody id="cart_table_body">
-		    		<tr>
+		    		<c:forEach var="product" items="${productList}" varStatus="status">
+		    			<c:set var="cart" value="${cartList.get(status.index)}" />
+		    			<tr>
+		    				<td class="text-center">${product.image}</td>
+		    				<td class="text-center">${product.name}</td>
+		    				<td class="text-center">${cart.amount}</td>
+		    				<td class="text-center">${product.price}</td>
+		    			</tr>
+		    		</c:forEach>
 		    	</tbody>
 			</table>
 		</div>
@@ -37,6 +44,10 @@
 		<!-- 금액 폼 시작 -->
 		<div class="clearfix">
 		    <div id="pay_form" class="pull-right">
+		    	<h5>총 제품금액: ${order.total-2500}</h5>
+		    	<h5>배송비: 2500원</h5>
+		    	<hr>
+		    	<h5>총 결제금액: ${order.total}원</h5>
 			</div>
 		</div>
 		<!--// 금액 폼 끝 -->
