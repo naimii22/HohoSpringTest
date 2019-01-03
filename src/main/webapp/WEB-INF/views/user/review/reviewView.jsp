@@ -33,13 +33,18 @@
 	    		<div class="col-sm-2 col-md-2">작 성 자</div>
 	    		<div class="col-sm-2 col-md-2 text-left">${user_id }</div>
 	    		<div class="col-sm-2 col-md-2">작 성 날 짜</div>
-	    		<div class="col-sm-3 col-md-3 text-left">${review.reg_date }</div>
+	    		<div class="col-sm-3 col-md-3 text-left">${review.edit_date }</div>
 	    		<div class="col-sm-2 col-md-2 text-right">조 회 수</div>
 	    		<div class="col-sm-1 col-md-1 text-left">${review.hit }</div>
 	    	</div>
-	    	<div class="image">
-	    		<img src="">
-	    	</div>
+	    	
+    		<c:url var="downloadUrl" value="/download.do">
+				<c:param name="file" value="${review.image }" />
+			</c:url>
+			<p>
+				<img src="${downloadUrl}" class="image img-responsive" style="margin: auto"/>
+			</p>
+			
 	    	<div class="row">
 	    		<div class="col-sm-2 col-md-2">내 용</div>
 	    	</div>

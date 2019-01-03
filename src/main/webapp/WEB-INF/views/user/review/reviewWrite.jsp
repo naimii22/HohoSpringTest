@@ -20,12 +20,12 @@
 <body>
 	<%@ include file="/WEB-INF/inc/topbar.jsp" %>
 <div class="container">
-	<form class="form-horizontal" enctype="multipart/form-data" action="${pageContext.request.contextPath}/user/review/reviewWriteOk.do">
+	<form class="form-horizontal" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/user/review/reviewWriteOk.do">
 		<input type="hidden" name="product_id" value="${product_id }">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">제 목</label>
 		    <div class="col-sm-10">
-			      <input class="form-control" type="text" name="tile" id="title" />
+			      <input class="form-control" type="text" name="title" id="title"/>
 		    </div>
 		</div>
 		<div class="form-group">
@@ -37,7 +37,7 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">별 점</label>
 		    <div class="col-sm-10">
-				<div class="rating form-group">
+				<div class="form-group">
 					<div class="glyphicon glyphicon-heart-empty" style="display: inline-block;" onclick="getScore(1)"></div>
 					<div class="glyphicon glyphicon-heart-empty" style="display: inline-block;" onclick="getScore(2)"></div>
 					<div class="glyphicon glyphicon-heart-empty" style="display: inline-block;" onclick="getScore(3)"></div>

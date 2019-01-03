@@ -30,8 +30,7 @@
 	</select>
 	
 	<!-- 주문 하나에 대한 정보를 조회한다. -->
-	<select id="selectOrder" 
-		parameterType="project.spring.hohotest.model.Orders" 
+	<select id="selectOrder" parameterType="project.spring.hohotest.model.Orders" 
 		resultMap="order">
 		SELECT id, member_id, reg_date, total, status
 		FROM   orders
@@ -48,10 +47,17 @@
 	</select>
 	
 	<!-- 전체 주문 수를 조회한다. -->
-	<select id="selectOrderCount"
-		parameterType="project.spring.hohotest.model.Orders"
+	<select id="selectOrderCount" parameterType="project.spring.hohotest.model.Orders"
 		resultType="int">
 		SELECT COUNT(id) FROM orders
+	</select>
+	
+	<!-- user_id 조회 -->
+	<select id="selectUserId" parameterType="project.spring.hohotest.model.Orders"
+		resultType="String">
+		SELECT user_id
+		FROM   member, orders
+		WHERE  member.id=orders.member_id
 	</select>
 
 </mapper>

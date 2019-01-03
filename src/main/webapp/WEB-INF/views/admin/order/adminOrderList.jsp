@@ -32,14 +32,12 @@
 			    			<c:forEach var="order" items="${orderList}">
 			    				<tr>
 						            <td class="text-center">${maxPageNo}</td>
-						            <td class="text-center">${order.id}</td>
-						            <td></td>
-						            <!-- <td class="text-center">${member.name}</td> -->
+						            <td class="text-center">${userId}</td>
 						            <td class="text-center">${order.reg_date}</td>
 						            <td class="text-center">${order.total}</td>
 						            <td class="text-center">
-						            	<a href="#" class="btn btn-info">결제완료</a>
-						            	<a href="#" class="btn btn-info">주문취소</a>
+						            	<a href="#" class="btn btn-info">결제완료</a>&nbsp;&nbsp;
+						            	<a href="#" class="btn btn-info">주문취소</a>&nbsp;&nbsp;
 						            	<a href="#" class="btn btn-info">최종완료</a>
 						            </td>
 					        	</tr>

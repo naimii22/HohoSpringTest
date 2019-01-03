@@ -52,6 +52,15 @@
 		</div>
 	</script>
 	
+<!-- image가져오는 부분 -->
+<%-- 	
+	<c:url var="downloadUrl" value="/download.do">
+		<c:param name="file" value="{{image}}" />
+	</c:url>
+	<img src="${downloadUrl}" class="img-responsive" />
+	
+ --%>
+ 
 	<!-- 이미지있고 음료 제품 -->
  	<script id="templ_drink" type="text/x-handlebars-template">
 		<div class="col-sm-6 col-md-3">

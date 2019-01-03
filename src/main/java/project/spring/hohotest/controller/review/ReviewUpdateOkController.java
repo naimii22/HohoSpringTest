@@ -1,5 +1,6 @@
 package project.spring.hohotest.controller.review;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.controller.login.loginController;
+import project.spring.hohotest.helper.FileInfo;
 import project.spring.hohotest.helper.RegexHelper;
 import project.spring.hohotest.helper.UploadHelper;
 import project.spring.hohotest.helper.WebHelper;
@@ -80,17 +82,24 @@ public class ReviewUpdateOkController {
 		review.setTitle(title);
 		review.setContent(content);
 		
-		if (!(image == null)) {
-			review.setImage(image);
-		}
+		List<FileInfo> fileList = upload.getFileList();
 		
 		try {
-			reviewService.updateReview(review);
-			System.out.println("review업데이트 됨!");
-		} catch(Exception e) {
-			return web.redirect(null, e.getLocalizedMessage() + "이건가");
+			// 업로드 된 파일의 수 만큼 반복 처리 한다.
+			for (int i = 0; i < fileList.size(); i++) {
+				FileInfo info = fileList.get(i);
+
+				System.out.println("fileInfo : " + info.toString());
+				
+				review.setImage(info.getFileDir() + "/"  + info.getFileName());
+				
+				// 저장처리
+				reviewService.updateReview(review);
+			}
+		} catch (Exception e) {
+			return web.redirect(null, e.getLocalizedMessage());
 		}
-		
+
 		String url = "%s/user/review/reviewView.do?id=%s&user_id=%s";
 		url = String.format(url, web.getRootPath(), reviewId, userId);
 		return web.redirect(url, null);

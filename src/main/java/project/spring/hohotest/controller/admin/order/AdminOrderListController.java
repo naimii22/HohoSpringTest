@@ -37,6 +37,7 @@ public class AdminOrderListController {
 		int maxPageNo = 0;
 		List<Orders> orderList = null;
 		Orders order = new Orders();
+		String userId = "";
 		
 		try {
 			// 페이징 작업
@@ -48,6 +49,8 @@ public class AdminOrderListController {
 			
 			// 주문 목록 가져오기
 			orderList = orderService.selectOrderList(order);
+			// 회원 ID 가져오기
+			userId = orderService.selectUserId(order);
 			
 		} catch (Exception e) {
 			return web.redirect(null, e.getLocalizedMessage());
@@ -57,6 +60,7 @@ public class AdminOrderListController {
 
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("pageHelper", pageHelper);
+		model.addAttribute("userId", userId);
 		model.addAttribute("maxPageNo", maxPageNo);
 		
 		return new ModelAndView("admin/order/adminOrderList");

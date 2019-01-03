@@ -36,7 +36,10 @@
 		<div class="form-group">
 			<label for="image" class="col-md-1 control-label">이 미 지</label>
 			<div class="col-md-3">
-				<input class="form-control" type="file" name="image" id="image"/>
+				<%-- <c:url var="downloadUrl" value="/download.do">
+					<c:param name="file" value="${review.image }" />
+				</c:url> --%>
+				<input class="form-control" type="file" name="image" id="image" value="${review.image }"/>
 			</div>
 			<em style="color: red;">* 이미지 변경을 원할 경우에만 선택</em>
 		</div>
