@@ -11,5 +11,4 @@ public interface OrderService {
 	public Orders selectOrder(Orders order) throws Exception;				// 하나의 주문보기
 	public List<Orders> selectOrderList(Orders order) throws Exception;		// 주문 목록 조회
 	public int selectOrderCount(Orders order) throws Exception;				// 전체 주문 수 조회
-//	public List<Orders> selectInnerJoinList(Orders order) throws Exception;	// 회원 아이디 조회
 }

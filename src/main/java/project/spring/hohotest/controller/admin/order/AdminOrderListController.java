@@ -1,5 +1,6 @@
 package project.spring.hohotest.controller.admin.order;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -14,7 +15,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import project.spring.hohotest.helper.PageHelper;
 import project.spring.hohotest.helper.WebHelper;
+import project.spring.hohotest.model.Member;
 import project.spring.hohotest.model.Orders;
+import project.spring.hohotest.service.MemberService;
 import project.spring.hohotest.service.OrderService;
 
 @Controller
@@ -24,6 +27,8 @@ public class AdminOrderListController {
 	WebHelper web;
 	@Autowired
 	OrderService orderService;
+	@Autowired
+	MemberService memberService;
 	@Autowired
 	PageHelper pageHelper;
 	
@@ -36,8 +41,9 @@ public class AdminOrderListController {
 		int totalCount = 0;
 		int maxPageNo = 0;
 		List<Orders> orderList = null;
+		List<Member> memberList = new ArrayList<Member>();
 		Orders order = new Orders();
-//		List<Orders> innerJoinList = null;
+		Member member = new Member();
 		
 		try {
 			// 페이징 작업
@@ -49,8 +55,17 @@ public class AdminOrderListController {
 			
 			// 주문 목록 가져오기
 			orderList = orderService.selectOrderList(order);
-			// member와 orders inner join한 리스트 가져오기(주문 관리 목록에 보여질 것만 담긴 리스트)
-//			innerJoinList = orderService.selectInnerJoinList(order);
+			memberList = memberService.selectAllMember(member);
+			
+			// member에서 user_id를 가져오기 위한 for문
+			for( Orders o : orderList ) {
+				member.setId(o.getMember_id());
+				
+				Member m = new Member();
+				m = memberService.selectMember(member);
+				
+				memberList.add(m);
+			}
 			
 		} catch (Exception e) {
 			return web.redirect(null, e.getLocalizedMessage());
@@ -59,8 +74,8 @@ public class AdminOrderListController {
 		maxPageNo = pageHelper.getTotalCount() - (pageHelper.getPage() - 1)	* pageHelper.getListCount();
 
 		model.addAttribute("orderList", orderList);
+		model.addAttribute("memberList", memberList);
 		model.addAttribute("pageHelper", pageHelper);
-//		model.addAttribute("innerJoinList", innerJoinList);
 		model.addAttribute("maxPageNo", maxPageNo);
 		
 		return new ModelAndView("admin/order/adminOrderList");

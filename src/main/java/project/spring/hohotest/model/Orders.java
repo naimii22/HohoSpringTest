@@ -7,9 +7,6 @@ public class Orders {
 	private int total;
 	private int status;
 	
-	// member DB의 user_id 받을 것 추가
-//	private String user_id;
-	
 	// 페이징 구현을 위해 추가
 	private int limitStart;
 	private int listCount;
@@ -44,12 +41,6 @@ public class Orders {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-//	public String getUser_id() {
-//		return user_id;
-//	}
-//	public void setUser_id(String user_id) {
-//		this.user_id = user_id;
-//	}
 	public int getLimitStart() {
 		return limitStart;
 	}

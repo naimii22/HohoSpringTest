@@ -32,7 +32,7 @@
 			    			<c:forEach var="order" items="${orderList}" varStatus="status">
 			    				<tr>
 						            <td class="text-center">${maxPageNo}</td>
-						            <td class="text-center">${order.member_id}</td>
+						            <td class="text-center">${memberList[status.index].user_id}</td>
 						            <td class="text-center">${order.reg_date}</td>
 						            <td class="text-center">${order.total}</td>
 						            <td class="text-center">

@@ -52,13 +52,5 @@
 		resultType="int">
 		SELECT COUNT(id) FROM orders
 	</select>
-	
-<!-- 	주문 목록에 보여질 값들 조회
-	<select id="selectInnerJoinList" parameterType="project.spring.hohotest.model.Orders"
-		resultMap="order">
-		SELECT orders.id,member.user_id,reg_date,total,status 
-		FROM   orders INNER JOIN member 
-		ON     member_id=member.id
-	</select> -->
 
 </mapper>
