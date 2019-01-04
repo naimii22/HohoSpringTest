@@ -90,23 +90,23 @@ public class OrderServiceImpl implements OrderService {
 		return result;
 	}
 
-	@Override
-	public String selectUserId(Orders order) throws Exception {
-		String result = "default_id";
-
-		try {
-			result = sqlSession.selectOne("OrderMapper.selectUserId", order);
-			if ( result == null ) {
-				throw new NullPointerException();
-			}
-			
-		} catch (NullPointerException e) {
-			throw new Exception("조회된 회원 ID가 없습니다.");
-			
-		} catch (Exception e) {
-			throw new Exception("회원 ID 조회에 실패했습니다.");
-		}
-
-		return result;
-	}
+//	@Override
+//	public List<Orders> selectInnerJoinList(Orders order) throws Exception {
+//		List<Orders> result = null;
+//
+//		try {
+//			result = sqlSession.selectOne("OrderMapper.selectUserIdList", order);
+//			if ( result == null ) {
+//				throw new NullPointerException();
+//			}
+//			
+//		} catch (NullPointerException e) {
+//			throw new Exception("조회된 회원 ID가 없습니다.");
+//			
+//		} catch (Exception e) {
+//			throw new Exception("회원 ID 조회에 실패했습니다.");
+//		}
+//
+//		return result;
+//	}
 }

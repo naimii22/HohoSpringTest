@@ -11,6 +11,7 @@
 		<result property="reg_date" column="reg_date" />
 		<result property="total" column="total" />
 		<result property="status" column="status" />
+	<!-- 	<result property="user_id" column="user_id" /> -->
 	</resultMap>
 	
 	<!-- 주문 정보 저장하기 -->
@@ -52,12 +53,12 @@
 		SELECT COUNT(id) FROM orders
 	</select>
 	
-	<!-- user_id 조회 -->
-	<select id="selectUserId" parameterType="project.spring.hohotest.model.Orders"
-		resultType="String">
-		SELECT user_id
-		FROM   member, orders
-		WHERE  member.id=orders.member_id
-	</select>
+<!-- 	주문 목록에 보여질 값들 조회
+	<select id="selectInnerJoinList" parameterType="project.spring.hohotest.model.Orders"
+		resultMap="order">
+		SELECT orders.id,member.user_id,reg_date,total,status 
+		FROM   orders INNER JOIN member 
+		ON     member_id=member.id
+	</select> -->
 
 </mapper>
