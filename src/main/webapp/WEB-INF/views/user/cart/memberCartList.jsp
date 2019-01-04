@@ -7,7 +7,6 @@
 <html lang='ko'>
 <head>
 	<%@ include file="/WEB-INF/inc/head.jsp" %>
-	<!-- <script src="http://malsup.github.com/jquery.form.js"></script> -->
 	<title>productCartList</title>
 </head>
 <body>

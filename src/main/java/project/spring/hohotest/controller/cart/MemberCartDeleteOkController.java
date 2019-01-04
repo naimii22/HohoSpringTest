@@ -37,7 +37,7 @@ public class MemberCartDeleteOkController {
 		
 		int cart_id = web.getInt("cart_id");
 		if (cart_id == 0) {
-			web.printJsonRt("제품번호가 없습니다.");
+			web.printJsonRt("카트번호가 없습니다.");
 		}
 		System.out.println("<<<memberCartDeleteOk.do>>> 삭제할 카트 아이디: " + cart_id);
 		
